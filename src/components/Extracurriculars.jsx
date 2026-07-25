@@ -1,7 +1,9 @@
 import { motion } from 'framer-motion'
+import { Calendar, MapPin, User } from 'lucide-react'
 import './Extracurriculars.css'
 
 const tagClass = { Debate: 'tag-debate', Sports: 'tag-sports', Academic: 'tag-academic', Service: 'tag-service' }
+const tagLabel = { Debate: 'Debate & Public Speaking', Sports: 'Sports', Academic: 'Academic Olympiads', Service: 'Community Service' }
 
 const opportunities = [
   { title: 'National Speech & Debate Tournament', tag: 'Debate', desc: 'The largest academic competition in the USA. Over 150,000 students compete in formats including Lincoln-Douglas, Policy, Public Forum.', deadline: 'Apr 1, 2026', when: 'June 2026 — USA', who: 'Grades 6–12', link: 'https://www.speechanddebate.org/' },
@@ -39,13 +41,13 @@ export default function Extracurriculars() {
         <motion.div className="extra-grid" variants={container} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-60px' }}>
           {opportunities.map((o, i) => (
             <motion.div key={i} className="extra-card" variants={item} whileHover={{ y: -5, transition: { duration: 0.2 } }}>
-              <span className={`extra-tag ${tagClass[o.tag]}`}>{o.tag === 'Debate' ? 'Debate & Public Speaking' : o.tag === 'Sports' ? 'Sports' : o.tag === 'Academic' ? 'Academic Olympiads' : 'Community Service'}</span>
+              <span className={`extra-tag ${tagClass[o.tag]}`}>{tagLabel[o.tag]}</span>
               <h3>{o.title}</h3>
               <p className="desc">{o.desc}</p>
               <div className="extra-meta">
-                <span>📅 {o.deadline}</span>
-                <span>📍 {o.when}</span>
-                <span>👤 {o.who}</span>
+                <span><Calendar size={12} /> {o.deadline}</span>
+                <span><MapPin size={12} /> {o.when}</span>
+                <span><User size={12} /> {o.who}</span>
               </div>
               <a href={o.link} target="_blank" rel="noopener noreferrer" className="btn-secondary" style={{ width: 'fit-content', padding: '10px 22px', fontSize: '0.82rem' }}>Learn More →</a>
             </motion.div>

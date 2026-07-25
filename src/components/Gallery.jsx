@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { School, Award } from 'lucide-react'
 import './Gallery.css'
 
 export default function Gallery() {
@@ -14,14 +15,14 @@ export default function Gallery() {
 
         <div className="gallery-grid">
           <motion.div className="gallery-card" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }}>
-            <div className="gallery-card-icon">🏫</div>
+            <div className="gallery-card-icon"><School size={28} /></div>
             <h3>Partner Schools</h3>
             <p>Including chapters and impacted schools. Gallery and press coverage coming soon — stay tuned for updates on our growing network of partner institutions.</p>
             <div className="gallery-status">Coming Soon</div>
           </motion.div>
 
           <motion.div className="gallery-card" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.3 }}>
-            <div className="gallery-card-icon">🏆</div>
+            <div className="gallery-card-icon"><Award size={28} /></div>
             <h3>Recognition</h3>
             <p>Under development. We're compiling press mentions, awards, and recognitions received by Flamivor and our volunteers.</p>
             <div className="gallery-status">Under Development</div>

@@ -1,18 +1,19 @@
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
+import { BookOpen, Globe, Users, Smartphone, GraduationCap, School, Library, Mic, Banknote, Package } from 'lucide-react'
 import './Impact.css'
 
 const stats = [
-  { number: '10+', label: 'Flamivor Chapters', icon: '🏫' },
-  { number: '14+', label: 'Countries Reached', icon: '🌍' },
-  { number: '200+', label: 'Volunteers & Interns', icon: '🤝' },
-  { number: '50K+', label: 'People Reached', icon: '📱' },
-  { number: '50+', label: 'Students Directly Supported', icon: '🎓' },
-  { number: '4', label: 'Schools Partnered With', icon: '🏫' },
-  { number: '20+', label: 'Resources Created', icon: '📚' },
-  { number: '2', label: 'Workshops Conducted', icon: '🎤' },
-  { number: '10K+', label: 'Money Raised (PKR)', icon: '💰' },
-  { number: '50+', label: 'Educational Kits Delivered', icon: '📦' },
+  { number: '10+', label: 'Flamivor Chapters', icon: School },
+  { number: '14+', label: 'Countries Reached', icon: Globe },
+  { number: '200+', label: 'Volunteers & Interns', icon: Users },
+  { number: '50K+', label: 'People Reached', icon: Smartphone },
+  { number: '50+', label: 'Students Directly Supported', icon: GraduationCap },
+  { number: '4', label: 'Schools Partnered With', icon: School },
+  { number: '20+', label: 'Resources Created', icon: Library },
+  { number: '2', label: 'Workshops Conducted', icon: Mic },
+  { number: '10K+', label: 'Money Raised (PKR)', icon: Banknote },
+  { number: '50+', label: 'Educational Kits Delivered', icon: Package },
 ]
 
 const container = {
@@ -70,13 +71,16 @@ export default function Impact() {
           initial="hidden"
           animate={inView ? 'visible' : 'hidden'}
         >
-          {stats.map((s, i) => (
-            <motion.div key={i} className="stat-card" variants={item} whileHover={{ y: -6, transition: { duration: 0.2 } }}>
-              <div className="stat-icon">{s.icon}</div>
-              <div className="stat-number">{s.number}</div>
-              <div className="stat-label">{s.label}</div>
-            </motion.div>
-          ))}
+          {stats.map((s, i) => {
+            const Icon = s.icon
+            return (
+              <motion.div key={i} className="stat-card" variants={item} whileHover={{ y: -6, transition: { duration: 0.2 } }}>
+                <div className="stat-icon"><Icon size={22} /></div>
+                <div className="stat-number">{s.number}</div>
+                <div className="stat-label">{s.label}</div>
+              </motion.div>
+            )
+          })}
         </motion.div>
       </div>
     </section>

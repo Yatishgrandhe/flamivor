@@ -1,11 +1,12 @@
 import { motion } from 'framer-motion'
+import { BookOpen, Globe, Brain, Handshake } from 'lucide-react'
 import './About.css'
 
 const features = [
-  { icon: '📚', title: 'Free Study Materials', desc: 'Original flashcards, study guides, and mini-lessons created by students, for students.' },
-  { icon: '🌍', title: 'Global Reach', desc: '10+ chapters across 14+ countries, building a worldwide network of peer mentorship.' },
-  { icon: '🧠', title: 'Mental Wellness', desc: 'Strategies to help students thrive academically without burning out.' },
-  { icon: '🤝', title: 'Peer Mentorship', desc: 'Connecting students with mentors who understand their challenges firsthand.' },
+  { icon: BookOpen, title: 'Free Study Materials', desc: 'Original flashcards, study guides, and mini-lessons created by students, for students.' },
+  { icon: Globe, title: 'Global Reach', desc: '10+ chapters across 14+ countries, building a worldwide network of peer mentorship.' },
+  { icon: Brain, title: 'Mental Wellness', desc: 'Strategies to help students thrive academically without burning out.' },
+  { icon: Handshake, title: 'Peer Mentorship', desc: 'Connecting students with mentors who understand their challenges firsthand.' },
 ]
 
 export default function About() {
@@ -26,23 +27,26 @@ export default function About() {
             <div className="about-badge">UN SDGs 4 & 10</div>
           </motion.div>
           <div className="about-features">
-            {features.map((f, i) => (
-              <motion.div
-                key={i}
-                className="about-feature"
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
-                whileHover={{ x: 6, transition: { duration: 0.2 } }}
-              >
-                <div className="about-feature-icon">{f.icon}</div>
-                <div>
-                  <h4>{f.title}</h4>
-                  <p>{f.desc}</p>
-                </div>
-              </motion.div>
-            ))}
+            {features.map((f, i) => {
+              const Icon = f.icon
+              return (
+                <motion.div
+                  key={i}
+                  className="about-feature"
+                  initial={{ opacity: 0, x: 30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: i * 0.1 }}
+                  whileHover={{ x: 6, transition: { duration: 0.2 } }}
+                >
+                  <div className="about-feature-icon"><Icon size={24} /></div>
+                  <div>
+                    <h4>{f.title}</h4>
+                    <p>{f.desc}</p>
+                  </div>
+                </motion.div>
+              )
+            })}
           </div>
         </div>
       </div>

@@ -3,14 +3,14 @@
   --primary-light: #B30205;
   --primary-dark: #6D0102;
   --accent: #F6EEE6;
-  --bg: #050505;
-  --bg-card: #0D0D0D;
-  --bg-elevated: #141414;
-  --text: #F5F5F5;
-  --text-muted: #999;
-  --text-dim: #555;
-  --border: #1A1A1A;
-  --border-light: #2A2A2A;
+  --bg: #FAFAF8;
+  --bg-card: #FFFFFF;
+  --bg-elevated: #F2F0EC;
+  --text: #1A1A1A;
+  --text-muted: #555555;
+  --text-dim: #999999;
+  --border: #E8E6E1;
+  --border-light: #D9D6CF;
 }
 
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }

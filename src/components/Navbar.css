@@ -17,22 +17,7 @@
   position: absolute; left: 32px;
   display: flex; align-items: center;
 }
-.nav-logo-img-wrap {
-  position: relative; width: 64px; height: 64px; border-radius: 12px;
-  overflow: hidden; flex-shrink: 0;
-  background: var(--primary);
-}
-.nav-logo-img-wrap img {
-  width: 100%; height: 100%; object-fit: cover;
-  filter: saturate(0.6) brightness(0.85);
-  mix-blend-mode: luminosity;
-  opacity: 0.9;
-}
-.nav-logo-img-wrap::after {
-  content: ''; position: absolute; inset: 0;
-  background: var(--primary); opacity: 0.25;
-  mix-blend-mode: multiply; border-radius: inherit;
-}
+.nav-logo img { height: 60px; width: auto; }
 .nav-links { display: flex; align-items: center; gap: 1px; }
 .nav-links a {
   color: rgba(255,255,255,0.65); font-size: 0.82rem; font-weight: 500;

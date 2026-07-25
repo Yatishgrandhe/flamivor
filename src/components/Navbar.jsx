@@ -35,9 +35,7 @@ export default function Navbar() {
     >
       <div className="nav-inner">
         <NavLink to="/" className="nav-logo">
-          <div className="nav-logo-img-wrap">
-            <img src="/logo.jpg" alt="Flamivor" />
-          </div>
+          <img src="/logo.jpg" alt="Flamivor" />
         </NavLink>
 
         <div className="nav-links">

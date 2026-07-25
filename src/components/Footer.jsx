@@ -3,7 +3,7 @@ import './Footer.css'
 
 export default function Footer() {
   return (
-    <footer>
+    <footer className="footer">
       <div className="footer-inner">
         <div className="footer-top">
           <div className="footer-brand">
@@ -17,7 +17,6 @@ export default function Footer() {
             <Link to="/">Home</Link>
             <Link to="/impact">Impact</Link>
             <Link to="/team">Team</Link>
-            <Link to="/about">About Us</Link>
           </div>
           <div className="footer-col">
             <h4>Get Involved</h4>

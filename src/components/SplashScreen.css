@@ -1,0 +1,25 @@
+.splash {
+  position: fixed; inset: 0; z-index: 9999;
+  display: flex; align-items: center; justify-content: center;
+}
+.splash-bg {
+  position: absolute; inset: 0;
+  background: var(--primary);
+}
+.splash-content {
+  position: relative; display: flex; flex-direction: column;
+  align-items: center; gap: 20px;
+}
+.splash-logo {
+  height: 100px; width: auto; border-radius: 12px;
+  filter: brightness(0) invert(1);
+}
+.splash-line {
+  width: 60px; height: 2px; background: rgba(255,255,255,0.4);
+  border-radius: 2px; transform-origin: center;
+}
+.splash-tagline {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.85rem; color: rgba(255,255,255,0.6);
+  letter-spacing: 0.15em; text-transform: uppercase; font-weight: 500;
+}

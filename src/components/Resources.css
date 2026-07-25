@@ -1,20 +1,20 @@
-.resources-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+.resources-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
 .resource-card {
-  background: var(--bg-card); border: 1px solid var(--border); border-radius: 18px;
-  overflow: hidden; transition: border-color 0.3s, box-shadow 0.3s;
+  background: var(--bg-card); border: 1px solid var(--border-light); border-radius: var(--radius-xl);
+  overflow: hidden; transition: all 0.3s var(--transition); box-shadow: var(--shadow-xs);
 }
-.resource-card:hover { border-color: rgba(138,1,3,0.15); box-shadow: 0 8px 24px rgba(0,0,0,0.05); }
-.resource-img-wrap { height: 200px; overflow: hidden; background: var(--bg-elevated); }
-.resource-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
-.resource-card:hover .resource-img-wrap img { transform: scale(1.05); }
-.resource-body { padding: 24px; }
-.resource-body h3 { font-size: 1rem; font-weight: 600; margin-bottom: 8px; }
-.resource-body p { font-size: 0.83rem; color: var(--text-muted); margin-bottom: 16px; line-height: 1.6; }
+.resource-card:hover { border-color: rgba(138,1,3,0.12); box-shadow: var(--shadow-md); transform: translateY(-4px); }
+.resource-img-wrap { height: 180px; overflow: hidden; background: var(--bg-subtle); }
+.resource-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s var(--transition); }
+.resource-card:hover .resource-img-wrap img { transform: scale(1.06); }
+.resource-body { padding: 22px; }
+.resource-body h3 { font-size: 0.95rem; font-weight: 600; margin-bottom: 6px; }
+.resource-body p { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 14px; line-height: 1.6; }
 .resource-link {
-  display: inline-flex; align-items: center; gap: 6px; color: var(--primary);
-  font-size: 0.83rem; font-weight: 600; transition: gap 0.2s;
+  display: inline-flex; align-items: center; gap: 5px; color: var(--primary);
+  font-size: 0.8rem; font-weight: 600; transition: gap 0.2s;
 }
-.resource-link:hover { gap: 10px; }
+.resource-link:hover { gap: 9px; }
 
 @media (max-width: 1000px) { .resources-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 500px) { .resources-grid { grid-template-columns: 1fr; } }

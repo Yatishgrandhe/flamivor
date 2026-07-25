@@ -67,3 +67,10 @@ img { max-width: 100%; display: block; }
   transition: all 0.25s var(--transition);
 }
 .btn-primary:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+.btn-secondary {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 13px 28px; border-radius: var(--radius-sm); font-size: 0.88rem; font-weight: 600;
+  background: transparent; color: var(--primary); border: 1px solid var(--primary);
+  transition: all 0.25s var(--transition);
+}
+.btn-secondary:hover { background: var(--primary); color: #fff; transform: translateY(-2px); box-shadow: var(--shadow-lg); }

@@ -40,7 +40,7 @@ export default function Navbar() {
     >
       <div className="nav-inner">
         <a href="#home" className="nav-logo">
-          <img src="/logo.png" alt="Flamivor" />
+          <img src="/logo.jpg" alt="Flamivor" />
           <span>Flamivor</span>
         </a>
 

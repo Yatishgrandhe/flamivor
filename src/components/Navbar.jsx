@@ -1,32 +1,27 @@
 import { useState, useEffect } from 'react'
+import { NavLink, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import './Navbar.css'
 
 const links = [
-  { label: 'Home', href: '#home' },
-  { label: 'Impact', href: '#impact' },
-  { label: 'Team', href: '#team' },
-  { label: 'Resources', href: '#resources' },
-  { label: 'Extracurriculars', href: '#extracurriculars' },
-  { label: 'Gallery', href: '#gallery' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Home', to: '/' },
+  { label: 'Impact', to: '/impact' },
+  { label: 'Team', to: '/team' },
+  { label: 'Resources', to: '/resources' },
+  { label: 'Extracurriculars', to: '/extracurriculars' },
+  { label: 'Gallery', to: '/gallery' },
+  { label: 'Contact', to: '/contact' },
 ]
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
-  const [active, setActive] = useState('#home')
+  const location = useLocation()
+
+  useEffect(() => { setMenuOpen(false) }, [location])
 
   useEffect(() => {
-    const onScroll = () => {
-      setScrolled(window.scrollY > 50)
-      const sections = document.querySelectorAll('section[id]')
-      let current = '#home'
-      sections.forEach(s => {
-        if (window.scrollY >= s.offsetTop - 200) current = '#' + s.id
-      })
-      setActive(current)
-    }
+    const onScroll = () => setScrolled(window.scrollY > 50)
     window.addEventListener('scroll', onScroll)
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
@@ -39,15 +34,17 @@ export default function Navbar() {
       transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
     >
       <div className="nav-inner">
-        <a href="#home" className="nav-logo">
+        <NavLink to="/" className="nav-logo">
           <img src="/logo.jpg" alt="Flamivor" />
-        </a>
+        </NavLink>
 
         <div className="nav-links">
           {links.map(l => (
-            <a key={l.href} href={l.href} className={active === l.href ? 'active' : ''}>{l.label}</a>
+            <NavLink key={l.to} to={l.to} className={({ isActive }) => isActive ? 'active' : ''} end={l.to === '/'}>
+              {l.label}
+            </NavLink>
           ))}
-          <a href="#join" className="nav-cta">Join Us</a>
+          <NavLink to="/join" className="nav-cta">Join Us</NavLink>
         </div>
 
         <button className="hamburger" onClick={() => setMenuOpen(!menuOpen)} aria-label="Menu">
@@ -67,9 +64,11 @@ export default function Navbar() {
             transition={{ duration: 0.25 }}
           >
             {links.map(l => (
-              <a key={l.href} href={l.href} onClick={() => setMenuOpen(false)}>{l.label}</a>
+              <NavLink key={l.to} to={l.to} className={({ isActive }) => isActive ? 'active' : ''} end={l.to === '/'}>
+                {l.label}
+              </NavLink>
             ))}
-            <a href="#join" className="mobile-cta" onClick={() => setMenuOpen(false)}>Join Us</a>
+            <NavLink to="/join" className="mobile-cta">Join Us</NavLink>
           </motion.div>
         )}
       </AnimatePresence>

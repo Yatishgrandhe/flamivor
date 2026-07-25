@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
 import './Footer.css'
 
 export default function Footer() {
@@ -7,25 +7,24 @@ export default function Footer() {
       <div className="footer-inner">
         <div className="footer-top">
           <div className="footer-brand">
-            <a href="#home" className="footer-logo">
+            <Link to="/" className="footer-logo">
               <img src="/logo.jpg" alt="Flamivor" />
-              <span>Flamivor</span>
-            </a>
+            </Link>
             <p>A youth-led initiative dedicated to empowering young people through education and advancing UN SDGs 4 and 10.</p>
           </div>
           <div className="footer-col">
             <h4>Navigate</h4>
-            <a href="#home">Home</a>
-            <a href="#impact">Impact</a>
-            <a href="#team">Team</a>
-            <a href="#about">About Us</a>
+            <Link to="/">Home</Link>
+            <Link to="/impact">Impact</Link>
+            <Link to="/team">Team</Link>
+            <Link to="/about">About Us</Link>
           </div>
           <div className="footer-col">
             <h4>Get Involved</h4>
-            <a href="#join">Join Us</a>
-            <a href="#resources">Resources</a>
-            <a href="#extracurriculars">Extracurriculars</a>
-            <a href="#gallery">Gallery & Press</a>
+            <Link to="/join">Join Us</Link>
+            <Link to="/resources">Resources</Link>
+            <Link to="/extracurriculars">Extracurriculars</Link>
+            <Link to="/gallery">Gallery & Press</Link>
           </div>
           <div className="footer-col">
             <h4>Connect</h4>

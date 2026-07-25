@@ -1,0 +1,36 @@
+:root {
+  --primary: #E84D0E;
+  --primary-light: #FF6A2B;
+  --primary-dark: #C43D06;
+  --bg: #050505;
+  --bg-card: #0D0D0D;
+  --bg-elevated: #141414;
+  --text: #F5F5F5;
+  --text-muted: #999;
+  --text-dim: #555;
+  --border: #1A1A1A;
+  --border-light: #2A2A2A;
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border-light); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+a { text-decoration: none; color: inherit; }
+button { cursor: pointer; border: none; background: none; font-family: inherit; }
+img { max-width: 100%; display: block; }

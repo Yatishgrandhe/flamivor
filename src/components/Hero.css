@@ -1,0 +1,139 @@
+.hero {
+  min-height: 100vh; display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden; padding: 120px 24px 80px;
+}
+
+.hero-bg {
+  position: absolute; inset: 0; pointer-events: none;
+}
+.hero-grid {
+  position: absolute; inset: 0; opacity: 0.025;
+  background-image:
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 80px 80px;
+}
+
+.floating-orb {
+  position: absolute; border-radius: 50%; filter: blur(60px); pointer-events: none;
+}
+
+.particle {
+  position: absolute; background: rgba(232,77,14,0.5); border-radius: 50%; pointer-events: none;
+}
+
+.hero-gradient-line {
+  position: absolute; height: 1px; pointer-events: none;
+}
+.line-1 {
+  top: 30%; left: 5%; right: 50%;
+  background: linear-gradient(90deg, transparent, rgba(232,77,14,0.15), transparent);
+}
+.line-2 {
+  top: 60%; left: 50%; right: 5%;
+  background: linear-gradient(90deg, transparent, rgba(255,106,43,0.1), transparent);
+}
+
+.hero-content {
+  position: relative; text-align: center; max-width: 860px; z-index: 2;
+}
+
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: rgba(232,77,14,0.08); border: 1px solid rgba(232,77,14,0.18);
+  padding: 8px 22px; border-radius: 100px; font-size: 0.75rem; font-weight: 600;
+  color: var(--primary-light); margin-bottom: 36px;
+  letter-spacing: 0.08em; text-transform: uppercase;
+}
+.pulse-dot {
+  width: 7px; height: 7px; background: var(--primary); border-radius: 50%;
+  animation: pulseDot 2s ease infinite;
+  box-shadow: 0 0 8px rgba(232,77,14,0.6);
+}
+@keyframes pulseDot {
+  0%,100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.7); }
+}
+
+.hero h1 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(2.8rem, 7vw, 5rem);
+  font-weight: 800; line-height: 1.05; margin-bottom: 28px;
+  letter-spacing: -0.04em;
+}
+.gradient-text {
+  background: linear-gradient(135deg, var(--primary), var(--primary-light), #FFB088);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+  background-size: 200% auto;
+  animation: gradientShift 4s ease infinite;
+}
+@keyframes gradientShift {
+  0%,100% { background-position: 0% center; }
+  50% { background-position: 100% center; }
+}
+
+.hero p {
+  font-size: clamp(1rem, 1.8vw, 1.2rem); color: var(--text-muted);
+  max-width: 600px; margin: 0 auto 44px; line-height: 1.75;
+}
+
+.hero-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-bottom: 56px; }
+
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 15px 30px; border-radius: 14px; font-size: 0.95rem; font-weight: 600;
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  color: #fff; transition: all 0.25s ease;
+  box-shadow: 0 4px 24px rgba(232,77,14,0.3), inset 0 1px 0 rgba(255,255,255,0.1);
+}
+.btn-primary:hover {
+  transform: translateY(-3px); box-shadow: 0 8px 40px rgba(232,77,14,0.5), inset 0 1px 0 rgba(255,255,255,0.15);
+}
+.btn-primary svg { transition: transform 0.2s; }
+.btn-primary:hover svg { transform: translateX(3px); }
+
+.btn-secondary {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 15px 30px; border-radius: 14px; font-size: 0.95rem; font-weight: 600;
+  background: rgba(255,255,255,0.04); color: var(--text);
+  border: 1px solid var(--border-light); transition: all 0.25s ease;
+}
+.btn-secondary:hover {
+  background: rgba(255,255,255,0.08); border-color: var(--text-dim); transform: translateY(-3px);
+}
+
+.hero-stats {
+  display: flex; gap: 40px; justify-content: center; flex-wrap: wrap;
+}
+.hero-stat { text-align: center; }
+.hero-stat-num {
+  display: block; font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.3rem; font-weight: 700; color: var(--text);
+}
+.hero-stat-label {
+  display: block; font-size: 0.7rem; color: var(--text-dim);
+  text-transform: uppercase; letter-spacing: 0.08em; margin-top: 2px; font-weight: 500;
+}
+
+.scroll-indicator {
+  position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%);
+}
+.scroll-mouse {
+  width: 24px; height: 38px; border: 2px solid var(--border-light);
+  border-radius: 12px; display: flex; justify-content: center; padding-top: 8px;
+}
+.scroll-wheel {
+  width: 3px; height: 8px; background: var(--text-dim); border-radius: 2px;
+  animation: scrollWheel 1.5s ease infinite;
+}
+@keyframes scrollWheel {
+  0% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(10px); }
+}
+
+@media (max-width: 600px) {
+  .hero { padding: 100px 16px 60px; }
+  .hero-stats { gap: 24px; }
+  .hero-stat-num { font-size: 1.1rem; }
+}

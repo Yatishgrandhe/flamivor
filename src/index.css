@@ -4,7 +4,9 @@
   --primary-dark: #6D0102;
   --accent: #F6EEE6;
   --bg: #FAFAF9;
+  --bg-primary: #FFFFFF;
   --bg-card: #FFFFFF;
+  --bg-secondary: #F5F3EF;
   --bg-elevated: #F5F3EF;
   --bg-subtle: #F0EDE8;
   --text: #111111;
@@ -44,3 +46,24 @@ body {
 a { text-decoration: none; color: inherit; }
 button { cursor: pointer; border: none; background: none; font-family: inherit; }
 img { max-width: 100%; display: block; }
+
+.section-inner { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+.section-label {
+  font-size: 0.72rem; font-weight: 600; text-transform: uppercase;
+  letter-spacing: 0.1em; color: var(--primary); margin-bottom: 12px;
+}
+.section-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  font-weight: 800; letter-spacing: -0.03em; line-height: 1.15; margin-bottom: 14px;
+}
+.section-desc {
+  font-size: 1rem; color: var(--text-muted); max-width: 520px; line-height: 1.7;
+}
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 13px 28px; border-radius: var(--radius-sm); font-size: 0.88rem; font-weight: 600;
+  background: var(--primary); color: #fff;
+  transition: all 0.25s var(--transition);
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }

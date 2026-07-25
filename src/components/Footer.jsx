@@ -8,7 +8,9 @@ export default function Footer() {
         <div className="footer-top">
           <div className="footer-brand">
             <Link to="/" className="footer-logo">
-              <img src="/logo.jpg" alt="Flamivor" />
+              <div className="footer-logo-img-wrap">
+                <img src="/logo.jpg" alt="Flamivor" />
+              </div>
             </Link>
             <p>A youth-led initiative dedicated to empowering young people through education and advancing UN SDGs 4 and 10.</p>
           </div>

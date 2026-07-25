@@ -1,25 +1,97 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Link, Mail } from 'lucide-react'
+import { Send, CheckCircle, AlertCircle } from 'lucide-react'
 import './Contact.css'
 
-const TikTokIcon = () => (
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1 0-5.78 2.92 2.92 0 0 1 .88.13V9.01a6.34 6.34 0 1 0 5.45 6.29V9.55a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.38z"/>
-  </svg>
-)
+const socials = [
+  {
+    name: 'Instagram',
+    url: 'https://www.instagram.com/flamivor/',
+    icon: (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+      </svg>
+    ),
+  },
+  {
+    name: 'TikTok',
+    url: 'https://www.tiktok.com/@flamivor',
+    icon: (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1 0-5.78 2.92 2.92 0 0 1 .88.13V9.01a6.34 6.34 0 1 0 5.45 6.29V9.55a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.38z" />
+      </svg>
+    ),
+  },
+  {
+    name: 'YouTube',
+    url: 'https://www.youtube.com/@flamivor',
+    icon: (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+      </svg>
+    ),
+  },
+]
+
+const formFields = [
+  { name: 'firstName', label: 'First Name', type: 'text', required: true, half: true },
+  { name: 'lastName', label: 'Last Name', type: 'text', required: true, half: true },
+  { name: 'email', label: 'Email', type: 'email', required: true, half: false },
+  { name: 'subject', label: 'Subject', type: 'text', required: true, half: false },
+  { name: 'message', label: 'Message', type: 'textarea', required: true, half: false },
+]
 
 export default function Contact() {
-  const [submitted, setSubmitted] = useState(false)
+  const [formData, setFormData] = useState({
+    firstName: '', lastName: '', email: '', subject: '', message: '',
+  })
+  const [status, setStatus] = useState('idle') // idle | submitting | success | error
+  const [errors, setErrors] = useState({})
 
-  const handleSubmit = (e) => {
+  const validate = () => {
+    const errs = {}
+    if (!formData.firstName.trim()) errs.firstName = 'Required'
+    if (!formData.lastName.trim()) errs.lastName = 'Required'
+    if (!formData.email.trim()) errs.email = 'Required'
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) errs.email = 'Invalid email'
+    if (!formData.subject.trim()) errs.subject = 'Required'
+    if (!formData.message.trim()) errs.message = 'Required'
+    setErrors(errs)
+    return Object.keys(errs).length === 0
+  }
+
+  const handleChange = (e) => {
+    const { name, value } = e.target
+    setFormData(prev => ({ ...prev, [name]: value }))
+    if (errors[name]) setErrors(prev => ({ ...prev, [name]: undefined }))
+  }
+
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    setSubmitted(true)
-    e.target.reset()
+    if (!validate()) return
+    setStatus('submitting')
+
+    // TODO: Replace with Convex mutation when MCP is connected
+    // import { useMutation } from 'convex/react'
+    // const sendMessage = useMutation(api.messages.send)
+    // await sendMessage(formData)
+
+    try {
+      // Simulated API call — replace with Convex mutation
+      await new Promise(r => setTimeout(r, 1200))
+      setStatus('success')
+      setFormData({ firstName: '', lastName: '', email: '', subject: '', message: '' })
+      setTimeout(() => setStatus('idle'), 4000)
+    } catch {
+      setStatus('error')
+      setTimeout(() => setStatus('idle'), 3000)
+    }
   }
 
   return (
-    <section id="contact">
+    <section className="contact-section">
       <div className="section-inner">
         <motion.div className="section-label" initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
           Contact
@@ -32,43 +104,87 @@ export default function Contact() {
         </motion.p>
 
         <div className="contact-grid">
+          {/* Left — Info */}
           <motion.div className="contact-info" initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }}>
-            <a href="https://linktr.ee/flamivor" target="_blank" rel="noopener noreferrer" className="contact-item">
-              <div className="contact-icon"><Link size={20} /></div>
-              <div><h4>Linktree</h4><p>linktr.ee/flamivor</p></div>
-            </a>
             <a href="mailto:flamivor@gmail.com" className="contact-item">
-              <div className="contact-icon"><Mail size={20} /></div>
-              <div><h4>Email Us</h4><p>flamivor@gmail.com</p></div>
+              <div className="contact-icon-wrap">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="2" y="4" width="20" height="16" rx="2" />
+                  <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                </svg>
+              </div>
+              <div>
+                <h4>Email</h4>
+                <p>flamivor@gmail.com</p>
+              </div>
             </a>
-            <div className="social-links">
-              <a href="https://www.instagram.com/flamivor/" target="_blank" rel="noopener noreferrer" className="social-link" title="Instagram">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-              </a>
-              <a href="https://www.tiktok.com/music/original-sound-7523180191519116048?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener noreferrer" className="social-link" title="TikTok">
-                <TikTokIcon />
-              </a>
-              <a href="https://www.youtube.com/@flamivor" target="_blank" rel="noopener noreferrer" className="social-link" title="YouTube">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-              </a>
+            <a href="https://linktr.ee/flamivor" target="_blank" rel="noopener noreferrer" className="contact-item">
+              <div className="contact-icon-wrap">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+                  <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+                </svg>
+              </div>
+              <div>
+                <h4>Linktree</h4>
+                <p>linktr.ee/flamivor</p>
+              </div>
+            </a>
+
+            <div className="contact-socials">
+              <p className="contact-socials-label">Follow us</p>
+              <div className="contact-socials-row">
+                {socials.map(s => (
+                  <a key={s.name} href={s.url} target="_blank" rel="noopener noreferrer" className="social-link" title={s.name}>
+                    {s.icon}
+                  </a>
+                ))}
+              </div>
             </div>
-            <div className="partnership-note">
+
+            <div className="contact-partnership">
               <p>For partnerships and sponsorships</p>
-              <a href="https://docs.google.com/forms/d/e/1FAIpQLSeLPLP4FSD4uCjOPoj21jlzAnbhY0SVKP6NQ1VK4vo5bkZhUQ/viewform" target="_blank" rel="noopener noreferrer" className="btn-primary" style={{ display: 'inline-flex', marginTop: 8 }}>Fill Partnership Form →</a>
+              <a href="https://docs.google.com/forms/d/e/1FAIpQLSeLPLP4FSD4uCjOPoj21jlzAnbhY0SVKP6NQ1VK4vo5bkZhUQ/viewform" target="_blank" rel="noopener noreferrer" className="btn-outline">
+                Fill Partnership Form →
+              </a>
             </div>
           </motion.div>
 
-          <motion.div className="contact-form" initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: 0.3 }}>
+          {/* Right — Form */}
+          <motion.div className="contact-form-wrap" initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: 0.3 }}>
             <h3>Send us a message</h3>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} noValidate>
               <div className="form-row">
-                <div className="form-group"><label>First Name</label><input type="text" required /></div>
-                <div className="form-group"><label>Last Name</label><input type="text" required /></div>
+                {formFields.filter(f => f.half).map(f => (
+                  <div key={f.name} className={`form-group ${errors[f.name] ? 'form-error' : ''}`}>
+                    <label>{f.label}</label>
+                    <input type={f.type} name={f.name} value={formData[f.name]} onChange={handleChange} required={f.required} />
+                    {errors[f.name] && <span className="form-error-text">{errors[f.name]}</span>}
+                  </div>
+                ))}
               </div>
-              <div className="form-group"><label>Email</label><input type="email" required /></div>
-              <div className="form-group"><label>Message</label><textarea required /></div>
-              <button type="submit" className="btn-primary" style={{ width: '100%', justifyContent: 'center' }}>Send Message →</button>
-              {submitted && <p className="form-success">Thanks for submitting!</p>}
+              {formFields.filter(f => !f.half).map(f => (
+                <div key={f.name} className={`form-group ${errors[f.name] ? 'form-error' : ''}`}>
+                  <label>{f.label}</label>
+                  {f.type === 'textarea' ? (
+                    <textarea name={f.name} value={formData[f.name]} onChange={handleChange} required={f.required} rows={5} />
+                  ) : (
+                    <input type={f.type} name={f.name} value={formData[f.name]} onChange={handleChange} required={f.required} />
+                  )}
+                  {errors[f.name] && <span className="form-error-text">{errors[f.name]}</span>}
+                </div>
+              ))}
+              <button type="submit" className="btn-primary form-submit" disabled={status === 'submitting'}>
+                {status === 'submitting' ? (
+                  <>Sending<span className="form-dots" /></>
+                ) : status === 'success' ? (
+                  <><CheckCircle size={16} /> Sent!</>
+                ) : (
+                  <>Send Message <Send size={14} /></>
+                )}
+              </button>
+              {status === 'success' && <p className="form-success">Thanks for reaching out! We'll get back to you soon.</p>}
+              {status === 'error' && <p className="form-error-msg"><AlertCircle size={14} /> Something went wrong. Please try again.</p>}
             </form>
           </motion.div>
         </div>

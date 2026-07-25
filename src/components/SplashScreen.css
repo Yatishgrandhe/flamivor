@@ -1,25 +1,50 @@
 .splash {
   position: fixed; inset: 0; z-index: 9999;
   display: flex; align-items: center; justify-content: center;
+  opacity: 1; transition: opacity 0.5s ease;
 }
+.splash-exit { opacity: 0; pointer-events: none; }
 .splash-bg {
-  position: absolute; inset: 0;
-  background: var(--primary);
+  position: absolute; inset: 0; background: var(--primary);
 }
 .splash-content {
   position: relative; display: flex; flex-direction: column;
-  align-items: center; gap: 20px;
+  align-items: center; gap: 24px;
+  animation: splashFadeIn 0.8s ease forwards;
+}
+@keyframes splashFadeIn {
+  from { opacity: 0; transform: scale(0.85) translateY(20px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+.splash-logo-wrap {
+  width: 110px; height: 110px; border-radius: 16px; overflow: hidden;
+  background: #fff; display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.3);
+  animation: logoPulse 1.2s ease 0.4s both;
+}
+@keyframes logoPulse {
+  from { transform: scale(0.7); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
 }
 .splash-logo {
-  height: 100px; width: auto; border-radius: 12px;
-  filter: brightness(0) invert(1);
+  width: 100%; height: 100%; object-fit: cover;
 }
 .splash-line {
-  width: 60px; height: 2px; background: rgba(255,255,255,0.4);
-  border-radius: 2px; transform-origin: center;
+  width: 60px; height: 2px; background: rgba(255,255,255,0.25);
+  border-radius: 2px;
+  animation: lineGrow 0.6s ease 0.6s both;
+}
+@keyframes lineGrow {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
 }
 .splash-tagline {
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 0.85rem; color: rgba(255,255,255,0.6);
-  letter-spacing: 0.15em; text-transform: uppercase; font-weight: 500;
+  font-size: 0.78rem; color: rgba(255,255,255,0.5);
+  letter-spacing: 0.18em; text-transform: uppercase; font-weight: 500;
+  animation: tagFadeIn 0.5s ease 0.8s both;
+}
+@keyframes tagFadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
 }

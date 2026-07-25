@@ -3,10 +3,10 @@ import { motion, useScroll, useTransform, useSpring } from 'framer-motion'
 import './Hero.css'
 
 const floatingOrbs = [
-  { size: 300, x: '15%', y: '20%', delay: 0, color: 'rgba(232,77,14,0.07)' },
-  { size: 400, x: '70%', y: '60%', delay: 2, color: 'rgba(255,106,43,0.05)' },
-  { size: 200, x: '80%', y: '15%', delay: 4, color: 'rgba(232,77,14,0.04)' },
-  { size: 250, x: '10%', y: '70%', delay: 1, color: 'rgba(255,106,43,0.06)' },
+  { size: 300, x: '15%', y: '20%', delay: 0, color: 'rgba(138,1,3,0.08)' },
+  { size: 400, x: '70%', y: '60%', delay: 2, color: 'rgba(179,2,5,0.06)' },
+  { size: 200, x: '80%', y: '15%', delay: 4, color: 'rgba(138,1,3,0.05)' },
+  { size: 250, x: '10%', y: '70%', delay: 1, color: 'rgba(179,2,5,0.07)' },
 ]
 
 const particles = Array.from({ length: 40 }, (_, i) => ({

@@ -5,10 +5,10 @@
   background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px;
   transition: border-color 0.2s;
 }
-.contact-item:hover { border-color: rgba(232,77,14,0.25); }
+.contact-item:hover { border-color: rgba(138,1,3,0.25); }
 .contact-icon {
   width: 48px; height: 48px; min-width: 48px; border-radius: 12px;
-  background: rgba(232,77,14,0.08); display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
+  background: rgba(138,1,3,0.08); display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
 }
 .contact-item h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 2px; }
 .contact-item p { font-size: 0.85rem; color: var(--text-muted); }
@@ -20,8 +20,8 @@
 }
 .social-link:hover { border-color: var(--primary); color: var(--primary-light); transform: translateY(-2px); }
 .partnership-note {
-  margin-top: 8px; padding: 20px; background: rgba(232,77,14,0.04);
-  border: 1px solid rgba(232,77,14,0.12); border-radius: 14px; text-align: center;
+  margin-top: 8px; padding: 20px;   background: rgba(138,1,3,0.04);
+  border: 1px solid rgba(138,1,3,0.12); border-radius: 14px; text-align: center;
 }
 .partnership-note p { font-size: 0.88rem; color: var(--text-muted); }
 

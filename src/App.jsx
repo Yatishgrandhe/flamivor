@@ -1,10 +1,9 @@
 import { useState, useCallback, useEffect } from 'react'
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
-import { AnimatePresence } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 import SplashScreen from './components/SplashScreen'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
-import PageTransition from './components/PageTransition'
 import Home from './pages/Home'
 import TeamPage from './pages/TeamPage'
 import GalleryPage from './pages/GalleryPage'
@@ -24,8 +23,13 @@ function AnimatedRoutes() {
   const location = useLocation()
   return (
     <AnimatePresence mode="wait">
-      <PageTransition key={location.pathname}>
-        <Routes location={location}>
+      <motion.div
+        key={location.pathname}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0, transition: { duration: 0.4, ease: [0.16, 1, 0.3, 1] } }}
+        exit={{ opacity: 0, y: -10, transition: { duration: 0.25, ease: [0.16, 1, 0.3, 1] } }}
+      >
+        <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/team" element={<TeamPage />} />
           <Route path="/gallery" element={<GalleryPage />} />
@@ -35,7 +39,7 @@ function AnimatedRoutes() {
           <Route path="/extracurriculars" element={<ExtracurricularsPage />} />
           <Route path="/contact" element={<ContactPage />} />
         </Routes>
-      </PageTransition>
+      </motion.div>
     </AnimatePresence>
   )
 }

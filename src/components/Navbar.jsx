@@ -40,11 +40,11 @@ export default function Navbar() {
 
         <div className="nav-links">
           {links.map(l => (
-            <NavLink key={l.to} to={l.to} className={({ isActive }) => isActive ? 'active' : ''} end={l.to === '/'}>
+            <NavLink key={l.to} to={l.to} className={({ isActive }) => isActive ? 'active' : ''} end>
               {l.label}
             </NavLink>
           ))}
-          <NavLink to="/join" className="nav-cta">Join Us</NavLink>
+          <NavLink to="/join" className="nav-cta" end>Join Us</NavLink>
         </div>
 
         <button className="hamburger" onClick={() => setMenuOpen(!menuOpen)} aria-label="Menu">
@@ -64,11 +64,11 @@ export default function Navbar() {
             transition={{ duration: 0.25 }}
           >
             {links.map(l => (
-              <NavLink key={l.to} to={l.to} className={({ isActive }) => isActive ? 'active' : ''} end={l.to === '/'}>
+              <NavLink key={l.to} to={l.to} className={({ isActive }) => isActive ? 'active' : ''} end>
                 {l.label}
               </NavLink>
             ))}
-            <NavLink to="/join" className="mobile-cta">Join Us</NavLink>
+            <NavLink to="/join" className="mobile-cta" end>Join Us</NavLink>
           </motion.div>
         )}
       </AnimatePresence>

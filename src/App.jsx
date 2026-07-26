@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useEffect } from 'react'
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
 import { AnimatePresence } from 'framer-motion'
 import SplashScreen from './components/SplashScreen'
@@ -13,6 +13,12 @@ import ImpactPage from './pages/ImpactPage'
 import JoinPage from './pages/JoinPage'
 import ExtracurricularsPage from './pages/ExtracurricularsPage'
 import ContactPage from './pages/ContactPage'
+
+function ScrollToTop() {
+  const { pathname } = useLocation()
+  useEffect(() => { window.scrollTo(0, 0) }, [pathname])
+  return null
+}
 
 function AnimatedRoutes() {
   const location = useLocation()
@@ -40,6 +46,7 @@ export default function App() {
 
   return (
     <BrowserRouter>
+      <ScrollToTop />
       {!splashDone && <SplashScreen onComplete={onSplashComplete} />}
       {splashDone && (
         <>

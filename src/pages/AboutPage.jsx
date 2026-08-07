@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { motion } from 'motion/react'
 import { ArrowRight, BookOpenCheck, Lightbulb, Orbit, Wrench } from 'lucide-react'
 import useCompactMotion from '../hooks/useCompactMotion'
+import KokonutShapeHero from '../components/KokonutShapeHero'
 import './AboutPage.css'
 
 const chapters = [
@@ -45,7 +46,7 @@ export default function AboutPage() {
   return (
     <main className="about-page">
       <section className="about-hero" aria-labelledby="about-heading">
-        <div className="about-hero-map" aria-hidden="true"><span /><i /><b /></div>
+        <KokonutShapeHero />
         <motion.div className="about-hero-copy" {...enter()}>
           <p className="about-eyebrow"><Orbit size={15} aria-hidden="true" /> Our why</p>
           <h1 id="about-heading">Learning should feel<br />like an <em>open door.</em></h1>

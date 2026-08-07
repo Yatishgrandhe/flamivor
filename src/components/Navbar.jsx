@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
-import { motion, AnimatePresence } from 'motion/react'
+import { motion, AnimatePresence, LayoutGroup } from 'motion/react'
 import './Navbar.css'
 
 const links = [
@@ -54,11 +54,13 @@ export default function Navbar() {
         </NavLink>
 
         <div className="nav-links">
+          <LayoutGroup id="desktop-navigation">
           {links.map(l => (
             <NavLink key={l.to} to={l.to} className={({ isActive }) => isActive ? 'active' : ''} end>
-              {l.label}
+              {({ isActive }) => <>{isActive && <motion.span className="nav-active-indicator" layoutId="nav-active-indicator" transition={{ type: 'spring', stiffness: 420, damping: 34 }} />}{l.label}</>}
             </NavLink>
           ))}
+          </LayoutGroup>
           <NavLink to="/join" className="nav-cta" end>Join Us</NavLink>
         </div>
 

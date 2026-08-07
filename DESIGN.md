@@ -132,6 +132,13 @@ The exact brand pairing is Flamivor red `#8A0103` and logo white `#F7EDE6`. Acce
 - **States:** “coming soon” is plain text, not a fake button or unavailable link.
 - **Accessibility:** meaningful alt text, semantic `figure`/`figcaption`, and titles/availability remain readable without the supporting imagery.
 
+### Resource Discovery & Status
+
+- **Structure:** a distinct utility hero, category filter, Kokonut-derived carousel cards, and a Bklit-derived catalog status ring sourced directly from the four published resource records.
+- **States:** all categories, a selected category, and a clear “coming soon” state. Selection changes the visible shelf only; it never implies that an unavailable resource can be opened.
+- **Accessibility:** the category control is a labelled button group with a visible pressed state; the status ring exposes its 0 available / 4 catalogued summary in plain text and is paired with a screen-reader table.
+- **Motion:** Motion owns the shared category indicator and card layout transition. The carousel becomes native horizontal scroll-snap on small screens; it has no auto-advance behavior.
+
 ### Opportunity Board
 
 - **Structure:** a visually led open-call hero, a compact category legend, and chronological-style opportunity records with clear destination links and deadlines.
@@ -149,9 +156,9 @@ The exact brand pairing is Flamivor red `#8A0103` and logo white `#F7EDE6`. Acce
 Only opacity and transform animate. All non-essential effects are disabled under `prefers-reduced-motion`; content remains visible and the route stays fully drawn.
 
 - Motion is provided by `motion/react` across route transitions, hero entrances, and in-view content. At widths below 760px, `useCompactMotion` and the global Motion configuration remove transform-heavy entrances; components render immediately in their final position, preventing offscreen transforms from creating mobile overflow.
-- Anime.js is dynamically imported only for the Home desktop/tablet learning-path stroke after the LCP photo loads. It uses a scoped, one-time transform/opacity/stroke draw with teardown on unmount; it is absent below 768px and for reduced-motion visitors. Motion for React owns all other route, state, menu, dialog, and in-view animation. GSAP is not used.
-- Bklit UI’s MIT-licensed Shimmering Text informs the impact-report and asynchronous submit states. The per-character signal runs only while an update is in progress, then resolves to a stable label; no impact figure is fabricated for a chart.
-- Kokonut UI's MIT Background Paths component is adapted for the Contact and Gallery headers as a five-path, one-time editorial reveal. Its original perpetual-wave treatment is intentionally not used, so it remains a short orientation cue rather than ambient distraction. Cards, buttons, and links use concise hover, focus-visible, and active states rather than decorative perpetual motion.
+- Anime.js v4 is dynamically imported only for the Home desktop/tablet learning-path sequence after the LCP photo loads. A scoped `createTimeline()` uses `stagger()`, `svg.createDrawable()`, and `svg.createMotionPath()` for the route and its marker, then tears down on unmount. It is absent below 768px and for reduced-motion visitors. Motion for React owns all other route, state, menu, dialog, and in-view animation. GSAP is not used.
+- Bklit UI’s MIT-licensed Shimmering Text informs asynchronous contact submission. Its Ring Chart pattern is adapted for the Resources catalog status: the values are calculated from the actual four records (0 available, 4 coming soon), paired with a visible legend and a screen-reader summary; no impact statistic is fabricated.
+- Kokonut UI’s MIT Background Paths component is adapted for the Contact header as a five-path, one-time editorial reveal. Its Shape Hero grammar guides the About hero, while Carousel Cards provide the Resources shelf. The original perpetual-wave and auto-advance treatments are intentionally not used, so motion remains an orientation cue rather than ambient distraction.
 
 ## 7. Depth & Surface
 

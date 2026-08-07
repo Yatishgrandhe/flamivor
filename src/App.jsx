@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
-import { AnimatePresence, domAnimation, LazyMotion, MotionConfig, motion } from 'motion/react'
+import { AnimatePresence, domAnimation, LazyMotion, MotionConfig, motion, useReducedMotion } from 'motion/react'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import Home from './pages/Home'
@@ -22,6 +22,7 @@ function ScrollToTop() {
 
 function ResponsiveMotion({ children }) {
   const [compactMotion, setCompactMotion] = useState(false)
+  const userPrefersReducedMotion = useReducedMotion()
 
   useEffect(() => {
     const query = window.matchMedia('(max-width: 760px)')
@@ -31,7 +32,9 @@ function ResponsiveMotion({ children }) {
     return () => query.removeEventListener('change', sync)
   }, [])
 
-  return <MotionConfig reducedMotion={compactMotion ? 'always' : 'user'}>{children}</MotionConfig>
+  // MotionConfig honors the operating-system preference; component-level compact
+  // rules remove heavier transforms below 760px without forcing Motion's dev warning.
+  return <MotionConfig reducedMotion="user"><div data-motion-preference={userPrefersReducedMotion || compactMotion ? 'reduced' : 'full'}>{children}</div></MotionConfig>
 }
 
 function AnimatedRoutes() {

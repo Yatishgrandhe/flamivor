@@ -20,12 +20,13 @@
 .nav-logo img { width: 144px; max-width: none; height: auto; transform: translateY(-5px); }
 .nav-links { display: flex; align-items: center; gap: 1px; }
 .nav-links a {
-  color: rgba(247,237,230,0.72); font-size: 0.82rem; font-weight: 500;
+  position: relative; isolation: isolate; color: rgba(247,237,230,0.72); font-size: 0.82rem; font-weight: 500;
   padding: 8px 16px; border-radius: var(--radius-sm); transition: all 0.2s;
   letter-spacing: 0.01em;
 }
 .nav-links a:hover { color: var(--logo-white); background: rgba(247,237,230,0.1); }
-.nav-links a.active { color: var(--logo-white); font-weight: 600; background: rgba(247,237,230,0.14); }
+.nav-links a.active { color: var(--logo-white); font-weight: 600; }
+.nav-active-indicator { position: absolute; z-index: -1; inset: 3px 5px; background: rgba(247,237,230,0.14); }
 .nav-cta {
   background: var(--logo-white) !important; color: var(--red) !important; font-weight: 700 !important;
   padding: 9px 20px !important; border-radius: var(--radius-sm) !important;

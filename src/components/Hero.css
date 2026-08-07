@@ -1,6 +1,6 @@
 .hero-editorial {
   --hero-gutter: clamp(20px, 5vw, 80px);
-  min-height: max(760px, 100dvh);
+  position: relative; isolation: isolate; min-height: max(760px, 100dvh);
   overflow: clip;
   display: grid;
   grid-template-columns: minmax(0, .94fr) minmax(360px, 1.06fr);

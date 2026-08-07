@@ -8,7 +8,7 @@
     linear-gradient(180deg, rgba(138,1,3,0.015) 0%, transparent 100%);
 }
 .kokonut-editorial-paths { position: absolute; inset: 0; overflow: hidden; pointer-events: none; mask-image: radial-gradient(ellipse 72% 118% at 50% 50%, transparent 0 28%, #000 66%); }
-.kokonut-editorial-paths svg { width: 100%; height: 100%; }
+.kokonut-editorial-paths svg { width: 100%; height: 100%; overflow: hidden; }
 .page-header-content {
   position: relative; max-width: 1200px; margin: 0 auto; text-align: center;
 }
@@ -19,9 +19,11 @@
 .page-header-content p {
   font-size: 1rem; color: var(--text-muted); max-width: 520px; margin: 0 auto; line-height: 1.7;
 }
+.gallery-page-hero { position: relative; isolation: isolate; min-height: 490px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(220px, 320px); gap: 72px; align-items: end; padding: 166px max(24px, calc((100vw - 1200px) / 2)) 68px; overflow: clip; background: var(--mist); }.gallery-page-hero::before { content: ''; position: absolute; z-index: -1; inset: 0; background: linear-gradient(90deg, rgba(53,92,81,.12), transparent 52%), repeating-linear-gradient(90deg, transparent 0 68px, rgba(53,92,81,.08) 69px 70px); mask-image: linear-gradient(90deg, #000, transparent); }.gallery-page-hero-copy > p { color: var(--moss); font-size: .7rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }.gallery-page-hero h1 { margin-top: 16px; font: 700 clamp(3.2rem, 7vw, 7rem)/.87 'Space Grotesk', sans-serif; letter-spacing: -.075em; }.gallery-page-hero h1 em { color: var(--red); font-style: normal; }.gallery-page-hero-note { max-width: 280px; padding: 19px 0 0 19px; border-left: 2px solid var(--moss); color: var(--muted); font-size: .95rem; line-height: 1.65; }.gallery-page-hero-index { position: absolute; top: 102px; right: max(24px, calc((100vw - 1200px) / 2)); display: grid; gap: 4px; color: var(--moss); font-size: .62rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }.gallery-page-hero-index strong { font: 700 1.1rem/1 'Space Grotesk', sans-serif; letter-spacing: -.04em; }.gallery-page-hero-index i { display: block; width: 88px; height: 1px; margin-top: 7px; background: var(--moss); }
 
 @media (max-width: 600px) {
   .page-header { padding: 110px 16px 40px; }
   .page-header-content h1 { font-size: clamp(1.8rem, 6vw, 2.4rem); }
   .page-header-content p { font-size: 0.9rem; }
+  .gallery-page-hero { min-height: 410px; display: block; padding: 130px 24px 52px; }.gallery-page-hero-index { top: 78px; right: 24px; }.gallery-page-hero-note { max-width: 260px; margin-top: 35px; }
 }

@@ -117,7 +117,7 @@ export default function Contact() {
 
         <div className="contact-grid">
           {/* Left — Info */}
-          <motion.div className="contact-info" initial={compactMotion ? false : { opacity: 0, x: -30 }} whileInView={compactMotion ? {} : { opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }}>
+          <motion.div className="contact-info" initial={compactMotion ? false : { opacity: 0, y: 20 }} whileInView={compactMotion ? {} : { opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }}>
             <a href="mailto:flamivor@gmail.com" className="contact-item">
               <div className="contact-icon-wrap">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -163,7 +163,7 @@ export default function Contact() {
           </motion.div>
 
           {/* Right — Form */}
-          <motion.div className="contact-form-wrap" initial={compactMotion ? false : { opacity: 0, x: 30 }} whileInView={compactMotion ? {} : { opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: 0.3 }}>
+          <motion.div className="contact-form-wrap" initial={compactMotion ? false : { opacity: 0, y: 20 }} whileInView={compactMotion ? {} : { opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.3 }}>
             <h3>Send us a message</h3>
             <form onSubmit={handleSubmit} noValidate>
               <div className="form-honeypot" aria-hidden="true">

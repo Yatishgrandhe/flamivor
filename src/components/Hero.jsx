@@ -24,26 +24,22 @@ export default function Hero() {
 
     let disposed = false
     let scope
-    void import('animejs').then(({ animate, createScope }) => {
+    void import('animejs').then(({ createScope, createTimeline, stagger, svg }) => {
       if (disposed || !ref.current) return
       scope = createScope({ root: ref.current }).add(() => {
         const path = ref.current.querySelector('.hero-learning-path__active')
         const marker = ref.current.querySelector('.hero-learning-path__marker')
-        const pathAnimation = animate(path, {
-          strokeDashoffset: [1, 0],
-          duration: 1050,
-          ease: 'out(4)',
-        })
-        const markerAnimation = animate(marker, {
-          opacity: [0, 1],
-          scale: [0.75, 1],
-          duration: 400,
-          delay: 820,
-          ease: 'out(3)',
-        })
+        const proofTiles = ref.current.querySelectorAll('.hero-proof > div')
+        if (!path || !marker) return undefined
+        const [drawable] = svg.createDrawable(path)
+        const motionPath = svg.createMotionPath(path)
+        const timeline = createTimeline({ defaults: { ease: 'out(4)' } })
+        timeline
+          .add(drawable, { draw: ['0 0', '0 1'], duration: 1050 })
+          .add(marker, { opacity: [0, 1], scale: [0.75, 1], ...motionPath, duration: 620 }, 220)
+          .add(proofTiles, { opacity: [0, 1], translateY: [10, 0], duration: 360, delay: stagger(55) }, 610)
         return () => {
-          pathAnimation.cancel()
-          markerAnimation.cancel()
+          timeline.revert()
         }
       })
     })

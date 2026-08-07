@@ -1,41 +1,131 @@
 import { motion, useReducedMotion } from 'framer-motion'
-import { ArrowRight, BookMarked, FileText, Layers3, PackageOpen, Sparkles } from 'lucide-react'
+import { ArrowUpRight, Compass, Flag, HandHeart, MessageCircle, Route } from 'lucide-react'
+import { Link } from 'react-router-dom'
 import './ResourcesPage.css'
 
-const resources = [
-  { id: '01', type: 'Chemistry revision deck', caption: 'Chemistry resources / study flashcards', icon: Layers3, image: 'https://static.wixstatic.com/media/01afaa_28f339f2acbb41eab59c985e82bc7ecd~mv2.png', title: 'Study Flashcards', desc: 'Original, visually engaging flashcards covering key concepts across multiple subjects.', accent: 'red' },
-  { id: '02', type: 'Biology quick study', caption: 'Biology resources / mini lesson', icon: Sparkles, image: 'https://static.wixstatic.com/media/01afaa_8ab67555fcaf48d0a665f929a0217876~mv2.png', title: 'Mini Lessons', desc: 'Concise, easy-to-understand lesson summaries designed for quick revision and self-study.', accent: 'moss' },
-  { id: '03', type: 'Physics deep dive', caption: 'Physics resources / study guide', icon: FileText, image: 'https://static.wixstatic.com/media/01afaa_018ede2ec32541e18cb927efe317c46c~mv2.png', title: 'Study Guides', desc: 'Comprehensive guides that break down complex topics into digestible, student-friendly content.', accent: 'coral' },
-  { id: '04', type: 'Math practice kit', caption: 'Math resources / educational kit', icon: PackageOpen, image: 'https://static.wixstatic.com/media/01afaa_d806a3a38260410089a1177657cc3b74~mv2.png', title: 'Educational Kits', desc: 'Curated learning kits delivered to partner schools and communities in need.', accent: 'ink' },
+const pathways = [
+  {
+    number: '01',
+    icon: Compass,
+    eyebrow: 'For curious students',
+    title: 'Find your next opportunity.',
+    copy: 'Explore extracurricular paths that turn a question, an interest, or a new skill into a meaningful next move.',
+    link: '/extracurriculars',
+    label: 'Explore opportunities',
+    tone: 'moss',
+  },
+  {
+    number: '02',
+    icon: Flag,
+    eyebrow: 'For emerging leaders',
+    title: 'Bring Flamivor to your school.',
+    copy: 'Start a chapter and create a local space where students can build, share, and lead together.',
+    link: '/join',
+    label: 'Start a chapter',
+    tone: 'red',
+  },
+  {
+    number: '03',
+    icon: HandHeart,
+    eyebrow: 'For people ready to help',
+    title: 'Put your strengths to work.',
+    copy: 'Contribute your time, creativity, or perspective to help widen access to hands-on learning.',
+    link: '/join',
+    label: 'See ways to contribute',
+    tone: 'coral',
+  },
+  {
+    number: '04',
+    icon: MessageCircle,
+    eyebrow: 'For a new idea',
+    title: 'Start a conversation.',
+    copy: 'Have a partnership idea, a question, or a need we should know about? We would genuinely like to hear it.',
+    link: '/contact',
+    label: 'Contact Flamivor',
+    tone: 'ink',
+  },
 ]
+
+function PathwayCover({ pathway, featured = false }) {
+  const Icon = pathway.icon
+  return (
+    <div className={`pathway-cover pathway-cover-${pathway.tone} ${featured ? 'pathway-cover-featured' : ''}`} aria-hidden="true">
+      <span>Flamivor</span>
+      <Icon size={featured ? 54 : 31} strokeWidth={1.6} />
+      <strong>{pathway.number}</strong>
+      <i>{pathway.eyebrow}</i>
+    </div>
+  )
+}
 
 export default function ResourcesPage() {
   const reducedMotion = useReducedMotion()
-  const enter = (delay = 0) => ({ initial: reducedMotion ? false : { opacity: 0, y: 18 }, whileInView: reducedMotion ? {} : { opacity: 1, y: 0 }, viewport: { once: true, amount: .2 }, transition: { duration: .55, delay, ease: [0.16, 1, .3, 1] } })
-  const featured = resources[0]
-  const FeaturedIcon = featured.icon
+  const reveal = (delay = 0) => ({
+    initial: reducedMotion ? false : { opacity: 0, y: 16 },
+    whileInView: reducedMotion ? {} : { opacity: 1, y: 0 },
+    viewport: { once: true, amount: 0.25 },
+    transition: { duration: 0.55, delay, ease: [0.16, 1, 0.3, 1] },
+  })
+
   return (
     <main className="resources-page">
       <section className="resources-hero" aria-labelledby="resources-heading">
-        <motion.div className="resources-hero-copy" initial={reducedMotion ? false : { opacity: 0, y: 20 }} animate={reducedMotion ? {} : { opacity: 1, y: 0 }} transition={{ duration: .65, ease: [0.16, 1, .3, 1] }}>
-          <p className="resources-eyebrow"><BookMarked size={15} aria-hidden="true" /> The open shelf</p>
-          <h1 id="resources-heading">Made to be<br /><em>passed around.</em></h1>
-          <p>Free study tools made by students, for the moments when a clear explanation can change what feels possible.</p>
+        <div className="resources-hero-orbit" aria-hidden="true"><span /><span /><span /></div>
+        <motion.div className="resources-hero-copy" initial={reducedMotion ? false : { opacity: 0, y: 20 }} animate={reducedMotion ? {} : { opacity: 1, y: 0 }} transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}>
+          <p className="resources-eyebrow"><Route size={15} aria-hidden="true" /> The student directory</p>
+          <h1 id="resources-heading">Your next step<br />starts <em>here.</em></h1>
+          <p>Flamivor is more than a collection of things to read. It is a place to find an opening, lead with others, and help make learning more reachable.</p>
         </motion.div>
-        <motion.div className="resources-hero-index" initial={reducedMotion ? false : { opacity: 0, x: 18 }} animate={reducedMotion ? {} : { opacity: 1, x: 0 }} transition={{ duration: .6, delay: .1, ease: [0.16, 1, .3, 1] }} aria-label="Resource library index"><span>Library index</span><strong>04</strong><p>formats<br />for learning</p></motion.div>
+        <motion.figure className="resources-hero-photo" initial={reducedMotion ? false : { opacity: 0, y: 24, rotate: 2 }} animate={reducedMotion ? {} : { opacity: 1, y: 0, rotate: 0 }} transition={{ duration: 0.7, delay: 0.12, ease: [0.16, 1, 0.3, 1] }}>
+          <img src="https://images.unsplash.com/photo-1529390079861-591de354faf5?auto=format&fit=crop&w=1100&q=84" alt="Students sharing a conversation outdoors" width="1100" height="825" fetchPriority="high" />
+          <figcaption>One small opening can travel farther.</figcaption>
+        </motion.figure>
       </section>
 
       <section className="resources-feature" aria-labelledby="featured-heading">
-        <motion.figure className="resources-feature-image" {...enter()}><img src={featured.image} alt="A preview of Flamivor chemistry study flashcards" loading="eager" /><figcaption>{featured.caption}</figcaption></motion.figure>
-        <motion.div className="resources-feature-copy" {...enter(.1)}><p className="resources-eyebrow"><FeaturedIcon size={15} aria-hidden="true" /> Chemistry focus</p><h2 id="featured-heading">Study Flashcards</h2><p>Built for quick recall without losing the why. These visual prompts make key concepts easier to revisit, share, and remember.</p><div className="resource-availability"><span>Availability for this chemistry set</span><strong>Links coming soon</strong></div></motion.div>
+        <motion.div className="resources-feature-visual" {...reveal()}><PathwayCover pathway={pathways[0]} featured /></motion.div>
+        <motion.div className="resources-feature-copy" {...reveal(0.08)}>
+          <p className="resources-eyebrow"><Compass size={15} aria-hidden="true" /> {pathways[0].eyebrow}</p>
+          <h2 id="featured-heading">{pathways[0].title}</h2>
+          <p>{pathways[0].copy}</p>
+          <Link className="resources-action" to={pathways[0].link}>{pathways[0].label} <ArrowUpRight size={18} aria-hidden="true" /></Link>
+        </motion.div>
       </section>
 
-      <section className="resources-index" aria-labelledby="resource-index-heading">
-        <div className="resources-index-heading"><div><p className="resources-eyebrow">Browse the shelf</p><h2 id="resource-index-heading">Pick the format<br />that meets you there.</h2></div><p>Every resource is designed to be clear, shareable, and free. New links will appear here as each collection opens.</p></div>
-        <div className="resource-records">{resources.slice(1).map((resource, index) => { const Icon = resource.icon; return <motion.article className={`resource-record resource-record-${resource.accent}`} key={resource.id} {...enter(index * .08)}><div className="resource-record-number">{resource.id}</div><div className="resource-record-image"><img src={resource.image} alt={`Preview of Flamivor ${resource.title}`} loading="lazy" /></div><div className="resource-record-copy"><p><Icon size={15} aria-hidden="true" /> {resource.type}</p><h3>{resource.title}</h3><span>{resource.desc}</span><div className="resource-record-status">Links coming soon <ArrowRight size={16} aria-hidden="true" /></div></div></motion.article> })}</div>
+      <section className="resources-index" aria-labelledby="pathways-heading">
+        <motion.div className="resources-index-heading" {...reveal()}>
+          <div>
+            <p className="resources-eyebrow">Choose a direction</p>
+            <h2 id="pathways-heading">More ways to<br />move forward.</h2>
+          </div>
+          <p>Each route leads somewhere real. Choose the one that feels closest to where you are right now.</p>
+        </motion.div>
+        <div className="resource-records">
+          {pathways.slice(1).map((pathway, index) => (
+            <motion.article className={`resource-record resource-record-${pathway.tone}`} key={pathway.number} {...reveal(index * 0.06)}>
+              <div className="resource-record-number">{pathway.number}</div>
+              <PathwayCover pathway={pathway} />
+              <div className="resource-record-copy">
+                <p>{pathway.eyebrow}</p>
+                <h3>{pathway.title}</h3>
+                <span>{pathway.copy}</span>
+                <Link to={pathway.link}>{pathway.label} <ArrowUpRight size={16} aria-hidden="true" /></Link>
+              </div>
+            </motion.article>
+          ))}
+        </div>
       </section>
 
-      <section className="resources-request"><div><p className="resources-eyebrow">Need something specific?</p><h2>Tell us what would<br />make learning easier.</h2></div><a href="mailto:flamivor@gmail.com">Request a resource <ArrowRight size={18} aria-hidden="true" /></a></section>
+      <section className="resources-note" aria-labelledby="resources-note-heading">
+        <motion.div {...reveal()}>
+          <p className="resources-eyebrow">Keep the door open</p>
+          <h2 id="resources-note-heading">The best next step<br />is the one you take.</h2>
+        </motion.div>
+        <motion.div className="resources-note-copy" {...reveal(0.08)}>
+          <p>There is no perfect starting point. Find an opportunity, bring an idea, or build something alongside people who care.</p>
+          <Link to="/contact">Send us a note <ArrowUpRight size={18} aria-hidden="true" /></Link>
+        </motion.div>
+      </section>
     </main>
   )
 }

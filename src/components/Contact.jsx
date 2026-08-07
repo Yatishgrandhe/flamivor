@@ -45,10 +45,11 @@ const formFields = [
 
 export default function Contact() {
   const [formData, setFormData] = useState({
-    firstName: '', lastName: '', email: '', subject: '', message: '',
+    firstName: '', lastName: '', email: '', subject: '', message: '', website: '',
   })
   const [status, setStatus] = useState('idle') // idle | submitting | success | error
   const [errors, setErrors] = useState({})
+  const [submitError, setSubmitError] = useState('')
 
   const validate = () => {
     const errs = {}
@@ -72,19 +73,21 @@ export default function Contact() {
     e.preventDefault()
     if (!validate()) return
     setStatus('submitting')
-
-    // TODO: Replace with Convex mutation when MCP is connected
-    // import { useMutation } from 'convex/react'
-    // const sendMessage = useMutation(api.messages.send)
-    // await sendMessage(formData)
+    setSubmitError('')
 
     try {
-      // Simulated API call — replace with Convex mutation
-      await new Promise(r => setTimeout(r, 1200))
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      })
+      const payload = await response.json().catch(() => ({}))
+      if (!response.ok || !payload.ok) throw new Error(payload.error || 'Unable to send your message.')
       setStatus('success')
-      setFormData({ firstName: '', lastName: '', email: '', subject: '', message: '' })
+      setFormData({ firstName: '', lastName: '', email: '', subject: '', message: '', website: '' })
       setTimeout(() => setStatus('idle'), 4000)
-    } catch {
+    } catch (error) {
+      setSubmitError(error.message || 'Something went wrong. Please try again.')
       setStatus('error')
       setTimeout(() => setStatus('idle'), 3000)
     }
@@ -154,22 +157,26 @@ export default function Contact() {
           <motion.div className="contact-form-wrap" initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: 0.3 }}>
             <h3>Send us a message</h3>
             <form onSubmit={handleSubmit} noValidate>
+              <div className="form-honeypot" aria-hidden="true">
+                <label htmlFor="website">Website</label>
+                <input id="website" type="text" name="website" value={formData.website} onChange={handleChange} tabIndex="-1" autoComplete="off" />
+              </div>
               <div className="form-row">
                 {formFields.filter(f => f.half).map(f => (
                   <div key={f.name} className={`form-group ${errors[f.name] ? 'form-error' : ''}`}>
-                    <label>{f.label}</label>
-                    <input type={f.type} name={f.name} value={formData[f.name]} onChange={handleChange} required={f.required} />
+                    <label htmlFor={f.name}>{f.label}</label>
+                    <input id={f.name} type={f.type} name={f.name} value={formData[f.name]} onChange={handleChange} required={f.required} />
                     {errors[f.name] && <span className="form-error-text">{errors[f.name]}</span>}
                   </div>
                 ))}
               </div>
               {formFields.filter(f => !f.half).map(f => (
                 <div key={f.name} className={`form-group ${errors[f.name] ? 'form-error' : ''}`}>
-                  <label>{f.label}</label>
+                  <label htmlFor={f.name}>{f.label}</label>
                   {f.type === 'textarea' ? (
-                    <textarea name={f.name} value={formData[f.name]} onChange={handleChange} required={f.required} rows={5} />
+                    <textarea id={f.name} name={f.name} value={formData[f.name]} onChange={handleChange} required={f.required} rows={5} />
                   ) : (
-                    <input type={f.type} name={f.name} value={formData[f.name]} onChange={handleChange} required={f.required} />
+                    <input id={f.name} type={f.type} name={f.name} value={formData[f.name]} onChange={handleChange} required={f.required} />
                   )}
                   {errors[f.name] && <span className="form-error-text">{errors[f.name]}</span>}
                 </div>
@@ -184,7 +191,7 @@ export default function Contact() {
                 )}
               </button>
               {status === 'success' && <p className="form-success">Thanks for reaching out! We'll get back to you soon.</p>}
-              {status === 'error' && <p className="form-error-msg"><AlertCircle size={14} /> Something went wrong. Please try again.</p>}
+              {status === 'error' && <p className="form-error-msg"><AlertCircle size={14} /> {submitError}</p>}
             </form>
           </motion.div>
         </div>

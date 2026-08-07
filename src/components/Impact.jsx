@@ -1,6 +1,6 @@
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
-import { BookOpen, Globe, Users, Smartphone, GraduationCap, School, Library, Mic, Banknote, Package } from 'lucide-react'
+import { Globe, Users, Smartphone, GraduationCap, School, Library, Mic, Banknote, Package } from 'lucide-react'
 import './Impact.css'
 
 const stats = [

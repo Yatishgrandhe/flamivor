@@ -1,7 +1,6 @@
-import { useState, useCallback, useEffect } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
-import SplashScreen from './components/SplashScreen'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import Home from './pages/Home'
@@ -12,6 +11,7 @@ import ImpactPage from './pages/ImpactPage'
 import JoinPage from './pages/JoinPage'
 import ExtracurricularsPage from './pages/ExtracurricularsPage'
 import ContactPage from './pages/ContactPage'
+import SplashScreen from './components/SplashScreen'
 
 function ScrollToTop() {
   const { pathname } = useLocation()
@@ -45,20 +45,18 @@ function AnimatedRoutes() {
 }
 
 export default function App() {
-  const [splashDone, setSplashDone] = useState(false)
-  const onSplashComplete = useCallback(() => setSplashDone(true), [])
+  const [showSplash, setShowSplash] = useState(() => (
+    typeof window === 'undefined' || !window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  ))
+  const dismissSplash = useCallback(() => setShowSplash(false), [])
 
   return (
     <BrowserRouter>
+      {showSplash && <SplashScreen onComplete={dismissSplash} />}
       <ScrollToTop />
-      {!splashDone && <SplashScreen onComplete={onSplashComplete} />}
-      {splashDone && (
-        <>
-          <Navbar />
-          <AnimatedRoutes />
-          <Footer />
-        </>
-      )}
+      <Navbar />
+      <AnimatedRoutes />
+      <Footer />
     </BrowserRouter>
   )
 }

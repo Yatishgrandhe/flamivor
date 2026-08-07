@@ -2,10 +2,10 @@ import { motion } from 'framer-motion'
 import './Resources.css'
 
 const resources = [
-  { img: 'https://static.wixstatic.com/media/01afaa_28f339f2acbb41eab59c985e82bc7ecd~mv2.png', title: 'Study Flashcards', desc: 'Original, visually engaging flashcards covering key concepts across multiple subjects.' },
-  { img: 'https://static.wixstatic.com/media/01afaa_8ab67555fcaf48d0a665f929a0217876~mv2.png', title: 'Mini Lessons', desc: 'Concise, easy-to-understand lesson summaries designed for quick revision and self-study.' },
-  { img: 'https://static.wixstatic.com/media/01afaa_018ede2ec32541e18cb927efe317c46c~mv2.png', title: 'Study Guides', desc: 'Comprehensive guides that break down complex topics into digestible, student-friendly content.' },
-  { img: 'https://static.wixstatic.com/media/01afaa_d806a3a38260410089a1177657cc3b74~mv2.png', title: 'Educational Kits', desc: 'Curated learning kits delivered to partner schools and communities in need.' },
+  { id: 'flashcards', img: 'https://static.wixstatic.com/media/01afaa_28f339f2acbb41eab59c985e82bc7ecd~mv2.png', title: 'Study Flashcards', desc: 'Original, visually engaging flashcards covering key concepts across multiple subjects.' },
+  { id: 'mini-lessons', img: 'https://static.wixstatic.com/media/01afaa_8ab67555fcaf48d0a665f929a0217876~mv2.png', title: 'Mini Lessons', desc: 'Concise, easy-to-understand lesson summaries designed for quick revision and self-study.' },
+  { id: 'study-guides', img: 'https://static.wixstatic.com/media/01afaa_018ede2ec32541e18cb927efe317c46c~mv2.png', title: 'Study Guides', desc: 'Comprehensive guides that break down complex topics into digestible, student-friendly content.' },
+  { id: 'learning-kits', img: 'https://static.wixstatic.com/media/01afaa_d806a3a38260410089a1177657cc3b74~mv2.png', title: 'Educational Kits', desc: 'Curated learning kits delivered to partner schools and communities in need.' },
 ]
 
 const container = { hidden: {}, visible: { transition: { staggerChildren: 0.1 } } }
@@ -28,24 +28,19 @@ export default function Resources() {
           Free, original study materials — flashcards, mini-lessons, and study guides created by students, for students.
         </motion.p>
 
-        <motion.div style={{ marginBottom: 40 }} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.25 }}>
-          <a href="https://linktr.ee/flamivor" target="_blank" rel="noopener noreferrer" className="btn-primary" style={{ fontSize: '1.05rem', padding: '16px 36px' }}>
-            Access All Resources on Linktree →
-          </a>
-        </motion.div>
-
         <motion.div className="resources-grid" variants={container} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-80px' }}>
-          {resources.map((r, i) => (
-            <motion.div key={i} className="resource-card" variants={item} whileHover={{ y: -6, transition: { duration: 0.2 } }}>
+          {resources.map((r) => (
+            <motion.article key={r.id} className="resource-card" variants={item}>
               <div className="resource-img-wrap">
                 <img src={r.img} alt={r.title} loading="lazy" />
               </div>
               <div className="resource-body">
+                <span className="resource-type">Open learning tool</span>
                 <h3>{r.title}</h3>
                 <p>{r.desc}</p>
-                <a href="https://linktr.ee/flamivor" target="_blank" rel="noopener noreferrer" className="resource-link">View on Linktree →</a>
+                <span className="resource-link resource-coming-soon">Links Coming Soon</span>
               </div>
-            </motion.div>
+            </motion.article>
           ))}
         </motion.div>
       </div>

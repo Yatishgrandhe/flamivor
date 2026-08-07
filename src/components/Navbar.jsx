@@ -26,6 +26,15 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
+  useEffect(() => {
+    if (!menuOpen) return undefined
+    const onKeyDown = (event) => {
+      if (event.key === 'Escape') setMenuOpen(false)
+    }
+    window.addEventListener('keydown', onKeyDown)
+    return () => window.removeEventListener('keydown', onKeyDown)
+  }, [menuOpen])
+
   return (
     <motion.nav
       className={`navbar ${scrolled ? 'scrolled' : ''}`}
@@ -35,7 +44,7 @@ export default function Navbar() {
     >
       <div className="nav-inner">
         <NavLink to="/" className="nav-logo">
-          <img src="/logo.jpg" alt="Flamivor" />
+          <img src="/flamivor-logo.png" alt="Flamivor" />
         </NavLink>
 
         <div className="nav-links">
@@ -47,7 +56,7 @@ export default function Navbar() {
           <NavLink to="/join" className="nav-cta" end>Join Us</NavLink>
         </div>
 
-        <button className="hamburger" onClick={() => setMenuOpen(!menuOpen)} aria-label="Menu">
+        <button className="hamburger" onClick={() => setMenuOpen(!menuOpen)} aria-label="Menu" aria-expanded={menuOpen} aria-controls="mobile-navigation">
           <span className={menuOpen ? 'open' : ''} />
           <span className={menuOpen ? 'open' : ''} />
           <span className={menuOpen ? 'open' : ''} />
@@ -57,11 +66,12 @@ export default function Navbar() {
       <AnimatePresence>
         {menuOpen && (
           <motion.div
+            id="mobile-navigation"
             className="mobile-menu"
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.25 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.15 }}
           >
             {links.map(l => (
               <NavLink key={l.to} to={l.to} className={({ isActive }) => isActive ? 'active' : ''} end>

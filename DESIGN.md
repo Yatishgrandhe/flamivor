@@ -96,6 +96,24 @@ The exact brand pairing is Flamivor red `#8A0103` and logo white `#F7EDE6`. Acce
 - **States:** static placeholder, then replaced by a real portrait with a descriptive alt text when photography is available.
 - **Accessibility:** never imply that a placeholder is a photograph or invent a person’s likeness.
 
+### Impact Ledger
+
+- **Structure:** a dark editorial report with one leading proof figure, grouped outcome entries, and a quiet geographic/connection field used only as context.
+- **States:** outcome entries reveal with opacity/translate on entry; hover may lift a linked entry by 4px and strengthen its rule.
+- **Accessibility:** figures always include their plain-language label; the connection field is decorative and hidden from assistive technology.
+
+### Resource Index
+
+- **Structure:** a featured resource spread followed by numbered, linked resource records; metadata explains availability without presenting unavailable items as controls.
+- **States:** active resource links use a transform-only arrow nudge; “coming soon” items are text, not fake buttons.
+- **Accessibility:** image regions have fixed aspect ratios and meaningful alt text; titles and availability are readable without the supporting imagery.
+
+### Opportunity Board
+
+- **Structure:** a visually led open-call hero, a compact category legend, and chronological-style opportunity records with clear destination links and deadlines.
+- **States:** each record strengthens its image crop and title rule on hover; external destinations are labelled by an arrow and remain keyboard accessible.
+- **Accessibility:** category colour is never the only identifier; every record keeps date, place, audience, and destination in text.
+
 ## 6. Motion & Interaction
 
 | Type | Duration | Easing | Usage |

@@ -3,10 +3,10 @@ import { ArrowRight, BookMarked, FileText, Layers3, PackageOpen, Sparkles } from
 import './ResourcesPage.css'
 
 const resources = [
-  { id: '01', type: 'Revision deck', icon: Layers3, image: 'https://static.wixstatic.com/media/01afaa_28f339f2acbb41eab59c985e82bc7ecd~mv2.png', title: 'Study Flashcards', desc: 'Original, visually engaging flashcards covering key concepts across multiple subjects.', accent: 'red' },
-  { id: '02', type: 'Quick study', icon: Sparkles, image: 'https://static.wixstatic.com/media/01afaa_8ab67555fcaf48d0a665f929a0217876~mv2.png', title: 'Mini Lessons', desc: 'Concise, easy-to-understand lesson summaries designed for quick revision and self-study.', accent: 'moss' },
-  { id: '03', type: 'Deep dive', icon: FileText, image: 'https://static.wixstatic.com/media/01afaa_018ede2ec32541e18cb927efe317c46c~mv2.png', title: 'Study Guides', desc: 'Comprehensive guides that break down complex topics into digestible, student-friendly content.', accent: 'coral' },
-  { id: '04', type: 'Physical learning', icon: PackageOpen, image: 'https://static.wixstatic.com/media/01afaa_d806a3a38260410089a1177657cc3b74~mv2.png', title: 'Educational Kits', desc: 'Curated learning kits delivered to partner schools and communities in need.', accent: 'ink' },
+  { id: '01', type: 'Chemistry revision deck', caption: 'Chemistry resources / study flashcards', icon: Layers3, image: 'https://static.wixstatic.com/media/01afaa_28f339f2acbb41eab59c985e82bc7ecd~mv2.png', title: 'Study Flashcards', desc: 'Original, visually engaging flashcards covering key concepts across multiple subjects.', accent: 'red' },
+  { id: '02', type: 'Biology quick study', caption: 'Biology resources / mini lesson', icon: Sparkles, image: 'https://static.wixstatic.com/media/01afaa_8ab67555fcaf48d0a665f929a0217876~mv2.png', title: 'Mini Lessons', desc: 'Concise, easy-to-understand lesson summaries designed for quick revision and self-study.', accent: 'moss' },
+  { id: '03', type: 'Physics deep dive', caption: 'Physics resources / study guide', icon: FileText, image: 'https://static.wixstatic.com/media/01afaa_018ede2ec32541e18cb927efe317c46c~mv2.png', title: 'Study Guides', desc: 'Comprehensive guides that break down complex topics into digestible, student-friendly content.', accent: 'coral' },
+  { id: '04', type: 'Math practice kit', caption: 'Math resources / educational kit', icon: PackageOpen, image: 'https://static.wixstatic.com/media/01afaa_d806a3a38260410089a1177657cc3b74~mv2.png', title: 'Educational Kits', desc: 'Curated learning kits delivered to partner schools and communities in need.', accent: 'ink' },
 ]
 
 export default function ResourcesPage() {
@@ -26,8 +26,8 @@ export default function ResourcesPage() {
       </section>
 
       <section className="resources-feature" aria-labelledby="featured-heading">
-        <motion.figure className="resources-feature-image" {...enter()}><img src={featured.image} alt="A preview of Flamivor study flashcards" loading="eager" /><figcaption>Featured format / {featured.id}</figcaption></motion.figure>
-        <motion.div className="resources-feature-copy" {...enter(.1)}><p className="resources-eyebrow"><FeaturedIcon size={15} aria-hidden="true" /> Start here</p><h2 id="featured-heading">Study Flashcards</h2><p>Built for quick recall without losing the why. These visual prompts make key concepts easier to revisit, share, and remember.</p><div className="resource-availability"><span>Availability</span><strong>Links coming soon</strong></div></motion.div>
+        <motion.figure className="resources-feature-image" {...enter()}><img src={featured.image} alt="A preview of Flamivor chemistry study flashcards" loading="eager" /><figcaption>{featured.caption}</figcaption></motion.figure>
+        <motion.div className="resources-feature-copy" {...enter(.1)}><p className="resources-eyebrow"><FeaturedIcon size={15} aria-hidden="true" /> Chemistry focus</p><h2 id="featured-heading">Study Flashcards</h2><p>Built for quick recall without losing the why. These visual prompts make key concepts easier to revisit, share, and remember.</p><div className="resource-availability"><span>Availability for this chemistry set</span><strong>Links coming soon</strong></div></motion.div>
       </section>
 
       <section className="resources-index" aria-labelledby="resource-index-heading">

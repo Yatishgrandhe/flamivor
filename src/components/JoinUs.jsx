@@ -1,85 +1,21 @@
-import { motion } from 'framer-motion'
+import { motion, useReducedMotion } from 'framer-motion'
+import { ArrowUpRight, Check, Megaphone, PenTool, UsersRound } from 'lucide-react'
 import './JoinUs.css'
 
 const roles = [
-  {
-    title: 'General Volunteer',
-    desc: 'Join our volunteer team and help shape the future of accessible education. Volunteers contribute in areas like content creation (flashcards, study guides), social media support, outreach, and research. No prior experience required — just a passion for education.',
-    perks: ['Certificate of Contribution', 'Flexible Remote Hours', 'Work at your own pace', 'Global Impact'],
-    link: 'https://docs.google.com/forms/d/e/1FAIpQLSd0wjV73RN4RSCrDU7RhLd31gw8ZBoHiQbI1q9L0dhKdeOCjg/viewform?usp=header',
-    linkLabel: 'Apply Here',
-  },
-  {
-    title: 'Chapter Founder',
-    desc: "Lead a local or school-based chapter of Flamivor. You will recruit a team (Outreach, Research, Media, Design, HR), coordinate educational content creation and distribution, maintain communication with Flamivor's core team, and uphold respectful conduct.",
-    perks: ["Founder's Certificate", 'Official chapter Instagram', 'Direct support from core team', 'Real local impact'],
-    link: 'https://docs.google.com/forms/d/e/1FAIpQLSeI2Aw8Bd6rMCMt6VJL02WpN9aY6w0g9n7pdupkuyCgy_gJ_g/viewform?usp=dialog',
-    linkLabel: 'Apply Here',
-  },
-  {
-    title: 'Executive Positions',
-    desc: 'Join our executive team and help lead the future of accessible education. Executives manage core organizational operations — C-suite strategy, department management, creative design, and volunteer coordination.',
-    perks: ['Executive Title & Certificate', 'Hands-on Leadership', 'Networking & Collaboration', 'Resume & Portfolio Builder'],
-    link: 'https://docs.google.com/forms/d/e/1FAIpQLSei33hS90nZBKNibIjMA456mYkTLNGVYcI4THY4NxnLo1HWPg/viewform?usp=header',
-    linkLabel: 'Apply Here',
-  },
-  {
-    title: 'Social Media Internships',
-    desc: 'Create short-form video content, develop original ideas for 3 Instagram Reels per week, OR design visually stunning educational graphics, social media assets, and branded materials.',
-    perks: ['Certificate of Completion', 'Portfolio-worthy work', 'Remote & flexible hours'],
-    links: [
-      { link: 'https://docs.google.com/forms/d/e/1FAIpQLScqgxV-gJGhL2HBcbi0NF9ipnThZPnZ2iq1rhQZj_bskiNybA/viewform?usp=dialog', label: 'Apply for Reels Internship' },
-      { link: 'https://docs.google.com/forms/d/e/1FAIpQLScOSZq50rdFlC1N8h7FOLCKNwQ1TK8iL7XVTTxv2NnZLnl1Vg/viewform?usp=header', label: 'Apply for Graphics Internship' },
-    ],
-  },
+  { number: '01', title: 'General volunteer', icon: UsersRound, description: 'Help shape the future of accessible education through content creation, social media, outreach, or research. No previous experience is required—only care for the work.', benefits: ['Flexible remote hours', 'Certificate of contribution', 'Work at your own pace'], links: [{ label: 'Apply to volunteer', link: 'https://docs.google.com/forms/d/e/1FAIpQLSd0wjV73RN4RSCrDU7RhLd31gw8ZBoHiQbI1q9L0dhKdeOCjg/viewform?usp=header' }] },
+  { number: '02', title: 'Chapter founder', icon: Megaphone, description: 'Build a local or school-based team to create and share learning materials, connect with your community, and carry Flamivor’s work forward.', benefits: ['Founder’s certificate', 'Direct support from the core team', 'Official chapter Instagram'], links: [{ label: 'Start a chapter', link: 'https://docs.google.com/forms/d/e/1FAIpQLSeI2Aw8Bd6rMCMt6VJL02WpN9aY6w0g9n7pdupkuyCgy_gJ_g/viewform?usp=dialog' }] },
+  { number: '03', title: 'Executive team', icon: UsersRound, description: 'Help lead the organisation through strategy, department management, creative direction, and volunteer coordination.', benefits: ['Leadership experience', 'Executive title & certificate', 'Portfolio and collaboration'], links: [{ label: 'Apply to the executive team', link: 'https://docs.google.com/forms/d/e/1FAIpQLSei33hS90nZBKNibIjMA456mYkTLNGVYcI4THY4NxnLo1HWPg/viewform?usp=header' }] },
+  { number: '04', title: 'Social media internship', icon: PenTool, description: 'Create short-form video or original educational graphics that make Flamivor’s work easier to discover, understand, and share.', benefits: ['Remote creative work', 'Portfolio-worthy projects', 'Certificate of completion'], links: [{ label: 'Apply for Reels', link: 'https://docs.google.com/forms/d/e/1FAIpQLScqgxV-gJGhL2HBcbi0NF9ipnThZPnZ2iq1rhQZj_bskiNybA/viewform?usp=dialog' }, { label: 'Apply for graphics', link: 'https://docs.google.com/forms/d/e/1FAIpQLScOSZq50rdFlC1N8h7FOLCKNwQ1TK8iL7XVTTxv2NnZLnl1Vg/viewform?usp=header' }] },
 ]
 
-const container = { hidden: {}, visible: { transition: { staggerChildren: 0.1 } } }
-const item = {
-  hidden: { opacity: 0, y: 50 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } },
-}
-
 export default function JoinUs() {
-  return (
-    <section id="join">
-      <div className="section-inner">
-        <motion.div className="section-label" initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
-          Join Us
-        </motion.div>
-        <motion.h2 className="section-title" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }}>
-          Help us empower<br />students globally
-        </motion.h2>
-        <motion.p className="section-desc" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }}>
-          Prevent financial barriers from hindering educational journeys whilst providing original study materials, mini-lessons, and educational flashcards.
-        </motion.p>
-
-        <motion.div className="join-grid" variants={container} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-60px' }}>
-          {roles.map((r, i) => (
-            <motion.div key={i} className="join-card" variants={item} whileHover={{ y: -6, transition: { duration: 0.2 } }}>
-              <h3>{r.title}</h3>
-              <p>{r.desc}</p>
-              <div className="perks">
-                {r.perks.map((p, j) => <span key={j} className="perk">{p}</span>)}
-              </div>
-              {r.link && (
-                <a href={r.link} target="_blank" rel="noopener noreferrer" className="btn-primary join-btn">{r.linkLabel} →</a>
-              )}
-              {r.links && r.links.map((l, j) => (
-                <a key={j} href={l.link} target="_blank" rel="noopener noreferrer" className={j === 0 ? 'btn-primary join-btn' : 'btn-secondary join-btn'} style={j > 0 ? { marginTop: 12 } : {}}>
-                  {l.label} →
-                </a>
-              ))}
-            </motion.div>
-          ))}
-        </motion.div>
-
-        <motion.div className="cta-banner" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }} style={{ marginTop: 48 }}>
-          <h2>Want to make a difference?</h2>
-          <p>Join our volunteer team — no experience needed, just passion.</p>
-          <a href="https://docs.google.com/forms/d/e/1FAIpQLSd0wjV73RN4RSCrDU7RhLd31gw8ZBoHiQbI1q9L0dhKdeOCjg/viewform?usp=header" target="_blank" rel="noopener noreferrer" className="btn-primary">Volunteer with Us →</a>
-        </motion.div>
-      </div>
-    </section>
-  )
+  const reducedMotion = useReducedMotion()
+  const enter = (delay = 0) => ({ initial: reducedMotion ? false : { opacity: 0, y: 18 }, whileInView: reducedMotion ? {} : { opacity: 1, y: 0 }, viewport: { once: true, amount: .2 }, transition: { duration: .55, delay, ease: [0.16, 1, .3, 1] } })
+  return <main className="join-page">
+    <section className="join-hero" aria-labelledby="join-heading"><motion.div className="join-hero-copy" initial={reducedMotion ? false : { opacity: 0, y: 22 }} animate={reducedMotion ? {} : { opacity: 1, y: 0 }} transition={{ duration: .65, ease: [0.16, 1, .3, 1] }}><p className="join-eyebrow">Join the work</p><h1>Bring your <em>spark</em><br />to the circle.</h1><p>Flamivor grows when young people turn what they care about into something useful for someone else.</p></motion.div><motion.figure className="join-hero-image" initial={reducedMotion ? false : { opacity: 0, scale: .96 }} animate={reducedMotion ? {} : { opacity: 1, scale: 1 }} transition={{ duration: .7, delay: .1, ease: [0.16, 1, .3, 1] }}><img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=84" alt="Students collaborating together" fetchPriority="high" /><figcaption>Student-led from the start</figcaption></motion.figure></section>
+    <section className="join-intro" aria-labelledby="join-intro-heading"><p className="join-eyebrow">There is no single way to contribute</p><h2 id="join-intro-heading">Choose the kind of<br />difference you want to make.</h2><p>Whether you want to help one project, lead a chapter, build a portfolio, or guide a whole team, there is a place to begin.</p></section>
+    <section className="join-routes" aria-labelledby="join-routes-heading"><div className="join-routes-heading"><p className="join-eyebrow">The contribution routes</p><h2 id="join-routes-heading">Pick a path.<br />We’ll meet you there.</h2></div><div className="join-route-list">{roles.map(({ number, title, icon: Icon, description, benefits, links }, index) => <motion.article className="join-route" key={number} {...enter(index * .06)}><div className="join-route-number">{number}</div><div className="join-route-icon"><Icon size={22} aria-hidden="true" /></div><div className="join-route-copy"><h3>{title}</h3><p>{description}</p><ul>{benefits.map(benefit => <li key={benefit}><Check size={14} aria-hidden="true" /> {benefit}</li>)}</ul></div><div className="join-route-links">{links.map(({ label, link }) => <a key={label} href={link} target="_blank" rel="noopener noreferrer">{label} <ArrowUpRight size={17} aria-hidden="true" /></a>)}</div></motion.article>)}</div></section>
+    <section className="join-closing"><div><p className="join-eyebrow">Not sure where to start?</p><h2>Start with your<br />curiosity.</h2></div><a href="mailto:flamivor@gmail.com">Ask the Flamivor team <ArrowUpRight size={18} aria-hidden="true" /></a></section>
+  </main>
 }

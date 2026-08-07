@@ -5,9 +5,9 @@ import { ArrowDownRight, ArrowRight, Sparkles } from 'lucide-react'
 import './Hero.css'
 
 const proof = [
-  ['14+', 'countries connected'],
-  ['200+', 'young volunteers'],
-  ['50K+', 'people reached'],
+  ['Free', 'to access'],
+  ['Student-led', 'from the start'],
+  ['Hands-on', 'by design'],
 ]
 
 export default function Hero() {

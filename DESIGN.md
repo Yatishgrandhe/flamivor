@@ -90,6 +90,24 @@ The exact brand pairing is Flamivor red `#8A0103` and logo white `#F7EDE6`. Acce
 - **States:** Bklit UI’s Shimmering Text runs only while a network request is pending; success and error messages use a short opacity/translate acknowledgement.
 - **Accessibility:** the button exposes `aria-busy` while sending, success is announced as a status, and failure is announced as an alert.
 
+### Navigation Drawer
+
+- **Structure:** a labelled `nav` landmark with a Menu button and a compact link list below 900px.
+- **States:** closed, open, active route, keyboard focus, and Escape close.
+- **Accessibility:** the button exposes `aria-expanded` and `aria-controls`; Escape closes the drawer and returns focus to the Menu button. The drawer's landmark is explicitly labelled “Main navigation”.
+
+### Gallery Dialog
+
+- **Structure:** a photo contact sheet opens a native modal dialog with a descriptive image, caption, and close button.
+- **States:** resting, hover/focus affordance, open, close, and reduced-motion static.
+- **Accessibility:** each thumbnail is a labelled button; the native dialog traps focus, closes with Escape, and restores focus to its triggering thumbnail.
+
+### Impact Data State
+
+- **Structure:** an editorial report shell with a clear loading, empty, or error panel; chart modules mount only when source-verified data is supplied.
+- **States:** pending verification, verified report, and unavailable/error. No figures are rendered from placeholder data.
+- **Accessibility:** the state is plain-language text with `role="status"`; charts must include a tabular/plain-language alternative and keyboard-accessible legend/tooltip before being enabled.
+
 ### Story Ledger
 
 - **Structure:** an editorial statement, a reserved visual thread, and a sequence of numbered narrative markers. The thread moves into a vertical rail on mobile and never crosses readable content.
@@ -110,9 +128,9 @@ The exact brand pairing is Flamivor red `#8A0103` and logo white `#F7EDE6`. Acce
 
 ### Resource Index
 
-- **Structure:** a featured course-cover spread followed by numbered resource records; each record uses the corresponding branded course cover and metadata explains availability without presenting unavailable items as controls.
-- **States:** active resource links use a transform-only arrow nudge; “coming soon” items are text, not fake buttons.
-- **Accessibility:** image regions have fixed aspect ratios and meaningful alt text; titles and availability are readable without the supporting imagery.
+- **Structure:** an uncomplicated shelf of branded resource covers, each followed only by its course title and availability.
+- **States:** “coming soon” is plain text, not a fake button or unavailable link.
+- **Accessibility:** meaningful alt text, semantic `figure`/`figcaption`, and titles/availability remain readable without the supporting imagery.
 
 ### Opportunity Board
 
@@ -131,7 +149,7 @@ The exact brand pairing is Flamivor red `#8A0103` and logo white `#F7EDE6`. Acce
 Only opacity and transform animate. All non-essential effects are disabled under `prefers-reduced-motion`; content remains visible and the route stays fully drawn.
 
 - Motion is provided by `motion/react` across route transitions, hero entrances, and in-view content. At widths below 760px, `useCompactMotion` and the global Motion configuration remove transform-heavy entrances; components render immediately in their final position, preventing offscreen transforms from creating mobile overflow.
-- Anime.js is reserved for the short, dismissible Flamivor loading sequence: logo settle, route line draw, mission label, then exit. It never loops.
+- Anime.js is dynamically imported only for the Home desktop/tablet learning-path stroke after the LCP photo loads. It uses a scoped, one-time transform/opacity/stroke draw with teardown on unmount; it is absent below 768px and for reduced-motion visitors. Motion for React owns all other route, state, menu, dialog, and in-view animation. GSAP is not used.
 - Bklit UI’s MIT-licensed Shimmering Text informs the impact-report and asynchronous submit states. The per-character signal runs only while an update is in progress, then resolves to a stable label; no impact figure is fabricated for a chart.
 - Kokonut UI's MIT Background Paths component is adapted for the Contact and Gallery headers as a five-path, one-time editorial reveal. Its original perpetual-wave treatment is intentionally not used, so it remains a short orientation cue rather than ambient distraction. Cards, buttons, and links use concise hover, focus-visible, and active states rather than decorative perpetual motion.
 
@@ -153,3 +171,4 @@ Strategy: **mixed editorial material.** Paper and cream create the base layers; 
 |---|---|---|---|
 | Placeholder photography | Hero and Path of Access | Requested temporary Unsplash imagery | Replace with program photography before launch |
 | Team portraits | Team page | Team photography and bios are not yet supplied | Replace labelled placeholders with approved portraits and biographies next week |
+| Verified impact dataset | Impact page | Existing headline figures are not accompanied by a traceable source | Add a reviewed dataset and then enable the chart module with its source/date before publication |

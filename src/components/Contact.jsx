@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
 import { Send, CheckCircle, AlertCircle } from 'lucide-react'
 import BklitShimmeringText from './BklitShimmeringText'
@@ -53,6 +53,7 @@ export default function Contact() {
   const [status, setStatus] = useState('idle') // idle | submitting | success | error
   const [errors, setErrors] = useState({})
   const [submitError, setSubmitError] = useState('')
+  const submittingRef = useRef(false)
 
   const validate = () => {
     const errs = {}
@@ -74,7 +75,9 @@ export default function Contact() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    if (submittingRef.current) return
     if (!validate()) return
+    submittingRef.current = true
     setStatus('submitting')
     setSubmitError('')
 
@@ -84,8 +87,9 @@ export default function Contact() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
       })
+      if (!response.ok) throw new Error('Unable to send your message.')
       const payload = await response.json().catch(() => ({}))
-      if (!response.ok || !payload.ok) throw new Error(payload.error || 'Unable to send your message.')
+      if (!payload.ok) throw new Error(payload.error || 'Unable to send your message.')
       setStatus('success')
       setFormData({ firstName: '', lastName: '', email: '', subject: '', message: '', website: '' })
       setTimeout(() => setStatus('idle'), 4000)
@@ -93,6 +97,8 @@ export default function Contact() {
       setSubmitError(error.message || 'Something went wrong. Please try again.')
       setStatus('error')
       setTimeout(() => setStatus('idle'), 3000)
+    } finally {
+      submittingRef.current = false
     }
   }
 

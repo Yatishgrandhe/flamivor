@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
-import { AnimatePresence, MotionConfig, motion } from 'motion/react'
+import { AnimatePresence, domAnimation, LazyMotion, MotionConfig, motion } from 'motion/react'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import Home from './pages/Home'
@@ -67,14 +67,16 @@ export default function App() {
   const dismissSplash = useCallback(() => setShowSplash(false), [])
 
   return (
-    <ResponsiveMotion>
-      <BrowserRouter>
-        {showSplash && <SplashScreen onComplete={dismissSplash} />}
-        <ScrollToTop />
-        <Navbar />
-        <AnimatedRoutes />
-        <Footer />
-      </BrowserRouter>
-    </ResponsiveMotion>
+    <LazyMotion features={domAnimation}>
+      <ResponsiveMotion>
+        <BrowserRouter>
+          {showSplash && <SplashScreen onComplete={dismissSplash} />}
+          <ScrollToTop />
+          <Navbar />
+          <AnimatedRoutes />
+          <Footer />
+        </BrowserRouter>
+      </ResponsiveMotion>
+    </LazyMotion>
   )
 }

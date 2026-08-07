@@ -8,7 +8,7 @@
 .journey-route svg { width: 100%; height: 100%; overflow: visible; }
 .journey-route path { fill: none; stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
 .journey-route__guide { stroke: var(--red); stroke-opacity: .16; stroke-width: 3; }
-.journey-route__active { stroke: var(--red); stroke-width: 3.5; will-change: stroke-dashoffset; }
+.journey-route__active { stroke: var(--red); stroke-width: 3.5; stroke-dashoffset: 0; }
 .journey-route__tablet, .journey-route__mobile { display: none; }
 .journey-steps { position: relative; z-index: 1; display: grid; gap: clamp(96px, 12vw, 160px); }
 .journey-step { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) 120px minmax(0, 1fr); grid-template-areas: 'image node copy'; align-items: center; column-gap: clamp(28px, 5vw, 74px); min-height: 330px; }

@@ -84,6 +84,12 @@ The exact brand pairing is Flamivor red `#8A0103` and logo white `#F7EDE6`. Acce
 - **States:** fades away after the first editorial beat; reduced-motion visitors skip it entirely.
 - **Accessibility:** status is announced without blocking reading order or retaining focus after the page is available.
 
+### Async Submit State
+
+- **Structure:** a single submit label swaps among ready, sending, success, and error states without changing the button footprint.
+- **States:** Bklit UI’s Shimmering Text runs only while a network request is pending; success and error messages use a short opacity/translate acknowledgement.
+- **Accessibility:** the button exposes `aria-busy` while sending, success is announced as a status, and failure is announced as an alert.
+
 ### Story Ledger
 
 - **Structure:** an editorial statement, a reserved visual thread, and a sequence of numbered narrative markers. The thread moves into a vertical rail on mobile and never crosses readable content.
@@ -126,7 +132,7 @@ Only opacity and transform animate. All non-essential effects are disabled under
 
 - Motion is provided by `motion/react` across route transitions, hero entrances, and in-view content. At widths below 760px, `useCompactMotion` and the global Motion configuration remove transform-heavy entrances; components render immediately in their final position, preventing offscreen transforms from creating mobile overflow.
 - Anime.js is reserved for the short, dismissible Flamivor loading sequence: logo settle, route line draw, mission label, then exit. It never loops.
-- Bklit UI informs the impact-report state treatment: visual data is only shown in a clear `ready` state, with a non-blocking loading label available where an async source is introduced later. No impact figure is fabricated for a chart.
+- Bklit UI’s MIT-licensed Shimmering Text informs the impact-report and asynchronous submit states. The per-character signal runs only while an update is in progress, then resolves to a stable label; no impact figure is fabricated for a chart.
 - Kokonut UI's MIT Background Paths component is adapted for the Contact and Gallery headers as a five-path, one-time editorial reveal. Its original perpetual-wave treatment is intentionally not used, so it remains a short orientation cue rather than ambient distraction. Cards, buttons, and links use concise hover, focus-visible, and active states rather than decorative perpetual motion.
 
 ## 7. Depth & Surface

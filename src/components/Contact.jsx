@@ -1,6 +1,7 @@
 import { useState } from 'react'
-import { motion } from 'motion/react'
+import { AnimatePresence, motion } from 'motion/react'
 import { Send, CheckCircle, AlertCircle } from 'lucide-react'
+import BklitShimmeringText from './BklitShimmeringText'
 import useCompactMotion from '../hooks/useCompactMotion'
 import './Contact.css'
 
@@ -183,17 +184,27 @@ export default function Contact() {
                   {errors[f.name] && <span className="form-error-text">{errors[f.name]}</span>}
                 </div>
               ))}
-              <button type="submit" className="btn-primary form-submit" disabled={status === 'submitting'}>
-                {status === 'submitting' ? (
-                  <>Sending<span className="form-dots" /></>
-                ) : status === 'success' ? (
-                  <><CheckCircle size={16} /> Sent!</>
-                ) : (
-                  <>Send Message <Send size={14} /></>
-                )}
+              <button type="submit" className="btn-primary form-submit" disabled={status === 'submitting'} aria-busy={status === 'submitting'}>
+                <AnimatePresence mode="wait" initial={false}>
+                  {status === 'submitting' ? (
+                    <motion.span className="form-button-state" key="sending" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+                      <BklitShimmeringText text="Sending message" />
+                    </motion.span>
+                  ) : status === 'success' ? (
+                    <motion.span className="form-button-state" key="sent" initial={{ opacity: 0, scale: .96 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0 }}>
+                      <CheckCircle size={16} /> Sent!
+                    </motion.span>
+                  ) : (
+                    <motion.span className="form-button-state" key="idle" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+                      Send Message <Send size={14} />
+                    </motion.span>
+                  )}
+                </AnimatePresence>
               </button>
-              {status === 'success' && <p className="form-success">Thanks for reaching out! We'll get back to you soon.</p>}
-              {status === 'error' && <p className="form-error-msg"><AlertCircle size={14} /> {submitError}</p>}
+              <AnimatePresence initial={false}>
+                {status === 'success' && <motion.p className="form-success" role="status" initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}>Thanks for reaching out! We'll get back to you soon.</motion.p>}
+                {status === 'error' && <motion.p className="form-error-msg" role="alert" initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}><AlertCircle size={14} /> {submitError}</motion.p>}
+              </AnimatePresence>
             </form>
           </motion.div>
         </div>

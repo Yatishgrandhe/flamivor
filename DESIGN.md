@@ -11,7 +11,7 @@
 
 ## 1. Atmosphere & Identity
 
-Flamivor feels like a field journal for an education movement: optimistic, grounded, and unmistakably human. The signature is the **Path of Access** — a hand-drawn red route that carries the reader from one real moment of learning to the next, punctuated by warm editorial photography rather than abstract decoration.
+Flamivor feels like a field journal for an education movement: optimistic, grounded, and unmistakably human. The signature is the **Path of Access** — a deliberate red thread that carries the reader from one real moment of learning to the next, punctuated by warm editorial photography rather than abstract decoration.
 
 ## 2. Color
 
@@ -71,7 +71,7 @@ The exact brand pairing is Flamivor red `#8A0103` and logo white `#F7EDE6`. Acce
 - **Structure:** route point, step number, image, eyebrow, heading, description, inline link.
 - **Variants:** left, right, mobile rail.
 - **States:** in-view reveal, hover image scale, focus-visible link.
-- **Motion:** each step reveals on entry; the SVG route draws with scroll progress. The section owns no scroll; the document does.
+- **Motion:** each step reveals on entry; the SVG route draws with scroll progress through the exact centre of every node. The section owns no scroll; the document does.
 
 ### Proof Tile
 - **Structure:** figure, short label, number.

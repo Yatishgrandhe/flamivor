@@ -1,7 +1,9 @@
 import { forwardRef } from 'react'
 
-const desktopPath = 'M60 0 C18 120 102 190 60 332 S18 540 60 664 S103 856 60 1000'
-const tabletPath = 'M44 0 C22 168 67 245 44 332 S22 540 44 664 S67 856 44 1000'
+// The desktop and tablet route share the reserved node column, so the thread
+// crosses every node's exact centre even when cards reflow or image heights vary.
+const desktopPath = 'M60 0 L60 1000'
+const tabletPath = 'M60 0 L60 1000'
 const mobilePath = 'M54.545 0 L54.545 1000'
 
 const RoutePair = forwardRef(function RoutePair({ className, path }, ref) {

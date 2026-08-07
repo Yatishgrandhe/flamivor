@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
-import { AnimatePresence, motion } from 'framer-motion'
+import { AnimatePresence, MotionConfig, motion } from 'motion/react'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import Home from './pages/Home'
@@ -18,6 +18,20 @@ function ScrollToTop() {
   const { pathname } = useLocation()
   useEffect(() => { window.scrollTo(0, 0) }, [pathname])
   return null
+}
+
+function ResponsiveMotion({ children }) {
+  const [compactMotion, setCompactMotion] = useState(false)
+
+  useEffect(() => {
+    const query = window.matchMedia('(max-width: 760px)')
+    const sync = () => setCompactMotion(query.matches)
+    sync()
+    query.addEventListener('change', sync)
+    return () => query.removeEventListener('change', sync)
+  }, [])
+
+  return <MotionConfig reducedMotion={compactMotion ? 'always' : 'user'}>{children}</MotionConfig>
 }
 
 function AnimatedRoutes() {
@@ -53,12 +67,14 @@ export default function App() {
   const dismissSplash = useCallback(() => setShowSplash(false), [])
 
   return (
-    <BrowserRouter>
-      {showSplash && <SplashScreen onComplete={dismissSplash} />}
-      <ScrollToTop />
-      <Navbar />
-      <AnimatedRoutes />
-      <Footer />
-    </BrowserRouter>
+    <ResponsiveMotion>
+      <BrowserRouter>
+        {showSplash && <SplashScreen onComplete={dismissSplash} />}
+        <ScrollToTop />
+        <Navbar />
+        <AnimatedRoutes />
+        <Footer />
+      </BrowserRouter>
+    </ResponsiveMotion>
   )
 }

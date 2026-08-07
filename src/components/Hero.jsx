@@ -1,7 +1,8 @@
 import { useRef } from 'react'
 import { Link } from 'react-router-dom'
-import { motion, useScroll, useSpring, useTransform } from 'framer-motion'
+import { motion, useScroll, useSpring, useTransform } from 'motion/react'
 import { ArrowDownRight, ArrowRight, Sparkles } from 'lucide-react'
+import useCompactMotion from '../hooks/useCompactMotion'
 import './Hero.css'
 
 const proof = [
@@ -12,9 +13,10 @@ const proof = [
 
 export default function Hero() {
   const ref = useRef(null)
+  const compactMotion = useCompactMotion()
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] })
-  const mediaY = useSpring(useTransform(scrollYProgress, [0, 1], [0, 72]), { stiffness: 70, damping: 24 })
-  const copyY = useSpring(useTransform(scrollYProgress, [0, 1], [0, -44]), { stiffness: 70, damping: 24 })
+  const mediaY = useSpring(useTransform(scrollYProgress, [0, 1], compactMotion ? [0, 0] : [0, 72]), { stiffness: 70, damping: 24 })
+  const copyY = useSpring(useTransform(scrollYProgress, [0, 1], compactMotion ? [0, 0] : [0, -44]), { stiffness: 70, damping: 24 })
 
   return (
     <section ref={ref} className="hero-section hero-editorial">

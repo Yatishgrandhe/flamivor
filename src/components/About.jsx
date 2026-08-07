@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion'
+import { motion } from 'motion/react'
 import { ArrowRight, BookOpen, Globe, Brain, Handshake } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import './About.css'

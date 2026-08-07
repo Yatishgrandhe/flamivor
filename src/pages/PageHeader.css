@@ -7,6 +7,8 @@
     radial-gradient(ellipse 50% 40% at 50% 0%, rgba(138,1,3,0.035), transparent 60%),
     linear-gradient(180deg, rgba(138,1,3,0.015) 0%, transparent 100%);
 }
+.kokonut-editorial-paths { position: absolute; inset: 0; overflow: hidden; pointer-events: none; mask-image: radial-gradient(ellipse 72% 118% at 50% 50%, transparent 0 28%, #000 66%); }
+.kokonut-editorial-paths svg { width: 100%; height: 100%; }
 .page-header-content {
   position: relative; max-width: 1200px; margin: 0 auto; text-align: center;
 }

@@ -65,6 +65,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 img { max-width: 100%; display: block; }
 h1, h2, h3 { text-wrap: balance; }
 p, li { text-wrap: pretty; }
+.bklit-shimmering-text { --bklit-text: var(--coral); --bklit-highlight: var(--paper); display: inline-flex; white-space: pre; }
 
 .section-inner { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
 .section-label {

@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
-import { motion, useReducedMotion } from 'framer-motion'
+import { motion } from 'motion/react'
 import { ArrowRight, ArrowUpRight, Sparkles, UsersRound } from 'lucide-react'
+import useCompactMotion from '../hooks/useCompactMotion'
 import './Team.css'
 
 const team = [
@@ -22,10 +23,10 @@ function PortraitPlaceholder({ initials, name, priority = false }) {
 }
 
 export default function Team() {
-  const reducedMotion = useReducedMotion()
+  const compactMotion = useCompactMotion()
   const enter = (delay = 0) => ({
-    initial: reducedMotion ? false : { opacity: 0, y: 18 },
-    whileInView: reducedMotion ? {} : { opacity: 1, y: 0 },
+    initial: compactMotion ? false : { opacity: 0, y: 18 },
+    whileInView: compactMotion ? {} : { opacity: 1, y: 0 },
     viewport: { once: true, amount: 0.2 },
     transition: { duration: 0.55, delay, ease: [0.16, 1, 0.3, 1] },
   })

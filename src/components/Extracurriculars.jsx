@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion'
+import { motion } from 'motion/react'
 import { Calendar, MapPin, User } from 'lucide-react'
 import './Extracurriculars.css'
 

@@ -1,46 +1,24 @@
 .splash {
   position: fixed; inset: 0; z-index: var(--z-overlay);
-  display: flex; align-items: center; justify-content: center;
-  opacity: 1; transition: opacity 0.5s ease;
+  display: flex; align-items: center; justify-content: center; opacity: 1;
 }
-.splash-exit { opacity: 0; pointer-events: none; }
 .splash-bg {
   position: absolute; inset: 0; background: var(--red-panel);
 }
 .splash-content {
-  position: relative; display: flex; flex-direction: column;
-  align-items: center; gap: 14px;
-  animation: splashFadeIn .45s ease forwards;
+  position: relative; display: flex; flex-direction: column; align-items: center; gap: 14px;
 }
-@keyframes splashFadeIn {
-  from { opacity: 0; transform: scale(0.85) translateY(20px); }
-  to { opacity: 1; transform: scale(1) translateY(0); }
-}
-.splash-logo-wrap { width: min(280px, 76vw); height: 100px; display: flex; align-items: center; justify-content: center; overflow: hidden; animation: logoPulse .5s ease .1s both; }
-@keyframes logoPulse {
-  from { transform: scale(0.7); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
-}
+.splash-logo-wrap { width: min(280px, 76vw); height: 100px; display: flex; align-items: center; justify-content: center; overflow: hidden; opacity: 0; }
 .splash-logo { width: 100%; max-width: none; max-height: none; height: auto; transform: translateY(-5px); }
 .splash-line {
   width: 48px; height: 1px; background: rgba(247,237,230,0.55);
-  border-radius: 2px;
-  animation: lineGrow .4s ease .25s both;
-}
-@keyframes lineGrow {
-  from { transform: scaleX(0); }
-  to { transform: scaleX(1); }
+  border-radius: 2px; transform: scaleX(0); transform-origin: center;
 }
 .splash-tagline {
   font-family: 'Space Grotesk', sans-serif;
   font-size: 0.68rem; color: rgba(247,237,230,0.7);
-  letter-spacing: 0.18em; text-transform: uppercase; font-weight: 500;
-  animation: tagFadeIn .35s ease .4s both;
-}
-@keyframes tagFadeIn {
-  from { opacity: 0; transform: translateY(8px); }
-  to { opacity: 1; transform: translateY(0); }
+  letter-spacing: 0.18em; text-transform: uppercase; font-weight: 500; opacity: 0;
 }
 @media (prefers-reduced-motion: reduce) {
-  .splash-content, .splash-logo-wrap, .splash-line, .splash-tagline { animation: none; }
+  .splash-logo-wrap, .splash-line, .splash-tagline { transform: none; }
 }

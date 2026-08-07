@@ -104,7 +104,7 @@ The exact brand pairing is Flamivor red `#8A0103` and logo white `#F7EDE6`. Acce
 
 ### Resource Index
 
-- **Structure:** a featured resource spread followed by numbered, linked resource records; metadata explains availability without presenting unavailable items as controls.
+- **Structure:** a featured course-cover spread followed by numbered resource records; each record uses the corresponding branded course cover and metadata explains availability without presenting unavailable items as controls.
 - **States:** active resource links use a transform-only arrow nudge; “coming soon” items are text, not fake buttons.
 - **Accessibility:** image regions have fixed aspect ratios and meaningful alt text; titles and availability are readable without the supporting imagery.
 
@@ -123,6 +123,11 @@ The exact brand pairing is Flamivor red `#8A0103` and logo white `#F7EDE6`. Acce
 | Scroll | tied to scroll | linear | Hero media drift and route drawing |
 
 Only opacity and transform animate. All non-essential effects are disabled under `prefers-reduced-motion`; content remains visible and the route stays fully drawn.
+
+- Motion is provided by `motion/react` across route transitions, hero entrances, and in-view content. At widths below 760px, `useCompactMotion` and the global Motion configuration remove transform-heavy entrances; components render immediately in their final position, preventing offscreen transforms from creating mobile overflow.
+- Anime.js is reserved for the short, dismissible Flamivor loading sequence: logo settle, route line draw, mission label, then exit. It never loops.
+- Bklit UI informs the impact-report state treatment: visual data is only shown in a clear `ready` state, with a non-blocking loading label available where an async source is introduced later. No impact figure is fabricated for a chart.
+- Kokonut UI's MIT Background Paths component is adapted for the Contact and Gallery headers as a five-path, one-time editorial reveal. Its original perpetual-wave treatment is intentionally not used, so it remains a short orientation cue rather than ambient distraction. Cards, buttons, and links use concise hover, focus-visible, and active states rather than decorative perpetual motion.
 
 ## 7. Depth & Surface
 

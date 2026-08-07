@@ -1,6 +1,7 @@
 import { useState } from 'react'
-import { motion } from 'framer-motion'
+import { motion } from 'motion/react'
 import { Send, CheckCircle, AlertCircle } from 'lucide-react'
+import useCompactMotion from '../hooks/useCompactMotion'
 import './Contact.css'
 
 const socials = [
@@ -44,6 +45,7 @@ const formFields = [
 ]
 
 export default function Contact() {
+  const compactMotion = useCompactMotion()
   const [formData, setFormData] = useState({
     firstName: '', lastName: '', email: '', subject: '', message: '', website: '',
   })
@@ -96,19 +98,19 @@ export default function Contact() {
   return (
     <section className="contact-section">
       <div className="section-inner">
-        <motion.div className="section-label" initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
+        <motion.div className="section-label" initial={compactMotion ? false : { opacity: 0, x: -20 }} whileInView={compactMotion ? {} : { opacity: 1, x: 0 }} viewport={{ once: true }}>
           Contact
         </motion.div>
-        <motion.h2 className="section-title" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }}>
+        <motion.h2 className="section-title" initial={compactMotion ? false : { opacity: 0, y: 30 }} whileInView={compactMotion ? {} : { opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }}>
           Get in touch
         </motion.h2>
-        <motion.p className="section-desc" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }}>
+        <motion.p className="section-desc" initial={compactMotion ? false : { opacity: 0, y: 20 }} whileInView={compactMotion ? {} : { opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }}>
           Have questions, want to collaborate, or just want to say hello? We'd love to hear from you.
         </motion.p>
 
         <div className="contact-grid">
           {/* Left — Info */}
-          <motion.div className="contact-info" initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }}>
+          <motion.div className="contact-info" initial={compactMotion ? false : { opacity: 0, x: -30 }} whileInView={compactMotion ? {} : { opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }}>
             <a href="mailto:flamivor@gmail.com" className="contact-item">
               <div className="contact-icon-wrap">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -154,7 +156,7 @@ export default function Contact() {
           </motion.div>
 
           {/* Right — Form */}
-          <motion.div className="contact-form-wrap" initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: 0.3 }}>
+          <motion.div className="contact-form-wrap" initial={compactMotion ? false : { opacity: 0, x: 30 }} whileInView={compactMotion ? {} : { opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: 0.3 }}>
             <h3>Send us a message</h3>
             <form onSubmit={handleSubmit} noValidate>
               <div className="form-honeypot" aria-hidden="true">

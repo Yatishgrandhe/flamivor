@@ -1,5 +1,8 @@
-import { motion, useReducedMotion } from 'framer-motion'
+import { motion } from 'motion/react'
+import { useEffect, useState } from 'react'
 import { ArrowDownRight, Globe2, HeartHandshake, PackageCheck, School, UsersRound } from 'lucide-react'
+import BklitShimmeringText from '../components/BklitShimmeringText'
+import useCompactMotion from '../hooks/useCompactMotion'
 import './ImpactPage.css'
 
 const chapters = [
@@ -18,19 +21,24 @@ const outcomes = [
 ]
 
 export default function ImpactPage() {
-  const reducedMotion = useReducedMotion()
-  const enter = (delay = 0) => ({ initial: reducedMotion ? false : { opacity: 0, y: 20 }, whileInView: reducedMotion ? {} : { opacity: 1, y: 0 }, viewport: { once: true, amount: .18 }, transition: { duration: .55, delay, ease: [0.16, 1, .3, 1] } })
+  const compactMotion = useCompactMotion()
+  const [reportSignalActive, setReportSignalActive] = useState(true)
+  useEffect(() => {
+    const timer = window.setTimeout(() => setReportSignalActive(false), 1050)
+    return () => window.clearTimeout(timer)
+  }, [])
+  const enter = (delay = 0) => ({ initial: compactMotion ? false : { opacity: 0, y: 20 }, whileInView: compactMotion ? {} : { opacity: 1, y: 0 }, viewport: { once: true, amount: .18 }, transition: { duration: .55, delay, ease: [0.16, 1, .3, 1] } })
 
   return (
     <main className="impact-page">
       <section className="impact-hero" aria-labelledby="impact-heading">
         <div className="impact-hero-atlas" aria-hidden="true"><i /><i /><i /><i /><i /></div>
-        <motion.div className="impact-hero-copy" initial={reducedMotion ? false : { opacity: 0, y: 20 }} animate={reducedMotion ? {} : { opacity: 1, y: 0 }} transition={{ duration: .65, ease: [0.16, 1, .3, 1] }}>
-          <p className="impact-eyebrow">Impact / Field report 2026</p>
+        <motion.div className="impact-hero-copy" initial={compactMotion ? false : { opacity: 0, y: 20 }} animate={compactMotion ? {} : { opacity: 1, y: 0 }} transition={{ duration: .65, ease: [0.16, 1, .3, 1] }}>
+          <p className="impact-eyebrow"><BklitShimmeringText text="Impact / Field report 2026" active={reportSignalActive} /></p>
           <h1 id="impact-heading">A spark becomes<br />a <em>signal.</em></h1>
           <p>Every resource shared, chapter started, and kit delivered turns one student’s curiosity into collective momentum.</p>
         </motion.div>
-        <motion.div className="impact-big-proof" initial={reducedMotion ? false : { opacity: 0, scale: .94 }} animate={reducedMotion ? {} : { opacity: 1, scale: 1 }} transition={{ duration: .7, delay: .14, ease: [0.16, 1, .3, 1] }}>
+        <motion.div className="impact-big-proof" initial={compactMotion ? false : { opacity: 0, scale: .94 }} animate={compactMotion ? {} : { opacity: 1, scale: 1 }} transition={{ duration: .7, delay: .14, ease: [0.16, 1, .3, 1] }}>
           <span>Across our community</span><strong>50K+</strong><p>people reached</p>
         </motion.div>
         <a className="impact-scroll-cue" href="#impact-ledger">Read the numbers <ArrowDownRight size={17} aria-hidden="true" /></a>

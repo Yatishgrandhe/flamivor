@@ -1,7 +1,8 @@
 .contact-section { padding: 80px 0; }
 .contact-grid {
-  display: grid; grid-template-columns: 1fr 1.2fr; gap: 48px; margin-top: 40px;
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: 48px; margin-top: 40px;
 }
+.contact-info, .contact-form-wrap { min-width: 0; }
 .contact-info { display: flex; flex-direction: column; gap: 20px; }
 .contact-item {
   display: flex; align-items: center; gap: 16px; padding: 16px;
@@ -81,4 +82,5 @@
 @media (max-width: 768px) {
   .contact-grid { grid-template-columns: 1fr; }
   .form-row { grid-template-columns: 1fr; }
+  .contact-form-wrap { padding: 24px; }
 }

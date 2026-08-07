@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
-import { motion, useReducedMotion } from 'framer-motion'
+import { motion } from 'motion/react'
 import { ArrowRight, BookOpenCheck, Lightbulb, Orbit, Wrench } from 'lucide-react'
+import useCompactMotion from '../hooks/useCompactMotion'
 import './AboutPage.css'
 
 const chapters = [
@@ -25,10 +26,10 @@ const chapters = [
 ]
 
 function StoryMarker({ number, title, copy, Icon, index }) {
-  const reducedMotion = useReducedMotion()
+  const compactMotion = useCompactMotion()
   return (
     <motion.article className={`story-marker story-marker-${index + 1}`}
-      initial={reducedMotion ? false : { opacity: 0, y: 20 }} whileInView={reducedMotion ? {} : { opacity: 1, y: 0 }} viewport={{ once: true, amount: .25 }} transition={{ duration: .55, ease: [0.16, 1, .3, 1] }}>
+      initial={compactMotion ? false : { opacity: 0, y: 20 }} whileInView={compactMotion ? {} : { opacity: 1, y: 0 }} viewport={{ once: true, amount: .25 }} transition={{ duration: .55, ease: [0.16, 1, .3, 1] }}>
       <span className="story-marker-number">{number}</span>
       <div className="story-marker-icon" aria-hidden="true"><Icon size={23} /></div>
       <h3>{title}</h3>
@@ -38,8 +39,8 @@ function StoryMarker({ number, title, copy, Icon, index }) {
 }
 
 export default function AboutPage() {
-  const reducedMotion = useReducedMotion()
-  const enter = (delay = 0) => ({ initial: reducedMotion ? false : { opacity: 0, y: 22 }, animate: reducedMotion ? {} : { opacity: 1, y: 0 }, transition: { duration: .65, delay, ease: [0.16, 1, .3, 1] } })
+  const compactMotion = useCompactMotion()
+  const enter = (delay = 0) => ({ initial: compactMotion ? false : { opacity: 0, y: 22 }, animate: compactMotion ? {} : { opacity: 1, y: 0 }, transition: { duration: .65, delay, ease: [0.16, 1, .3, 1] } })
 
   return (
     <main className="about-page">
@@ -56,8 +57,8 @@ export default function AboutPage() {
       </section>
 
       <section className="about-manifesto" aria-labelledby="manifesto-heading">
-        <motion.p className="about-manifesto-label" initial={reducedMotion ? false : { opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}>A practical promise</motion.p>
-        <motion.h2 id="manifesto-heading" initial={reducedMotion ? false : { opacity: 0, y: 22 }} whileInView={reducedMotion ? {} : { opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: .55, ease: [0.16, 1, .3, 1] }}>We meet students where their curiosity begins—not where a textbook ends.</motion.h2>
+        <motion.p className="about-manifesto-label" initial={compactMotion ? false : { opacity: 0 }} whileInView={compactMotion ? {} : { opacity: 1 }} viewport={{ once: true }}>A practical promise</motion.p>
+        <motion.h2 id="manifesto-heading" initial={compactMotion ? false : { opacity: 0, y: 22 }} whileInView={compactMotion ? {} : { opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: .55, ease: [0.16, 1, .3, 1] }}>We meet students where their curiosity begins—not where a textbook ends.</motion.h2>
         <div className="about-manifesto-copy">
           <p>Flamivor pairs hands-on projects with passionate mentorship to make learning feel real again. We bridge the K–12 continuum through a growing global network of student-led chapters.</p>
           <p>Our work is rooted in the belief that access to learning should not depend on background, location, or the ability to pay.</p>

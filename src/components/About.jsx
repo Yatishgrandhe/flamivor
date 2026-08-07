@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
-import { BookOpen, Globe, Brain, Handshake } from 'lucide-react'
+import { ArrowRight, BookOpen, Globe, Brain, Handshake } from 'lucide-react'
+import { Link } from 'react-router-dom'
 import './About.css'
 
 const features = [
@@ -25,6 +26,7 @@ export default function About() {
             <h3>What We Do</h3>
             <p>A youth-led initiative dedicated to empowering young people through education and advancing UN SDGs 4 and 10 in Pakistan and beyond. We create free study materials, mini-lessons, and educational flashcards — making quality learning resources accessible to every student, regardless of their background.</p>
             <div className="about-badge">UN SDGs 4 & 10</div>
+            <Link to="/about" className="about-story-link">Read our story <ArrowRight size={16} aria-hidden="true" /></Link>
           </motion.div>
           <div className="about-features">
             {features.map((f, i) => {

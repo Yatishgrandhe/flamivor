@@ -84,6 +84,18 @@ The exact brand pairing is Flamivor red `#8A0103` and logo white `#F7EDE6`. Acce
 - **States:** fades away after the first editorial beat; reduced-motion visitors skip it entirely.
 - **Accessibility:** status is announced without blocking reading order or retaining focus after the page is available.
 
+### Story Ledger
+
+- **Structure:** an editorial statement, a reserved visual thread, and a sequence of numbered narrative markers. The thread moves into a vertical rail on mobile and never crosses readable content.
+- **States:** static as a reading aid; each marker may use a single opacity/translate entrance.
+- **Accessibility:** marker order in the DOM follows the story; the thread is decorative and hidden from assistive technology.
+
+### Portrait Placeholder
+
+- **Structure:** a branded, clearly labelled frame with initials and a small “Portrait arriving soon” caption.
+- **States:** static placeholder, then replaced by a real portrait with a descriptive alt text when photography is available.
+- **Accessibility:** never imply that a placeholder is a photograph or invent a person’s likeness.
+
 ## 6. Motion & Interaction
 
 | Type | Duration | Easing | Usage |
@@ -111,3 +123,4 @@ Strategy: **mixed editorial material.** Paper and cream create the base layers; 
 | Item | Location | Why accepted | Owner / Exit |
 |---|---|---|---|
 | Placeholder photography | Hero and Path of Access | Requested temporary Unsplash imagery | Replace with program photography before launch |
+| Team portraits | Team page | Team photography and bios are not yet supplied | Replace labelled placeholders with approved portraits and biographies next week |

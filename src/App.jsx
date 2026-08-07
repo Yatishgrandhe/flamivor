@@ -11,6 +11,7 @@ import ImpactPage from './pages/ImpactPage'
 import JoinPage from './pages/JoinPage'
 import ExtracurricularsPage from './pages/ExtracurricularsPage'
 import ContactPage from './pages/ContactPage'
+import AboutPage from './pages/AboutPage'
 import SplashScreen from './components/SplashScreen'
 
 function ScrollToTop() {
@@ -31,6 +32,7 @@ function AnimatedRoutes() {
       >
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/about" element={<AboutPage />} />
           <Route path="/team" element={<TeamPage />} />
           <Route path="/gallery" element={<GalleryPage />} />
           <Route path="/resources" element={<ResourcesPage />} />

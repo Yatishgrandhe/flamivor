@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
 import { ArrowUpRight, X } from 'lucide-react'
-import SvgMotionScene from './SvgMotionScene'
 import './Gallery.css'
 
 const moments = [
@@ -43,7 +42,7 @@ export default function Gallery() {
       </div>
       <div className="gallery-press-note"><p className="gallery-eyebrow">Press index</p><p>Official recognitions and partner stories are being compiled. For media or partnership enquiries, please contact the Flamivor team.</p><a href="mailto:flamivor@gmail.com">Contact Flamivor <ArrowUpRight size={17} aria-hidden="true" /></a></div>
       <dialog ref={dialogRef} className="gallery-dialog" aria-labelledby="gallery-dialog-caption">
-        {selected && <div className="gallery-dialog-content"><SvgMotionScene scene="gallery" state="expanded" className="gallery-dialog-svg-scene" /><button type="button" className="gallery-dialog-close" onClick={closeDialog} aria-label="Close image detail" autoFocus><X size={20} aria-hidden="true" /></button><img src={selected.src} alt={selected.alt} width="1200" height="800" /><p id="gallery-dialog-caption">{selected.caption}</p></div>}
+        {selected && <div className="gallery-dialog-content"><button type="button" className="gallery-dialog-close" onClick={closeDialog} aria-label="Close image detail" autoFocus><X size={20} aria-hidden="true" /></button><img src={selected.src} alt={selected.alt} width="1200" height="800" /><p id="gallery-dialog-caption">{selected.caption}</p></div>}
       </dialog>
     </section>
   )

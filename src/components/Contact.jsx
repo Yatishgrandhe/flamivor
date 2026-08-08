@@ -1,6 +1,5 @@
 import { useRef, useState } from 'react'
 import { Send, CheckCircle, AlertCircle } from 'lucide-react'
-import SvgMotionScene from './SvgMotionScene'
 import './Contact.css'
 
 const socials = [
@@ -161,7 +160,6 @@ export default function Contact() {
 
           {/* Right — Form */}
           <div className="contact-form-wrap">
-            <SvgMotionScene scene="contact" state={status === 'success' ? 'sent' : 'idle'} className="contact-form-svg-scene" />
             <h3>Send us a message</h3>
             <form onSubmit={handleSubmit} noValidate>
               <div className="form-honeypot" aria-hidden="true">

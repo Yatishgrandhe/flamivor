@@ -1,5 +1,4 @@
 import { ArrowUpRight, Atom, CalendarDays, HeartHandshake, MapPin, Mic2, Trophy, UsersRound } from 'lucide-react'
-import SvgMotionScene from '../components/SvgMotionScene'
 import './ExtracurricularsPage.css'
 
 const tracks = [
@@ -22,7 +21,6 @@ const opportunities = [
 export default function ExtracurricularsPage() {
   return <main className="opportunity-page">
     <section className="opportunity-hero" aria-labelledby="opportunity-heading">
-      <SvgMotionScene scene="extracurriculars" className="opportunity-svg-scene" />
       <div className="opportunity-hero-copy"><p className="opportunity-eyebrow">The opportunity board</p><h1>Find the room<br />where you <em>belong.</em></h1><p>Competitions, service, sports, and academic experiences curated by Flamivor students for the next thing you want to try.</p></div>
       <figure className="opportunity-hero-image"><img src="https://images.unsplash.com/photo-1529390079861-591de354faf5?auto=format&fit=crop&w=1200&q=84" alt="Students planning together outdoors" fetchPriority="high" /><figcaption>Open calls / updated 2026</figcaption></figure>
     </section>

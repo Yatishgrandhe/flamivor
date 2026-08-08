@@ -4,7 +4,6 @@
 .team-intro-rule { position: absolute; inset: 76px 0 auto; height: 1px; background: var(--line); }
 .team-intro-rule span { display: block; width: clamp(90px, 15vw, 210px); height: 100%; margin-left: max(24px, calc((100vw - 1200px) / 2)); background: var(--red); }
 .team-intro-copy, .team-intro-note { position: relative; z-index: 1; }
-.team-svg-scene { right: 7vw; top: 118px; width: min(38vw, 480px); color: var(--red); opacity: .68; }
 .team-eyebrow, .team-section-label { color: var(--red); font-size: .72rem; font-weight: 700; letter-spacing: .1em; line-height: 1.35; text-transform: uppercase; }
 .team-eyebrow { display: flex; align-items: center; gap: 7px; margin-bottom: 22px; }
 .team-intro h1 { max-width: 760px; font-family: 'Space Grotesk', sans-serif; font-size: clamp(3.1rem, 7vw, 6.9rem); letter-spacing: -.065em; line-height: .91; }

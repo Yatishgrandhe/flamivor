@@ -126,13 +126,6 @@ The exact brand pairing is Flamivor red `#8A0103` and logo white `#F7EDE6`. Acce
 - **States:** “coming soon” is plain text, not a fake button or unavailable link.
 - **Accessibility:** meaningful alt text, semantic `figure`/`figcaption`, and titles/availability remain readable without the supporting imagery.
 
-### SvgMotionScene
-
-- **Structure:** one scoped, decorative SVG scene per route hero. Artwork is hand-authored as paths, polylines, and circles within a stable `viewBox`; each mounted instance has its own root ref and never reaches into another route.
-- **Variants:** learning path (Home), doorway (About), radial signal (Impact), team line, paper/bookmark (Resources), room map (Extracurriculars), contact sheets (Gallery), envelope (Contact), and converging routes (Join).
-- **States:** a one-time draw on initial view; meaningful one-time morphs are restricted to the About doorway, Gallery dialog border, and Contact success confirmation. Sparks are short, directional, and never loop.
-- **Accessibility:** all scenes are `aria-hidden` and `focusable="false"`; text, CTAs, and dialog/form feedback work independently of the SVG.
-
 - **Structure:** a distinct utility hero, category filter, native scroll-snap cards, and a catalog status ring sourced directly from the four published resource records.
 - **States:** all categories, a selected category, and a clear “coming soon” state. Selection changes the visible shelf only; it never implies that an unavailable resource can be opened.
 - **Accessibility:** the category control is a labelled button group with a visible pressed state; the status ring exposes its 0 available / 4 catalogued summary in plain text and is paired with a screen-reader table.
@@ -149,16 +142,10 @@ The exact brand pairing is Flamivor red `#8A0103` and logo white `#F7EDE6`. Acce
 | Type | Duration | Easing | Usage |
 |---|---:|---|---|
 | Micro | 180ms | `cubic-bezier(.2,.8,.2,1)` | Buttons and image hover |
-| SVG draw | 700–1,200ms | Anime `out(4)` | One route-level path reveal after its hero is visible |
-| SVG spark | 450–800ms | Anime `inOut(2)` | One directional travel after its matching route draws |
-| SVG morph | 450–700ms | Anime `out(3)` | A one-time, meaningful state change |
 
-Only opacity, SVG draw, SVG transform, and SVG shape-morph properties animate. There are no CSS keyframes, Motion/Framer Motion, GSAP, parallax, canvas, WebGL, particles, cursor-following effects, or scroll hijacking.
+Only small interaction affordances use transform or opacity transitions. There are no automated SVG scenes, CSS keyframes, Motion/Framer Motion, GSAP, parallax, canvas, WebGL, particles, cursor-following effects, or scroll hijacking.
 
-- `SvgMotionScene` dynamically imports only Anime.js v4’s `animate`, `createScope`, `createDrawable`, `createMotionPath`, and `morphTo`. It waits until its scene is near the viewport and reverts its independent scope on unmount/route change.
-- Every scene renders in its complete final state before JavaScript runs. Reduced-motion visitors and screens at or below 480px receive that static final SVG without Anime initialization. Between 481px and 767px, only a cheap one-time draw runs; sparks and morphs are disabled. Desktop scenes play once.
-- The Home scene waits for the LCP image before it initializes. All other scenes are decorative enhancements and never delay a heading, CTA, image, dialog, or form feedback.
-- Category filters, navigation, gallery dialog, and form status use plain semantic DOM states; the Gallery and Contact state scenes remain small, local SVG enhancements rather than replacing their accessible text feedback.
+- Category filters, navigation, gallery dialog, and form status use plain semantic DOM states. The gallery dialog centers the selected image within its viewport-safe modal area.
 
 ## 7. Depth & Surface
 

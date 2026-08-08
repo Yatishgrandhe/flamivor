@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom'
 import { ArrowRight, ArrowUpRight, Sparkles, UsersRound } from 'lucide-react'
-import SvgMotionScene from './SvgMotionScene'
 import './Team.css'
 
 const team = [
@@ -26,7 +25,6 @@ export default function Team() {
     <main className="team-page">
       <section className="team-intro" aria-labelledby="team-heading">
         <div className="team-intro-rule" aria-hidden="true"><span /></div>
-        <SvgMotionScene scene="team" className="team-svg-scene" />
         <div className="team-intro-copy">
           <p className="team-eyebrow"><Sparkles size={14} aria-hidden="true" /> The people carrying the flame</p>
           <h1 id="team-heading">Young people<br /><em>making room</em> for more.</h1>

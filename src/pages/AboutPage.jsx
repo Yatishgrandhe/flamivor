@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom'
 import { ArrowRight, BookOpenCheck, Lightbulb, Orbit, Wrench } from 'lucide-react'
-import SvgMotionScene from '../components/SvgMotionScene'
 import './AboutPage.css'
 
 const chapters = [
@@ -39,7 +38,6 @@ export default function AboutPage() {
   return (
     <main className="about-page">
       <section className="about-hero" aria-labelledby="about-heading">
-        <SvgMotionScene scene="about" className="about-svg-scene" />
         <div className="about-hero-copy">
           <p className="about-eyebrow"><Orbit size={15} aria-hidden="true" /> Our why</p>
           <h1 id="about-heading">Learning should feel<br />like an <em>open door.</em></h1>

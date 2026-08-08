@@ -1,7 +1,6 @@
 import { useMemo, useState } from 'react'
 import { ArrowDownRight, ArrowUpRight, BookOpenCheck, Search } from 'lucide-react'
 import BklitResourceStatus from '../components/BklitResourceStatus'
-import SvgMotionScene from '../components/SvgMotionScene'
 import './ResourcesPage.css'
 
 const resources = [
@@ -45,7 +44,6 @@ export default function ResourcesPage() {
   return (
     <main className="resources-page" aria-label="Resources">
       <section className="resources-hero" aria-labelledby="resources-heading">
-        <SvgMotionScene scene="resources" className="resources-svg-scene" />
         <div className="resources-hero-copy">
           <p className="resources-eyebrow"><BookOpenCheck size={15} aria-hidden="true" /> The open library</p>
           <h1 id="resources-heading">Study tools that make the next step <em>clearer.</em></h1>

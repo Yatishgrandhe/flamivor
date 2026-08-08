@@ -1,12 +1,10 @@
 import { ArrowDownRight, FileCheck2 } from 'lucide-react'
-import SvgMotionScene from '../components/SvgMotionScene'
 import './ImpactPage.css'
 
 export default function ImpactPage() {
   return (
     <main className="impact-page">
       <section className="impact-hero" aria-labelledby="impact-heading">
-        <SvgMotionScene scene="impact" className="impact-svg-scene" />
         <div className="impact-hero-copy">
           <p className="impact-eyebrow">Impact / Field report</p>
           <h1 id="impact-heading">A spark becomes<br />a <em>signal.</em></h1>

@@ -1,7 +1,5 @@
-import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowDownRight, ArrowRight, Sparkles } from 'lucide-react'
-import SvgMotionScene from './SvgMotionScene'
 import './Hero.css'
 
 const proof = [
@@ -11,8 +9,6 @@ const proof = [
 ]
 
 export default function Hero() {
-  const [lcpReady, setLcpReady] = useState(false)
-
   return (
     <section className="hero-section hero-editorial">
       <div className="hero-topography" aria-hidden="true" />
@@ -30,7 +26,7 @@ export default function Hero() {
 
       <div className="hero-media">
         <div className="hero-photo hero-photo-main">
-          <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1400&q=85" alt="Students participating in a classroom lesson" fetchPriority="high" onLoad={() => setLcpReady(true)} />
+          <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1400&q=85" alt="Students participating in a classroom lesson" fetchPriority="high" />
         </div>
         <div className="hero-photo hero-photo-small" aria-hidden="true">
           <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=700&q=80" alt="" />
@@ -41,7 +37,6 @@ export default function Hero() {
         <div className="hero-route-mark" aria-hidden="true"><span /></div>
       </div>
 
-      <SvgMotionScene scene="home" ready={lcpReady} className="hero-svg-scene" />
 
       <div className="hero-proof" aria-label="Flamivor impact">
         {proof.map(([number, label]) => <div key={label}><strong>{number}</strong><span>{label}</span></div>)}

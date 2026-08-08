@@ -1,6 +1,7 @@
 .resources-page { min-height: 100dvh; background: var(--paper); }
 .resources-hero { position: relative; isolation: isolate; min-height: 640px; display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(300px, .72fr); gap: clamp(46px, 9vw, 156px); align-items: end; padding: 168px max(24px, calc((100vw - 1200px) / 2)) 86px; overflow: clip; color: var(--paper); background: var(--red-panel); }
 .resources-hero::before { content: ''; position: absolute; z-index: -1; inset: 0; background: radial-gradient(circle at 76% 24%, rgba(232,111,81,.3), transparent 0 12%, transparent 12.2%), radial-gradient(circle at 9% 92%, rgba(247,237,230,.11), transparent 0 19%, transparent 19.2%), linear-gradient(120deg, var(--red-deep), transparent 54%); }
+.resources-svg-scene { right: max(28px, calc((100vw - 1200px) / 2)); top: 90px; width: min(26vw, 300px); color: var(--coral); opacity: .82; }
 .resources-eyebrow { display: inline-flex; align-items: center; gap: 7px; color: var(--red); font-size: .71rem; font-weight: 800; letter-spacing: .11em; text-transform: uppercase; }
 .resources-hero .resources-eyebrow { color: var(--coral); }
 .resources-hero h1 { max-width: 760px; margin-top: 22px; font: 700 clamp(3rem, 7vw, 7rem)/.9 'Space Grotesk', sans-serif; letter-spacing: -.07em; }

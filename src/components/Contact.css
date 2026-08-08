@@ -46,6 +46,7 @@
   background: var(--bg-secondary); border: 1px solid var(--border);
   border-radius: var(--radius-lg); padding: 36px;
 }
+.contact-form-svg-scene { right: 18px; top: 18px; width: 132px; color: var(--coral); opacity: .42; }
 .contact-form-wrap h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 24px; }
 .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 .form-group { margin-bottom: 16px; }

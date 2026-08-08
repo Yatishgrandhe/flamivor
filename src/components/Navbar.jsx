@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
-import { motion, AnimatePresence, LayoutGroup } from 'motion/react'
 import './Navbar.css'
 
 const links = [
@@ -41,12 +40,9 @@ export default function Navbar() {
   }, [menuOpen])
 
   return (
-    <motion.nav
+    <nav
       className={`navbar ${scrolled ? 'scrolled' : ''}`}
       aria-label="Main navigation"
-      initial={{ y: -80 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
     >
       <div className="nav-inner">
         <NavLink to="/" className="nav-logo">
@@ -54,13 +50,11 @@ export default function Navbar() {
         </NavLink>
 
         <div className="nav-links">
-          <LayoutGroup id="desktop-navigation">
           {links.map(l => (
             <NavLink key={l.to} to={l.to} className={({ isActive }) => isActive ? 'active' : ''} end>
-              {({ isActive }) => <>{isActive && <motion.span className="nav-active-indicator" layoutId="nav-active-indicator" transition={{ type: 'spring', stiffness: 420, damping: 34 }} />}{l.label}</>}
+              {({ isActive }) => <>{isActive && <span className="nav-active-indicator" />}{l.label}</>}
             </NavLink>
           ))}
-          </LayoutGroup>
           <NavLink to="/join" className="nav-cta" end>Join Us</NavLink>
         </div>
 
@@ -71,16 +65,11 @@ export default function Navbar() {
         </button>
       </div>
 
-      <AnimatePresence>
-        {menuOpen && (
-          <motion.nav
+      {menuOpen && (
+          <nav
             id="mobile-navigation"
             className="mobile-menu"
             aria-label="Main navigation"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.15 }}
           >
             {links.map(l => (
               <NavLink key={l.to} to={l.to} className={({ isActive }) => isActive ? 'active' : ''} end>
@@ -88,9 +77,8 @@ export default function Navbar() {
               </NavLink>
             ))}
             <NavLink to="/join" className="mobile-cta" end>Join Us</NavLink>
-          </motion.nav>
-        )}
-      </AnimatePresence>
-    </motion.nav>
+          </nav>
+      )}
+    </nav>
   )
 }

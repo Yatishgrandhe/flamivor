@@ -1,8 +1,7 @@
 import { useMemo, useState } from 'react'
-import { LayoutGroup, motion } from 'motion/react'
 import { ArrowDownRight, ArrowUpRight, BookOpenCheck, Search } from 'lucide-react'
 import BklitResourceStatus from '../components/BklitResourceStatus'
-import useCompactMotion from '../hooks/useCompactMotion'
+import SvgMotionScene from '../components/SvgMotionScene'
 import './ResourcesPage.css'
 
 const resources = [
@@ -37,7 +36,6 @@ const resources = [
 ]
 
 export default function ResourcesPage() {
-  const compactMotion = useCompactMotion()
   const [selectedCategory, setSelectedCategory] = useState('All')
   const categories = ['All', ...resources.map((resource) => resource.category)]
   const visibleResources = useMemo(() => (
@@ -47,6 +45,7 @@ export default function ResourcesPage() {
   return (
     <main className="resources-page" aria-label="Resources">
       <section className="resources-hero" aria-labelledby="resources-heading">
+        <SvgMotionScene scene="resources" className="resources-svg-scene" />
         <div className="resources-hero-copy">
           <p className="resources-eyebrow"><BookOpenCheck size={15} aria-hidden="true" /> The open library</p>
           <h1 id="resources-heading">Study tools that make the next step <em>clearer.</em></h1>
@@ -61,28 +60,25 @@ export default function ResourcesPage() {
           <div><p className="resources-eyebrow">Find your foothold</p><h2 id="catalog-heading">A small library,<br />made to travel.</h2></div>
           <p>Every collection below is listed as it is currently available. We will link each item once it is ready for learners to use.</p>
         </div>
-        <LayoutGroup id="resource-categories">
-          <div className="resource-filter" role="group" aria-label="Filter resource collections">
-            <Search size={16} aria-hidden="true" />
-            {categories.map((category) => {
-              const selected = category === selectedCategory
-              return <button key={category} type="button" aria-pressed={selected} className={selected ? 'is-selected' : ''} onClick={() => setSelectedCategory(category)}>
-                {selected && <motion.span className="resource-filter-indicator" layoutId="resource-filter-indicator" transition={{ type: 'spring', stiffness: 420, damping: 32 }} />}
-                <span>{category}</span>
-              </button>
-            })}
-          </div>
-        </LayoutGroup>
+        <div className="resource-filter" role="group" aria-label="Filter resource collections">
+          <Search size={16} aria-hidden="true" />
+          {categories.map((category) => {
+            const selected = category === selectedCategory
+            return <button key={category} type="button" aria-pressed={selected} className={selected ? 'is-selected' : ''} onClick={() => setSelectedCategory(category)}>
+              <span>{category}</span>
+            </button>
+          })}
+        </div>
         <div className="resources-cover-grid kokonut-carousel-cards" aria-live="polite">
-          {visibleResources.map((resource, index) => (
-            <motion.figure className="resource-shelf-card" key={resource.title} layout initial={compactMotion ? false : { opacity: 0, y: 18 }} animate={compactMotion ? {} : { opacity: 1, y: 0 }} transition={{ duration: .38, delay: compactMotion ? 0 : index * .045, ease: [0.16, 1, .3, 1] }}>
+          {visibleResources.map((resource) => (
+            <figure className="resource-shelf-card" key={resource.title}>
               <div className="resource-cover-wrap"><img src={resource.image} alt={resource.alt} width="1080" height="1080" loading="lazy" /><span>{resource.category}</span></div>
               <figcaption>
                 <strong>{resource.title}</strong>
                 <small>{resource.status}</small>
                 <p>Listed in Flamivor’s resource catalog.</p>
               </figcaption>
-            </motion.figure>
+            </figure>
           ))}
         </div>
         <p className="resource-catalog-note">Availability is shown plainly so learners never arrive at a tool that is not ready yet. <ArrowUpRight size={15} aria-hidden="true" /></p>

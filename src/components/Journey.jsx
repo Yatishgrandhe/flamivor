@@ -1,8 +1,6 @@
 import { Link } from 'react-router-dom'
-import { motion } from 'motion/react'
 import { ArrowUpRight } from 'lucide-react'
 import JourneyRoute from './JourneyRoute'
-import useCompactMotion from '../hooks/useCompactMotion'
 import './Journey.css'
 
 const steps = [
@@ -12,14 +10,6 @@ const steps = [
 ]
 
 export default function Journey() {
-  const compactMotion = useCompactMotion()
-  const reveal = (index) => ({
-    initial: compactMotion ? false : { opacity: 0, y: 16 },
-    whileInView: compactMotion ? {} : { opacity: 1, y: 0 },
-    viewport: { once: true, amount: 0.2 },
-    transition: { duration: .54, delay: index * .06, ease: [0.16, 1, .3, 1] },
-  })
-
   return (
     <section className="journey-section" id="journey">
       <div className="journey-intro">
@@ -31,14 +21,14 @@ export default function Journey() {
         <JourneyRoute />
         <div className="journey-steps">
           {steps.map((step, index) => (
-            <motion.article className={`journey-step journey-step-${index + 1}`} key={step.number} {...reveal(index)}>
+            <article className={`journey-step journey-step-${index + 1}`} key={step.number}>
               <div className="journey-node" aria-hidden="true"><span>{step.number}</span></div>
               <div className="journey-image"><img src={step.image} alt={step.alt} width="1100" height="800" loading="lazy" /></div>
               <div className="journey-copy">
                 <p>{step.kicker}</p><h3>{step.title}</h3><span>{step.text}</span>
                 <Link to={step.link}>{step.label} <ArrowUpRight size={17} aria-hidden="true" /></Link>
               </div>
-            </motion.article>
+            </article>
           ))}
         </div>
       </div>

@@ -1,24 +1,18 @@
-.splash {
-  position: fixed; inset: 0; z-index: var(--z-overlay);
-  display: flex; align-items: center; justify-content: center; opacity: 1;
-}
+.splash { position: fixed; inset: 0; z-index: var(--z-overlay); display: flex; align-items: center; justify-content: center; }
 .splash-bg {
   position: absolute; inset: 0; background: var(--red-panel);
 }
 .splash-content {
   position: relative; display: flex; flex-direction: column; align-items: center; gap: 14px;
 }
-.splash-logo-wrap { width: min(280px, 76vw); height: 100px; display: flex; align-items: center; justify-content: center; overflow: hidden; opacity: 0; }
-.splash-logo { width: 100%; max-width: none; max-height: none; height: auto; transform: translateY(-5px); }
+.splash-logo-wrap { width: min(280px, 76vw); display: flex; align-items: center; justify-content: center; }
+.splash-logo { display: block; width: 100%; max-width: none; height: auto; max-height: 132px; object-fit: contain; }
 .splash-line {
   width: 48px; height: 1px; background: rgba(247,237,230,0.55);
-  border-radius: 2px; transform: scaleX(0); transform-origin: center;
+  border-radius: 2px;
 }
 .splash-tagline {
   font-family: 'Space Grotesk', sans-serif;
   font-size: 0.68rem; color: rgba(247,237,230,0.7);
-  letter-spacing: 0.18em; text-transform: uppercase; font-weight: 500; opacity: 0;
-}
-@media (prefers-reduced-motion: reduce) {
-  .splash-logo-wrap, .splash-line, .splash-tagline { transform: none; }
+  letter-spacing: 0.18em; text-transform: uppercase; font-weight: 500;
 }

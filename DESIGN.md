@@ -71,7 +71,7 @@ The exact brand pairing is Flamivor red `#8A0103` and logo white `#F7EDE6`. Acce
 - **Structure:** route point, step number, image, eyebrow, heading, description, inline link.
 - **Variants:** left, right, mobile rail.
 - **States:** in-view reveal, hover image scale, focus-visible link.
-- **Motion:** each step reveals on entry; the SVG route draws with scroll progress through the exact centre of every node. The section owns no scroll; the document does.
+- **Motion:** static reading aid; route-level SVG motion is reserved for the home hero so the story remains calm and readable.
 
 ### Proof Tile
 - **Structure:** figure, short label, number.
@@ -87,7 +87,7 @@ The exact brand pairing is Flamivor red `#8A0103` and logo white `#F7EDE6`. Acce
 ### Async Submit State
 
 - **Structure:** a single submit label swaps among ready, sending, success, and error states without changing the button footprint.
-- **States:** Bklit UI’s Shimmering Text runs only while a network request is pending; success and error messages use a short opacity/translate acknowledgement.
+- **States:** ready, sending, success, and error use plain text that does not change the button footprint. A local envelope morph may acknowledge genuine success, but never substitutes the status text.
 - **Accessibility:** the button exposes `aria-busy` while sending, success is announced as a status, and failure is announced as an alert.
 
 ### Navigation Drawer
@@ -120,24 +120,23 @@ The exact brand pairing is Flamivor red `#8A0103` and logo white `#F7EDE6`. Acce
 - **States:** static placeholder, then replaced by a real portrait with a descriptive alt text when photography is available.
 - **Accessibility:** never imply that a placeholder is a photograph or invent a person’s likeness.
 
-### Impact Ledger
-
-- **Structure:** a dark editorial report with one leading proof figure, grouped outcome entries, and a quiet geographic/connection field used only as context.
-- **States:** outcome entries reveal with opacity/translate on entry; hover may lift a linked entry by 4px and strengthen its rule.
-- **Accessibility:** figures always include their plain-language label; the connection field is decorative and hidden from assistive technology.
-
 ### Resource Index
 
 - **Structure:** an uncomplicated shelf of branded resource covers, each followed only by its course title and availability.
 - **States:** “coming soon” is plain text, not a fake button or unavailable link.
 - **Accessibility:** meaningful alt text, semantic `figure`/`figcaption`, and titles/availability remain readable without the supporting imagery.
 
-### Resource Discovery & Status
+### SvgMotionScene
 
-- **Structure:** a distinct utility hero, category filter, Kokonut-derived carousel cards, and a Bklit-derived catalog status ring sourced directly from the four published resource records.
+- **Structure:** one scoped, decorative SVG scene per route hero. Artwork is hand-authored as paths, polylines, and circles within a stable `viewBox`; each mounted instance has its own root ref and never reaches into another route.
+- **Variants:** learning path (Home), doorway (About), radial signal (Impact), team line, paper/bookmark (Resources), room map (Extracurriculars), contact sheets (Gallery), envelope (Contact), and converging routes (Join).
+- **States:** a one-time draw on initial view; meaningful one-time morphs are restricted to the About doorway, Gallery dialog border, and Contact success confirmation. Sparks are short, directional, and never loop.
+- **Accessibility:** all scenes are `aria-hidden` and `focusable="false"`; text, CTAs, and dialog/form feedback work independently of the SVG.
+
+- **Structure:** a distinct utility hero, category filter, native scroll-snap cards, and a catalog status ring sourced directly from the four published resource records.
 - **States:** all categories, a selected category, and a clear “coming soon” state. Selection changes the visible shelf only; it never implies that an unavailable resource can be opened.
 - **Accessibility:** the category control is a labelled button group with a visible pressed state; the status ring exposes its 0 available / 4 catalogued summary in plain text and is paired with a screen-reader table.
-- **Motion:** Motion owns the shared category indicator and card layout transition. The carousel becomes native horizontal scroll-snap on small screens; it has no auto-advance behavior.
+- **Motion:** selection is an immediate semantic state change. The carousel becomes native horizontal scroll-snap on small screens; it has no auto-advance behavior.
 
 ### Opportunity Board
 
@@ -150,15 +149,16 @@ The exact brand pairing is Flamivor red `#8A0103` and logo white `#F7EDE6`. Acce
 | Type | Duration | Easing | Usage |
 |---|---:|---|---|
 | Micro | 180ms | `cubic-bezier(.2,.8,.2,1)` | Buttons and image hover |
-| Entry | 600ms | `cubic-bezier(.16,1,.3,1)` | Hero and in-view reveals |
-| Scroll | tied to scroll | linear | Hero media drift and route drawing |
+| SVG draw | 700–1,200ms | Anime `out(4)` | One route-level path reveal after its hero is visible |
+| SVG spark | 450–800ms | Anime `inOut(2)` | One directional travel after its matching route draws |
+| SVG morph | 450–700ms | Anime `out(3)` | A one-time, meaningful state change |
 
-Only opacity and transform animate. All non-essential effects are disabled under `prefers-reduced-motion`; content remains visible and the route stays fully drawn.
+Only opacity, SVG draw, SVG transform, and SVG shape-morph properties animate. There are no CSS keyframes, Motion/Framer Motion, GSAP, parallax, canvas, WebGL, particles, cursor-following effects, or scroll hijacking.
 
-- Motion is provided by `motion/react` across route transitions, hero entrances, and in-view content. At widths below 760px, `useCompactMotion` and the global Motion configuration remove transform-heavy entrances; components render immediately in their final position, preventing offscreen transforms from creating mobile overflow.
-- Anime.js v4 is dynamically imported only for the Home desktop/tablet learning-path sequence after the LCP photo loads. A scoped `createTimeline()` uses `stagger()`, `svg.createDrawable()`, and `svg.createMotionPath()` for the route and its marker, then tears down on unmount. It is absent below 768px and for reduced-motion visitors. Motion for React owns all other route, state, menu, dialog, and in-view animation. GSAP is not used.
-- Bklit UI’s MIT-licensed Shimmering Text informs asynchronous contact submission. Its Ring Chart pattern is adapted for the Resources catalog status: the values are calculated from the actual four records (0 available, 4 coming soon), paired with a visible legend and a screen-reader summary; no impact statistic is fabricated.
-- Kokonut UI’s MIT Background Paths component is adapted for the Contact header as a five-path, one-time editorial reveal. Its Shape Hero grammar guides the About hero, while Carousel Cards provide the Resources shelf. The original perpetual-wave and auto-advance treatments are intentionally not used, so motion remains an orientation cue rather than ambient distraction.
+- `SvgMotionScene` dynamically imports only Anime.js v4’s `animate`, `createScope`, `createDrawable`, `createMotionPath`, and `morphTo`. It waits until its scene is near the viewport and reverts its independent scope on unmount/route change.
+- Every scene renders in its complete final state before JavaScript runs. Reduced-motion visitors and screens at or below 480px receive that static final SVG without Anime initialization. Between 481px and 767px, only a cheap one-time draw runs; sparks and morphs are disabled. Desktop scenes play once.
+- The Home scene waits for the LCP image before it initializes. All other scenes are decorative enhancements and never delay a heading, CTA, image, dialog, or form feedback.
+- Category filters, navigation, gallery dialog, and form status use plain semantic DOM states; the Gallery and Contact state scenes remain small, local SVG enhancements rather than replacing their accessible text feedback.
 
 ## 7. Depth & Surface
 

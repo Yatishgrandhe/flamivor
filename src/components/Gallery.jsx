@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
-import { motion } from 'motion/react'
 import { ArrowUpRight, X } from 'lucide-react'
-import useCompactMotion from '../hooks/useCompactMotion'
+import SvgMotionScene from './SvgMotionScene'
 import './Gallery.css'
 
 const moments = [
@@ -14,7 +13,6 @@ const moments = [
 ]
 
 export default function Gallery() {
-  const compactMotion = useCompactMotion()
   const dialogRef = useRef(null)
   const [selected, setSelected] = useState(null)
 
@@ -37,15 +35,15 @@ export default function Gallery() {
       </div>
       <div className="gallery-contact-sheet">
         {moments.map((moment, index) => (
-          <motion.button key={moment.src} type="button" className={`gallery-photo gallery-photo-${index + 1}`} onClick={() => setSelected(moment)} initial={compactMotion ? false : { opacity: 0, y: 18 }} whileInView={compactMotion ? {} : { opacity: 1, y: 0 }} viewport={{ once: true, amount: .15 }} transition={{ duration: .52, delay: index * .04, ease: [0.16, 1, .3, 1] }}>
+          <button key={moment.src} type="button" className={`gallery-photo gallery-photo-${index + 1}`} onClick={() => setSelected(moment)}>
             <img src={moment.src} alt={moment.alt} width="1200" height="800" loading="lazy" />
             <span><b>0{index + 1}</b>{moment.caption}<ArrowUpRight size={16} aria-hidden="true" /></span>
-          </motion.button>
+          </button>
         ))}
       </div>
       <div className="gallery-press-note"><p className="gallery-eyebrow">Press index</p><p>Official recognitions and partner stories are being compiled. For media or partnership enquiries, please contact the Flamivor team.</p><a href="mailto:flamivor@gmail.com">Contact Flamivor <ArrowUpRight size={17} aria-hidden="true" /></a></div>
       <dialog ref={dialogRef} className="gallery-dialog" aria-labelledby="gallery-dialog-caption">
-        {selected && <div className="gallery-dialog-content"><button type="button" className="gallery-dialog-close" onClick={closeDialog} aria-label="Close image detail" autoFocus><X size={20} aria-hidden="true" /></button><img src={selected.src} alt={selected.alt} width="1200" height="800" /><p id="gallery-dialog-caption">{selected.caption}</p></div>}
+        {selected && <div className="gallery-dialog-content"><SvgMotionScene scene="gallery" state="expanded" className="gallery-dialog-svg-scene" /><button type="button" className="gallery-dialog-close" onClick={closeDialog} aria-label="Close image detail" autoFocus><X size={20} aria-hidden="true" /></button><img src={selected.src} alt={selected.alt} width="1200" height="800" /><p id="gallery-dialog-caption">{selected.caption}</p></div>}
       </dialog>
     </section>
   )

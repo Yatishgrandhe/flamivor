@@ -1,8 +1,6 @@
 import { Link } from 'react-router-dom'
-import { motion } from 'motion/react'
 import { ArrowRight, BookOpenCheck, Lightbulb, Orbit, Wrench } from 'lucide-react'
-import useCompactMotion from '../hooks/useCompactMotion'
-import KokonutShapeHero from '../components/KokonutShapeHero'
+import SvgMotionScene from '../components/SvgMotionScene'
 import './AboutPage.css'
 
 const chapters = [
@@ -27,39 +25,34 @@ const chapters = [
 ]
 
 function StoryMarker({ number, title, copy, Icon, index }) {
-  const compactMotion = useCompactMotion()
   return (
-    <motion.article className={`story-marker story-marker-${index + 1}`}
-      initial={compactMotion ? false : { opacity: 0, y: 20 }} whileInView={compactMotion ? {} : { opacity: 1, y: 0 }} viewport={{ once: true, amount: .25 }} transition={{ duration: .55, ease: [0.16, 1, .3, 1] }}>
+    <article className={`story-marker story-marker-${index + 1}`}>
       <span className="story-marker-number">{number}</span>
       <div className="story-marker-icon" aria-hidden="true"><Icon size={23} /></div>
       <h3>{title}</h3>
       <p>{copy}</p>
-    </motion.article>
+    </article>
   )
 }
 
 export default function AboutPage() {
-  const compactMotion = useCompactMotion()
-  const enter = (delay = 0) => ({ initial: compactMotion ? false : { opacity: 0, y: 22 }, animate: compactMotion ? {} : { opacity: 1, y: 0 }, transition: { duration: .65, delay, ease: [0.16, 1, .3, 1] } })
-
   return (
     <main className="about-page">
       <section className="about-hero" aria-labelledby="about-heading">
-        <KokonutShapeHero />
-        <motion.div className="about-hero-copy" {...enter()}>
+        <SvgMotionScene scene="about" className="about-svg-scene" />
+        <div className="about-hero-copy">
           <p className="about-eyebrow"><Orbit size={15} aria-hidden="true" /> Our why</p>
           <h1 id="about-heading">Learning should feel<br />like an <em>open door.</em></h1>
           <p>Flamivor is a youth-led education movement building practical pathways for every young person to explore, make, and lead.</p>
-        </motion.div>
-        <motion.div className="about-hero-stamp" {...enter(.14)}>
+        </div>
+        <div className="about-hero-stamp">
           <span>Access travels</span><strong>farther<br />when shared.</strong>
-        </motion.div>
+        </div>
       </section>
 
       <section className="about-manifesto" aria-labelledby="manifesto-heading">
-        <motion.p className="about-manifesto-label" initial={compactMotion ? false : { opacity: 0 }} whileInView={compactMotion ? {} : { opacity: 1 }} viewport={{ once: true }}>A practical promise</motion.p>
-        <motion.h2 id="manifesto-heading" initial={compactMotion ? false : { opacity: 0, y: 22 }} whileInView={compactMotion ? {} : { opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: .55, ease: [0.16, 1, .3, 1] }}>We meet students where their curiosity begins—not where a textbook ends.</motion.h2>
+        <p className="about-manifesto-label">A practical promise</p>
+        <h2 id="manifesto-heading">We meet students where their curiosity begins—not where a textbook ends.</h2>
         <div className="about-manifesto-copy">
           <p>Flamivor pairs hands-on projects with passionate mentorship to make learning feel real again. We bridge the K–12 continuum through a growing global network of student-led chapters.</p>
           <p>Our work is rooted in the belief that access to learning should not depend on background, location, or the ability to pay.</p>

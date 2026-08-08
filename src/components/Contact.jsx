@@ -1,8 +1,6 @@
 import { useRef, useState } from 'react'
-import { AnimatePresence, motion } from 'motion/react'
 import { Send, CheckCircle, AlertCircle } from 'lucide-react'
-import BklitShimmeringText from './BklitShimmeringText'
-import useCompactMotion from '../hooks/useCompactMotion'
+import SvgMotionScene from './SvgMotionScene'
 import './Contact.css'
 
 const socials = [
@@ -46,7 +44,6 @@ const formFields = [
 ]
 
 export default function Contact() {
-  const compactMotion = useCompactMotion()
   const [formData, setFormData] = useState({
     firstName: '', lastName: '', email: '', subject: '', message: '', website: '',
   })
@@ -105,19 +102,19 @@ export default function Contact() {
   return (
     <section className="contact-section">
       <div className="section-inner">
-        <motion.div className="section-label" initial={compactMotion ? false : { opacity: 0, x: -20 }} whileInView={compactMotion ? {} : { opacity: 1, x: 0 }} viewport={{ once: true }}>
+        <div className="section-label">
           Contact
-        </motion.div>
-        <motion.h2 className="section-title" initial={compactMotion ? false : { opacity: 0, y: 30 }} whileInView={compactMotion ? {} : { opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }}>
+        </div>
+        <h2 className="section-title">
           Get in touch
-        </motion.h2>
-        <motion.p className="section-desc" initial={compactMotion ? false : { opacity: 0, y: 20 }} whileInView={compactMotion ? {} : { opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }}>
+        </h2>
+        <p className="section-desc">
           Have questions, want to collaborate, or just want to say hello? We'd love to hear from you.
-        </motion.p>
+        </p>
 
         <div className="contact-grid">
           {/* Left — Info */}
-          <motion.div className="contact-info" initial={compactMotion ? false : { opacity: 0, y: 20 }} whileInView={compactMotion ? {} : { opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }}>
+          <div className="contact-info">
             <a href="mailto:flamivor@gmail.com" className="contact-item">
               <div className="contact-icon-wrap">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -160,10 +157,11 @@ export default function Contact() {
                 Fill Partnership Form →
               </a>
             </div>
-          </motion.div>
+          </div>
 
           {/* Right — Form */}
-          <motion.div className="contact-form-wrap" initial={compactMotion ? false : { opacity: 0, y: 20 }} whileInView={compactMotion ? {} : { opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.3 }}>
+          <div className="contact-form-wrap">
+            <SvgMotionScene scene="contact" state={status === 'success' ? 'sent' : 'idle'} className="contact-form-svg-scene" />
             <h3>Send us a message</h3>
             <form onSubmit={handleSubmit} noValidate>
               <div className="form-honeypot" aria-hidden="true">
@@ -191,28 +189,14 @@ export default function Contact() {
                 </div>
               ))}
               <button type="submit" className="btn-primary form-submit" disabled={status === 'submitting'} aria-busy={status === 'submitting'}>
-                <AnimatePresence mode="wait" initial={false}>
-                  {status === 'submitting' ? (
-                    <motion.span className="form-button-state" key="sending" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-                      <BklitShimmeringText text="Sending message" />
-                    </motion.span>
-                  ) : status === 'success' ? (
-                    <motion.span className="form-button-state" key="sent" initial={{ opacity: 0, scale: .96 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0 }}>
-                      <CheckCircle size={16} /> Sent!
-                    </motion.span>
-                  ) : (
-                    <motion.span className="form-button-state" key="idle" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-                      Send Message <Send size={14} />
-                    </motion.span>
-                  )}
-                </AnimatePresence>
+                <span className="form-button-state">
+                  {status === 'submitting' ? 'Sending message' : status === 'success' ? <><CheckCircle size={16} /> Sent!</> : <>Send Message <Send size={14} /></>}
+                </span>
               </button>
-              <AnimatePresence initial={false}>
-                {status === 'success' && <motion.p className="form-success" role="status" initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}>Thanks for reaching out! We'll get back to you soon.</motion.p>}
-                {status === 'error' && <motion.p className="form-error-msg" role="alert" initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}><AlertCircle size={14} /> {submitError}</motion.p>}
-              </AnimatePresence>
+              {status === 'success' && <p className="form-success" role="status">Thanks for reaching out! We'll get back to you soon.</p>}
+              {status === 'error' && <p className="form-error-msg" role="alert"><AlertCircle size={14} /> {submitError}</p>}
             </form>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom'
-import { motion } from 'motion/react'
 import { ArrowRight, ArrowUpRight, Sparkles, UsersRound } from 'lucide-react'
-import useCompactMotion from '../hooks/useCompactMotion'
+import SvgMotionScene from './SvgMotionScene'
 import './Team.css'
 
 const team = [
@@ -23,34 +22,27 @@ function PortraitPlaceholder({ initials, name, priority = false }) {
 }
 
 export default function Team() {
-  const compactMotion = useCompactMotion()
-  const enter = (delay = 0) => ({
-    initial: compactMotion ? false : { opacity: 0, y: 18 },
-    whileInView: compactMotion ? {} : { opacity: 1, y: 0 },
-    viewport: { once: true, amount: 0.2 },
-    transition: { duration: 0.55, delay, ease: [0.16, 1, 0.3, 1] },
-  })
-
   return (
     <main className="team-page">
       <section className="team-intro" aria-labelledby="team-heading">
         <div className="team-intro-rule" aria-hidden="true"><span /></div>
-        <motion.div className="team-intro-copy" {...enter()}>
+        <SvgMotionScene scene="team" className="team-svg-scene" />
+        <div className="team-intro-copy">
           <p className="team-eyebrow"><Sparkles size={14} aria-hidden="true" /> The people carrying the flame</p>
           <h1 id="team-heading">Young people<br /><em>making room</em> for more.</h1>
           <p className="team-intro-lede">Flamivor is built by students and early-career leaders who believe access grows when learning is shared.</p>
-        </motion.div>
-        <motion.aside className="team-intro-note" {...enter(0.12)}>
+        </div>
+        <aside className="team-intro-note">
           <span>Field note / 2026</span>
           <p>Our portraits are being gathered alongside the stories that make this work personal.</p>
-        </motion.aside>
+        </aside>
       </section>
 
       <section className="team-founder" aria-labelledby="founder-heading">
-        <motion.div className="team-founder-portrait" {...enter()}>
+        <div className="team-founder-portrait">
           <PortraitPlaceholder initials={team[0].initials} name={team[0].name} priority />
-        </motion.div>
-        <motion.div className="team-founder-copy" {...enter(0.1)}>
+        </div>
+        <div className="team-founder-copy">
           <p className="team-section-label">Starting with a question</p>
           <h2 id="founder-heading">“What if learning felt like discovery again?”</h2>
           <p>That question sits at the centre of Flamivor. It began with Fatima Tu Zahra’s instinct to test, build, and share—and grew into a global student-led movement for practical, free learning.</p>
@@ -59,7 +51,7 @@ export default function Team() {
             <span>{team[0].role}</span>
           </div>
           <Link to="/about#our-story" className="team-text-link">Read the founding story <ArrowRight size={17} aria-hidden="true" /></Link>
-        </motion.div>
+        </div>
       </section>
 
       <section className="team-directory" aria-labelledby="directory-heading">
@@ -73,26 +65,26 @@ export default function Team() {
 
         <div className="team-grid">
           {team.slice(1).map((member, index) => (
-            <motion.article className="team-member" key={member.name} {...enter(index * 0.08)}>
+            <article className="team-member" key={member.name}>
               <PortraitPlaceholder initials={member.initials} name={member.name} />
               <div className="team-member-copy">
                 <span className="team-member-number">0{index + 2}</span>
                 <h3>{member.name}</h3>
                 <p>{member.role}</p>
               </div>
-            </motion.article>
+            </article>
           ))}
         </div>
       </section>
 
-      <motion.section className="team-join" {...enter()}>
+      <section className="team-join">
         <div className="team-join-icon" aria-hidden="true"><UsersRound size={25} /></div>
         <div>
           <p className="team-section-label">There is room for you here</p>
           <h2>Bring your curiosity<br />to the circle.</h2>
         </div>
         <a href="https://docs.google.com/forms/d/e/1FAIpQLSei33hS90nZBKNibIjMA456mYkTLNGVYcI4THY4NxnLo1HWPg/viewform" target="_blank" rel="noopener noreferrer" className="team-join-link">Become an executive member <ArrowUpRight size={18} aria-hidden="true" /></a>
-      </motion.section>
+      </section>
     </main>
   )
 }

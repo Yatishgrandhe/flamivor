@@ -65,4 +65,4 @@ No invented dates, testimonials, local accomplishments, addresses, personnel or 
 - [x] Pass final build, typecheck, lint, detect, overflow, menu, filter, desktop-motion, and mobile no-scroll-motion checks.
 - [x] Record the ship verdict, raster provenance, QA limits, and current visual system in `docs/REDESIGN-BRIEF.md` and `DESIGN.md`.
 - [x] Add the Impeccable token sidecar at `.impeccable/design.json`.
-- [ ] Confirm final release revision and deploy; production Clerk configuration remains a separate infrastructure prerequisite.
+- [x] Commit and sync redesign revision `8440f3b`; Vercel production deployment reached Ready and the canonical address shows the new layout. Production Clerk configuration remains a separate infrastructure prerequisite.

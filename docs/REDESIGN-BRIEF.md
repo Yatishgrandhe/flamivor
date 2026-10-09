@@ -25,4 +25,6 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 
 **QA evidence:** production build, typecheck, lint, and detect checks passed. Viewport overflow checks passed at 360, 390, 768, and 1280px. Menu Escape returns focus; resource filtering updates results; desktop scroll motion is active at desktop width and cleared below 1024px; mobile scroll animation is absent. Member auth and persistence flows remain real and unchanged.
 
-**Limits:** review evidence is raster and viewport based, with no physical handset test. Clerk still uses its development instance; production Clerk setup requires the configured custom domain and credentials. Deployment remains pending parent confirmation.
+**Limits:** review evidence is raster and viewport based, with no physical handset test. Clerk still uses its development instance; production Clerk setup requires the configured custom domain and credentials.
+
+**Release:** code revision `8440f3b` was synced to main. Vercel deployment `dpl_A1883KDsCztUmCpE6BC5UYgRUFsq` reached Ready with all 18 pages generated successfully. The canonical address https://flamivor-charlotte.vercel.app/ visibly displays the new heading and composition. `output/redesign/production-desktop.jpg` captures the live 1280×720 opening after readiness; no horizontal overflow or browser console errors were observed there. Below-the-fold photographs retain lazy loading. No new detector suppressions were added in this redesign; the existing narrowly scoped Space Grotesk exception remains for intentional member typography.

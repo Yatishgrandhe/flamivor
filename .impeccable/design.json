@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-09T16:05:35Z",
+  "generatedAt": "2026-10-09T19:07:18Z",
   "title": "Design System: Flamivor Charlotte",
   "extensions": {
     "colorMeta": {
@@ -103,7 +103,7 @@
       },
       {
         "name": "public-control",
-        "value": "150–200ms",
+        "value": "150\u2013200ms",
         "purpose": "Restrained control and hover feedback; reduced motion remains immediate."
       }
     ],

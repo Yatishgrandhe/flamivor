@@ -15,7 +15,7 @@ Todo
 - [x] Adapt desktop-only animation
 - [x] Desktop/mobile interactions and visual review
 - [x] Build, typecheck, lint and fresh agent review
-- [ ] Commit, sync, verify Ready Vercel production
+- [x] Commit, sync, verify Ready Vercel production
 
 ## Release verification
 
@@ -25,4 +25,12 @@ Todo
 - Phone menu opens/closes; Escape returns focus. Guide search empty state/reset and category filtering work. Saving a guide carries save=study-reset through the dashboard and custom sign-in redirect. No authentication email was submitted during this UI pass.
 - All three real Unsplash photographs loaded after scrolling, with no photo fallback. No generated imagery is used. Desktop GSAP movement was observed (+2px near top to -18px below); phone/tablet media state was inactive with no image transform. Branded reload curtain and route transitions were observed.
 - Fresh GPT-6 Luna reviewer found no release-blocking visual issue in desktop/mobile homepage evidence. Read-only function audit confirmed existing real Clerk/Convex implementation remains intact. Production Clerk instance setup remains pending; no full account round trip was claimed.
-- Vercel's 19 current production entries were Ready before this release, with no failed entry in the list. New release readiness and production screenshot will be recorded after sync.
+- The primary flamivor-charlotte project had 19 Ready entries before release. A later GitHub status check exposed failures in the separate legacy flamivor project; it was missing Clerk/Convex environment configuration and still selected Vite. Restored the same application’s required production settings and corrected its framework to Next.js. Existing unrelated legacy variables were preserved. Restarted production and verified Ready, then verified the new home UI on both live aliases.
+
+## Production evidence
+
+UI commit: 9460da3. Primary deployment dpl_5xhFNuDeQjLVtDHA3u8uvxaPmtAb is Ready at https://flamivor-charlotte.vercel.app. Repaired legacy deployment dpl_5NTf86Uj6JoXEQSYAUpKD8dyDg2x is Ready at https://flamivor.vercel.app. No failed deployment history was deleted or hidden. A restart attempted before environment repair completed failed again; the successful restart followed verified configuration.
+
+Native browser production captures: output/retro/production-desktop.jpg at 1280×720 and production-mobile.jpg at 390×844. Desktop heading weight is 400; navbar computes rgb(138, 1, 3), exact #8A0103. Production phone overflow is zero and desktop motion is inactive with transform none.
+
+Impeccable triage: no anti-pattern failures; 34 advisory font-size notes remain because the detector reads a limited frontmatter ramp while the actual authored type steps and their roles are documented in DESIGN.md. They are intentional type choices, not regressions, and no new detector ignore was added. The previous narrow Space Grotesk exception for the retained member interface remains. No Anton usage remains. Sidecar schema 2 was refreshed from the actual interface and validated.

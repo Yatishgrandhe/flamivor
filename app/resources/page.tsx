@@ -6,7 +6,6 @@ export default function Resources() {
   return (
     <main id="main">
       <PageHeader
-        eyebrow="THE CHARLOTTE FIELD NOTES"
         title={
           <>
             Small starts.

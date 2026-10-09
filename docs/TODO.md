@@ -56,3 +56,13 @@ No invented dates, testimonials, local accomplishments, addresses, personnel or 
 - [x] Polish resource search/filter states and shared touch/focus behavior.
 - [x] Verify real auth/profile/bookmark flows, keyboard controls, mobile and laptop rendering.
 - [x] Pass build, typecheck, lint and independent review; commit, sync and verify production.
+
+
+## October 9 — Warm public redesign finish
+- [x] Replace the rejected poster presentation with the working community photo-journal direction.
+- [x] Preserve the exact logo, brand colors, Charlotte-only facts, real chapter form, credited stock imagery, and member backend behavior.
+- [x] Review production-mode desktop/mobile and secondary-page viewport captures; exclude invalid full-page captures.
+- [x] Pass final build, typecheck, lint, detect, overflow, menu, filter, desktop-motion, and mobile no-scroll-motion checks.
+- [x] Record the ship verdict, raster provenance, QA limits, and current visual system in `docs/REDESIGN-BRIEF.md` and `DESIGN.md`.
+- [x] Add the Impeccable token sidecar at `.impeccable/design.json`.
+- [ ] Confirm final release revision and deploy; production Clerk configuration remains a separate infrastructure prerequisite.

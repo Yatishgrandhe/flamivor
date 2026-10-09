@@ -28,12 +28,9 @@ export default function About() {
   return (
     <main id="main">
       <PageHeader
-        eyebrow="FLAMIVOR CHARLOTTE / OUR MISSION"
         title={
           <>
-            LEARNING
-            <br />
-            OPENS DOORS.
+            Learning opens doors.
           </>
         }
         description="A youth-led education nonprofit building a welcoming place for Charlotte students to learn, contribute, and grow together."
@@ -41,7 +38,6 @@ export default function About() {
 
       <section className="editorial-section shell" aria-labelledby="mission-heading">
         <div className="section-intro">
-          <p className="eyebrow">A LOCAL CHAPTER, BUILT TOGETHER</p>
           <h2 id="mission-heading">Opportunity should have more than one starting point.</h2>
         </div>
         <div className="chapter-note">
@@ -63,15 +59,11 @@ export default function About() {
       <PhotoBand photo={photos.classroom} caption="Learning grows when we make room for one another." />
       <section className="editorial-section shell" aria-labelledby="approach-heading">
         <div className="section-intro">
-          <p className="eyebrow">HOW WE SHOW UP</p>
           <h2 id="approach-heading">Three ways to take part.</h2>
         </div>
         <div className="principle-grid">
-          {principles.map((principle, index) => (
+          {principles.map((principle) => (
             <article className="editorial-row principle" key={principle.title}>
-              <span className="row-index" aria-hidden="true">
-                {String(index + 1).padStart(2, "0")}
-              </span>
               <div>
                 <h3>{principle.title}</h3>
                 <p>{principle.copy}</p>

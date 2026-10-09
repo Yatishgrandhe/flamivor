@@ -32,3 +32,7 @@ graphify-out/
 *.tsbuildinfo
 .clerk/
 .vercel
+.impeccable/questions/
+.impeccable/review/
+.impeccable/mocks/
+.impeccable/config.local.json

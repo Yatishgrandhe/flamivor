@@ -1,0 +1,195 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-09T16:05:35Z",
+  "title": "Design System: Flamivor Charlotte",
+  "extensions": {
+    "colorMeta": {
+      "burgundy": {
+        "role": "primary",
+        "displayName": "Chapter Burgundy",
+        "canonical": "#8A0103",
+        "tonalRamp": [
+          "#280000",
+          "#430000",
+          "#600001",
+          "#7B0102",
+          "#8A0103",
+          "#AE3335",
+          "#D27879",
+          "#F2DADB"
+        ]
+      },
+      "cream": {
+        "role": "neutral",
+        "displayName": "Warm Cream",
+        "canonical": "#F2EFE5",
+        "tonalRamp": [
+          "#29251B",
+          "#494335",
+          "#6B634F",
+          "#A29A84",
+          "#D6D0C0",
+          "#E7E2D5",
+          "#F2EFE5",
+          "#FBF9F3"
+        ]
+      },
+      "muted-ink": {
+        "role": "neutral",
+        "displayName": "Muted Ink",
+        "canonical": "color-mix(in srgb, #8A0103 72%, #F2EFE5)",
+        "tonalRamp": [
+          "#2D0808",
+          "#4A1010",
+          "#681819",
+          "#852223",
+          "#A22E30",
+          "#BB5557",
+          "#D59293",
+          "#F2DADB"
+        ]
+      },
+      "rule": {
+        "role": "neutral",
+        "displayName": "Fine Rule",
+        "canonical": "color-mix(in srgb, #8A0103 24%, #F2EFE5)",
+        "tonalRamp": [
+          "#342522",
+          "#55413D",
+          "#785F5A",
+          "#A18A84",
+          "#C8B7B0",
+          "#DCCFC8",
+          "#EFE4DC",
+          "#F8F1E9"
+        ]
+      },
+      "soft-surface": {
+        "role": "neutral",
+        "displayName": "Soft Surface",
+        "canonical": "color-mix(in srgb, #8A0103 4%, #F2EFE5)",
+        "tonalRamp": [
+          "#302826",
+          "#524846",
+          "#756A67",
+          "#A19591",
+          "#C7BDB8",
+          "#DED5D0",
+          "#EFE8E1",
+          "#F9F5ED"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "public-display": {
+        "displayName": "Editorial display",
+        "purpose": "Public page and section headings in ordinary sentence case."
+      },
+      "body": {
+        "displayName": "Manrope body",
+        "purpose": "Public copy, controls, and navigation."
+      },
+      "member-title": {
+        "displayName": "Member title",
+        "purpose": "Space Grotesk headings in the task-focused member workspace."
+      }
+    },
+    "shadows": [],
+    "motion": [
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(.23,1,.32,1)",
+        "purpose": "Short interaction and reveal transitions."
+      },
+      {
+        "name": "public-control",
+        "value": "150–200ms",
+        "purpose": "Restrained control and hover feedback; reduced motion remains immediate."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "mobile",
+        "value": "767px"
+      },
+      {
+        "name": "desktop-motion",
+        "value": "1024px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Main public action on cream pages.",
+      "html": "<button class=\"ds-button-primary\">Get involved</button>",
+      "css": ".ds-button-primary { background: #8A0103; color: #F2EFE5; border: 0; border-radius: 2px; min-height: 48px; padding: 12px 24px; font: 600 14px/1.3 Manrope, Arial, sans-serif; transition: background-color 150ms cubic-bezier(.23,1,.32,1), transform 150ms cubic-bezier(.23,1,.32,1); } .ds-button-primary:hover { background: #6f0102; } .ds-button-primary:focus-visible { outline: 3px solid #8A0103; outline-offset: 4px; } .ds-button-primary:active { transform: scale(.98); }"
+    },
+    {
+      "name": "Inverse Header Button",
+      "kind": "button",
+      "refersTo": "button-inverse",
+      "description": "Primary chapter invitation in the burgundy navigation.",
+      "html": "<button class=\"ds-button-inverse\">Get involved</button>",
+      "css": ".ds-button-inverse { background: #F2EFE5; color: #8A0103; border: 0; border-radius: 2px; min-height: 48px; padding: 12px 24px; font: 600 14px/1.3 Manrope, Arial, sans-serif; transition: background-color 150ms cubic-bezier(.23,1,.32,1); } .ds-button-inverse:hover { background: #e5e0d4; } .ds-button-inverse:focus-visible { outline: 3px solid #F2EFE5; outline-offset: 4px; }"
+    },
+    {
+      "name": "Search Field",
+      "kind": "input",
+      "refersTo": "resource-search",
+      "description": "Search field for public guides.",
+      "html": "<input class=\"ds-search\" type=\"search\" aria-label=\"Search guides\" placeholder=\"Search guides\" />",
+      "css": ".ds-search { width: 100%; min-height: 48px; padding: 12px 16px; color: #8A0103; background: #F2EFE5; border: 1px solid color-mix(in srgb, #8A0103 60%, #F2EFE5); border-radius: 4px; font: 400 16px/1.4 Manrope, Arial, sans-serif; } .ds-search:focus-visible { outline: 3px solid #8A0103; outline-offset: 3px; } .ds-search::placeholder { color: color-mix(in srgb, #8A0103 72%, #F2EFE5); }"
+    },
+    {
+      "name": "Selected Topic Filter",
+      "kind": "chip",
+      "refersTo": "filter-button-selected",
+      "description": "Selected guide category filter.",
+      "html": "<button class=\"ds-filter\" aria-pressed=\"true\">All field notes</button>",
+      "css": ".ds-filter { min-height: 44px; padding: 10px 14px; color: #F2EFE5; background: #8A0103; border: 1px solid #8A0103; border-radius: 2px; font: 600 14px/1.3 Manrope, Arial, sans-serif; } .ds-filter:hover { background: #6f0102; } .ds-filter:focus-visible { outline: 3px solid #8A0103; outline-offset: 3px; }"
+    },
+    {
+      "name": "Desktop Navigation",
+      "kind": "nav",
+      "refersTo": "header-navigation",
+      "description": "Chapter links on the exact burgundy header.",
+      "html": "<nav class=\"ds-nav\"><a href=\"#mission\">Our mission</a><a href=\"#people\">Our people</a><a href=\"#guides\">Field guide</a></nav>",
+      "css": ".ds-nav { display: flex; align-items: center; gap: 28px; padding: 20px; color: #F2EFE5; background: #8A0103; font: 500 14px/1.4 Manrope, Arial, sans-serif; } .ds-nav a { color: inherit; text-decoration: none; text-underline-offset: 6px; } .ds-nav a:hover, .ds-nav a:focus-visible { text-decoration: underline; } .ds-nav a:focus-visible { outline: 2px solid #F2EFE5; outline-offset: 4px; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Community Photo Journal (working direction inferred from the October 9 redesign brief).",
+    "overview": "The public site uses a warm editorial voice to introduce a Charlotte youth-led education chapter and give visitors clear ways to learn, contribute, and connect. Documentary-style stock photography supports the story and carries visible photographer credits; it is never evidence of Flamivor members or events. The direction is recorded as a working assumption because the optional warm-versus-bold preference was unanswered. The member workspace keeps its task-focused typography and real Clerk and Convex behavior. The approved phoenix mark and exact brand colors are durable identity constraints.",
+    "keyCharacteristics": [
+      "Cream pages and a burgundy navigation bar frame the chapter story.",
+      "Locally hosted Literata display type pairs with Manrope copy; member titles use Space Grotesk.",
+      "Photography, useful resources, and direct participation links carry the public experience."
+    ],
+    "rules": [
+      {
+        "name": "The Exact Identity Rule",
+        "body": "Keep the supplied burgundy and cream values exact, especially on the header beside the approved logo.",
+        "section": "colors"
+      },
+      {
+        "name": "The Ordinary-Case Rule",
+        "body": "Public display headings use ordinary sentence case and never return to oversized uppercase poster lettering.",
+        "section": "typography"
+      }
+    ],
+    "dos": [
+      "Do keep Charlotte-specific facts and the real chapter form visible in the public journey.",
+      "Do retain photographer credits and label stock imagery honestly.",
+      "Do preserve the official logo as supplied.",
+      "Do keep reduced-motion and keyboard behavior usable."
+    ],
+    "donts": [
+      "Don't imply stock photos depict chapter members or events.",
+      "Don't invent local impact statistics, testimonials, programs, or event dates.",
+      "Don't restore the rejected poster hierarchy or hard-offset cover shadows."
+    ]
+  }
+}

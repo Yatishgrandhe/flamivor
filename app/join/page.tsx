@@ -15,8 +15,6 @@ export const metadata: Metadata = {
 const paths = [
   {
     id: "learner",
-    index: "01",
-    label: "I WANT TO LEARN",
     title: "Begin with a guide.",
     copy: "Read a free starter guide, then tell us what learning resources or support you would like to see in Charlotte.",
     action: (
@@ -25,16 +23,12 @@ const paths = [
   },
   {
     id: "volunteer",
-    index: "02",
-    label: "I WANT TO VOLUNTEER",
     title: "Bring a skill to share.",
     copy: "Help shape educational resources, outreach, or future chapter projects. Let us know what interests you and how you would like to contribute.",
     action: <TextLink href="#join-form">Share your interest</TextLink>,
   },
   {
     id: "partner",
-    index: "03",
-    label: "I WANT TO COLLABORATE",
     title: "Start a local conversation.",
     copy: "Are you part of a Charlotte school, community group, or organization? Tell us what you have in mind and we can explore a next step together.",
     action: (
@@ -54,12 +48,9 @@ export default function Join() {
   return (
     <main id="main">
       <PageHeader
-        eyebrow="FLAMIVOR CHARLOTTE / TAKE PART"
         title={
           <>
-            FIND YOUR
-            <br />
-            NEXT STEP.
+            Find your next step.
           </>
         }
         description="Come as a learner, a volunteer, or a local collaborator. Start with the part of the work that feels right for you."
@@ -68,18 +59,13 @@ export default function Join() {
       <PhotoBand photo={photos.collaboration} caption="Bring your curiosity. Find your people." />
       <section className="editorial-section shell" aria-labelledby="join-heading">
         <div className="section-intro">
-          <p className="eyebrow">THREE WAYS IN</p>
           <h2 id="join-heading">There is more than one way to contribute.</h2>
         </div>
 
         <div className="join-paths">
           {paths.map((path) => (
             <article className="join-path editorial-row" id={path.id} key={path.id}>
-              <span className="row-index" aria-hidden="true">
-                {path.index}
-              </span>
               <div>
-                <p className="eyebrow">{path.label}</p>
                 <h3>{path.title}</h3>
                 <p>{path.copy}</p>
                 {path.action}
@@ -89,7 +75,6 @@ export default function Join() {
         </div>
 
         <aside className="form-callout" id="join-form" aria-labelledby="form-heading">
-          <p className="eyebrow">CHAPTER INTEREST FORM</p>
           <h2 id="form-heading">Tell us what you would like to do.</h2>
           <p>
             Share a little about yourself, your interests, and how you hope to

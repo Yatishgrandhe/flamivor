@@ -7,4 +7,8 @@ output
 docs
 scrollcraft
 graphify-out
+.impeccable
+DESIGN.md
+PRODUCT.md
+AGENTS.md
 public/images/*-original.png

@@ -1,46 +1,164 @@
-# Flamivor Charlotte: 2026 redesign contract
+---
+name: Flamivor Charlotte
+description: A local education chapter identity built around human learning and practical participation.
+colors:
+  burgundy: "#8A0103"
+  cream: "#F2EFE5"
+  muted-ink: "color-mix(in srgb, #8A0103 72%, #F2EFE5)"
+  rule: "color-mix(in srgb, #8A0103 24%, #F2EFE5)"
+  soft-surface: "color-mix(in srgb, #8A0103 4%, #F2EFE5)"
+typography:
+  public-display:
+    fontFamily: "Literata, Georgia, serif"
+    fontSize: "clamp(42px, 5vw, 68px)"
+    fontWeight: 400
+    lineHeight: 1.12
+    letterSpacing: "-0.035em"
+  body:
+    fontFamily: "Manrope, Arial, sans-serif"
+    fontSize: "16px"
+    fontWeight: 400
+    lineHeight: 1.65
+  member-title:
+    fontFamily: "Space Grotesk, Arial, sans-serif"
+    fontSize: "24px"
+    fontWeight: 600
+    lineHeight: 1.2
+rounded:
+  sharp: "2px"
+  small: "4px"
+  cover: "8px"
+  callout: "12px"
+spacing:
+  xs: "8px"
+  sm: "12px"
+  md: "16px"
+  lg: "24px"
+  xl: "32px"
+  section: "64px"
+components:
+  button-primary:
+    backgroundColor: "{colors.burgundy}"
+    textColor: "{colors.cream}"
+    rounded: "{rounded.sharp}"
+    height: "48px"
+    padding: "12px 24px"
+  button-inverse:
+    backgroundColor: "{colors.cream}"
+    textColor: "{colors.burgundy}"
+    rounded: "{rounded.sharp}"
+    height: "48px"
+    padding: "12px 24px"
+---
 
-## 0. Audit and research
-Existing-project redesign under user-directed creative authority. Four GPT-6 Luna roles: design audit, secondary pages, functional flows, independent quality review. Existing live homepage inspected: repeated slogans, competing paper stamps, oversized section sequence, weak local specificity, conflicting CSS overrides. Remove those patterns rather than recolor them. Frontend routing, designpowers review, Scroll Craft 0.3.1 and imagegen guidance applied. The frontend bundle's named redesign-skill.md is absent; audit-first process and loaded router substitute. Existing factual content and source provenance retained in docs/RESEARCH.md.
+# Design System: Flamivor Charlotte
 
-## 1. Direction and visitor journey
-A bold student publication and chapter campaign. Cream and burgundy, condensed display typography, crisp print rules and real Unsplash photography of people learning together. Replace the generated phoenix hero with a portrait crop of Brooke Cagle's collaboration photograph. Jaykumar Bherwani's overhead library study image supports the mission; Vitaly Gariev's classroom photograph forms a wide learning scene. These are credited illustrative stock photographs, never presented as chapter members or chapter events. No invented impact metrics, testimonials, dates or programs. The official supplied logo remains byte-for-byte unchanged.
-Journey: recognize Charlotte's student movement → understand the work we are building → choose learner / volunteer / partner path → use a real free guide → meet actual leaders → join via official form.
-Primary action: Get involved. Audience: curious students, volunteers, local collaborators. Public resources require no login.
+## Overview
 
-## 2. Tokens
-Brand red --red #8A0103; cream --paper #F2EFE5. Ink is red; reversed ink is cream. --muted mixes red at 72% with cream, --line mixes red at 24% with cream, --surface mixes red at 4% with cream. Header background exactly red to match the supplied logo. No new hue. Depth is physical image lighting, offset shadows on publication artifacts and ink rules. No glass, gradients in text, neon or gratuitous shapes.
+**Creative North Star: "The Community Photo Journal" (working direction inferred from the October 9 redesign brief).**
 
-## 3. Type and spacing
-Display: locally hosted Anton, weight 400. Supporting display / labels: existing Space Grotesk 500/600/700; body Manrope 400/500/600/700. Three purposeful roles, no fourth font. Display upper case, .94 line-height, -.025em tracking. Hero clamp(64px, 7.5vw, 96px); page headings clamp(48px,8vw,96px); h2 clamp(42px,6vw,80px); h3 28–36px. Body 16px /1.65; lead 18–20px/1.55; functional labels 14px; secondary publication credits 12px. Mobile hero 64–92px according width, readable unbroken words. 4px rhythm: 8/12/16/20/24/32/40/48/56/64/80/96/112. Shell max1440, gutter clamp20 to64. Breakpoints 640/768/1024. Header96px desktop80mobile. Scroll marginheader+24px.
+The public site uses a warm editorial voice to introduce a Charlotte youth-led education chapter and give visitors clear ways to learn, contribute, and connect. Documentary-style stock photography supports the story and carries visible photographer credits; it is never evidence of Flamivor members or events. The direction is recorded as a working assumption because the optional warm-versus-bold preference was unanswered.
 
-## 4. Composition
-Hero burgundy, cream display left, portrait documentary-style stock photograph right, cream caption beneath. Photo frame clipped, 4:5 aspect with 60% horizontal focal point; desktop content fits a normal laptop without an empty interstitial. Headline each line is independently masked for the entry sequence. Mission cream split editorial block with 3:4 overhead-study photo at left. Wide 16:7 classroom scene separates mission and participation. Captions explicitly credit Unsplash photographers and identify stock photography. Participation section three distinct roles with red chapter headings; desktop scroll line and progressive chapter emphasis, no hidden/colliding links. Resources physical field-guide covers with original line diagrams; local team compact named roster. Footer oversized location typography and complete navigation. About and Join reuse a panoramic PhotoBand. Other secondary pages retain spacious PageHeader and numbered editorial rows.
+The member workspace keeps its task-focused typography and real Clerk and Convex behavior. The approved phoenix mark and exact brand colors are durable identity constraints.
 
-## 5. Shared primitives and class contract
-Header/Brand: official full logo, real CHARLOTTE text underneath, cream/red nav, active page, mobile Sheet with focus trap and Escape. Footer: brand, mission sentence, local Instagram, complete navigation.
-PageHeader: .page-heading.shell, .eyebrow, h1, .page-description. Section headings .section-heading. TextLink .text-link arrow and underline. Invite .invitation / .invitation-inner / .invite-bottom, one meaningful close. Buttons:48px, solid red/cream variants, visible focus, arrow hover, disabled/pending.
-Secondary pages may retain .story-grid, .story-main, .story-aside, .principle-grid, .principle, .team-grid, .leader-card, .leader-monogram, .open-role, .join-paths, .join-path, .form-callout, .privacy-copy and .page-content. Add .editorial-section, .editorial-row, .row-index, .section-intro, .chapter-note when helpful. Root owns all CSS.
-Resource: .resource-grid, .resource-card, .resource-cover, .resource-meta, .resource-copy, .resource-filters, .filter-button, .resource-search, .resource-toolbar, .resource-empty; title+description search, categoryfilter, clear state and results announcement. Articles: .article-shell, .article-header, .article-body, .article-step, .article-actions, readable measure, print layout.
-Members: .member-shell, .member-heading, .member-grid, .member-panel, .member-bookmarks, .status-message; profile retains owner-only Convex persistence. Save guide intent completes after sign-in and announces result. Confirmation for clearing own data. Errors preserve input. No false saved states.
+**Key Characteristics:**
+- Cream pages and a burgundy navigation bar frame the chapter story.
+- Locally hosted Literata display type pairs with Manrope copy; member titles use Space Grotesk.
+- Photography, useful resources, and direct participation links carry the public experience.
 
-## 6. Motion and signature
-October 9 user update: use Aurea's full-screen branded reload loader and route curtain, adapted to Flamivor's exact approved logo and colors. Reference: AureaTransitionProvider and AureaLoader in the user's Aurea member project (read only). Animate surrounding rings and curtain; never redraw, recolor or replace the official mark. First load waits on actual DOM/fonts/eager-image readiness and the 1160ms desktop /720ms mobile ring sequence, with a bounded 4.5s escape. Internal route choreography 700ms desktop /560ms mobile, uncover ~300ms, pending route timeout 8s; preserve external, download, modifier, hash-only, same-page and back/forward behavior. Mobile load/route transitions are now explicitly requested and use shorter timing; mobile SCROLL animation is still forbidden. Reduced-motion loading is immediate/static and route animation omitted. No fake percentage, inaccessible focus trap or permanent scroll lock. No-JavaScript content stays visible. A reveal key signals when page entrance choreography may start; remove the previous top loading stroke and avoid entrance finishing behind the curtain.
+## Colors
 
-Desktop scroll only >=1024px, fine pointer, no reduced-motion preference. Hero photo translates up to 120px in its crop; wide classroom scene scrub-zooms 1.16 to 1.04 with 100px vertical travel; journey headings shift 96px, route line draws, resources lift and closing typography rises. Text remains fully opaque during scroll. GSAP context cleanup on navigation and media changes. Mobile/touch/reduced motion use natural flow, no scroll listeners, pins, parallax or reveal offsets. Transform/opacity and loader SVG stroke only. Hover max200ms. Do not force smooth document scrolling.
+A two-color identity carries the page; derived tones come from the same palette.
 
-## 6a. Auth and dashboard (October 9)
-Custom cream/red auth card built with Clerk hooks, real email-code verification, safe relative redirects, visible errors and pending state, resend/back controls, and Clerk bot-protection mount. Replace the entire prebuilt development card; keep authentication real. The configured Clerk instance is still development and this is an infrastructure limit, not UI copy. No local auth mock or security bypass. Public guides remain accessible without an account.
+### Primary
+- **Chapter Burgundy**: navigation, primary actions, and public text.
 
-Real routed member workspace: /dashboard overview, /dashboard/profile, /dashboard/saved, /dashboard/resources. Responsive sidebar and topbar, active navigation, ordinary 24–36px Space Grotesk page titles, Manrope copy, cream backgrounds with burgundy controls. Count only actual saved guides; profile state uses real Convex data. No fictional attendance, impact, events or admin metrics. Profile and bookmarks persist; article save intent survives authentication. Member-provider wraps only auth/member routes. /members remains a query-preserving compatibility redirect. Sign-out is a custom visible control, and site-data clearing requires confirmation. Dashboard loading/error/empty states are part of the interface.
+### Neutral
+- **Warm Cream**: page ground and reversed text.
+- **Muted Ink**: secondary copy mixed from the primary ink and cream.
+- **Fine Rule**: restrained dividers mixed from the primary ink and cream.
+- **Soft Surface**: quiet callout ground mixed from the primary ink and cream.
 
-## 7. Accessibility and task checks
-Skip link, one h1, sequential headings, visible focus, semantic buttons/links, labelled search/forms, error/success live regions, AA contrast, >=44px targets. Keyboard users never encounter concealed interactive cards. Mobile menu Escape returns focus. Printed guide omits navigation. Check360/390/768/1280/1440, shorter laptop720height; test intermediate desktop scroll, breakpoint cleanup, reduced motion and route transitions. Verify mobile no effects. Existing shadcn toolkit and dev-only React tooling retained.
+**The Exact Identity Rule.** Keep the supplied burgundy and cream values exact, especially on the header beside the approved logo.
 
-## 8. Facts, services and accepted limits
-Local leaders: Yatish Grandhe President; Shaurya Gautham Vice President; Joshita Madarapu Social Media Manager; Tanvi Musale Operations Director; Supreeth Annand Treasurer (user update October 9, 2026). Preserve exact form/Instagram from lib/site.ts. Convex production exists; Clerk currently uses development instance and production setup requires custom domain. Do not claim production auth completed. No fake bios/photos or event schedules. Browser sizes emulate phones; actual phone hardware testing is separate. No known blocking design/accessibility debt accepted; fix issues found in QA before delivery.
+## Typography
 
-## 9. Skill-driven interaction polish (October 9)
-Apply Impeccable polish and Emil design engineering to the existing site, keeping its approved identity and motion. Use the configured shadcn Radix primitives: Field for auth/profile fields, InputOTP for six-digit verification, Checkbox for agreement, DropdownMenu for account controls, AlertDialog for clearing data, RadioGroup for participation, Alert for feedback, Skeleton for loading, Empty for empty results, InputGroup for search and ToggleGroup for resource topics. Preserve Clerk SDK behavior and Convex ownership checks. No mocked authentication or optimistic false success.
+**Display Font:** Literata (with Georgia, serif)
+**Body Font:** Manrope (with Arial, sans-serif)
+**Member UI Font:** Space Grotesk
 
-Shared buttons define their own size/variant contract instead of blanket CSS overriding every variant. Default controls are 48px, compact/icon controls at least 44px; 16px text inputs prevent iOS zoom. Focus is visible, errors tied to fields, menus/dialogs own keyboard focus, pending controls show the exact operation. Product headings use Space Grotesk and ordinary case. Long names and emails wrap or truncate without widening the workspace. UI motion is limited to explicit properties, 100–180ms with ease-out; pointer hover is gated by capability, reduced motion stays immediate. The requested Aurea loading/route sequences and desktop scroll composition remain. Add viewport safe-area support without disabling zoom or document selection.
+**Character:** Literata gives public headings a human editorial voice. Manrope keeps navigation, body copy, and controls clear; Space Grotesk remains part of the member interface.
+
+### Hierarchy
+- **Public headline** (regular, responsive clamp): home and public page h1/h2.
+- **Public section title** (regular, responsive clamp): section headings and editorial features.
+- **Body** (regular, 16px, 1.65): public prose and supporting descriptions.
+- **Control** (14px or larger): actions and navigation, with touch targets at least 44px high.
+- **Member title** (semibold): dashboard and account task headings.
+
+**The Ordinary-Case Rule.** Public display headings use ordinary sentence case and never return to oversized uppercase poster lettering.
+
+## Layout
+
+Public pages use a centered shell with generous gutters. The desktop header is compact, and the mobile header retains its full touch-safe menu. Home begins with asymmetrical text and photography, followed by the mission, participation paths, free guides, actual chapter leaders, and the join invitation. On phones these sections flow naturally in one column. Resources remain easy to scan, and guide articles use a readable text measure.
+
+The desktop home may use restrained scroll motion at wide fine-pointer sizes. Touch layouts, narrower widths, and reduced-motion settings use natural document flow. Loading and route transitions respect reduced motion. Member pages preserve their separate responsive workspace layout.
+
+## Elevation & Depth
+
+The public system is mostly flat. Photography supplies natural depth; rules and a quiet tonal surface distinguish sections. Resource covers use simple diagrams without hard offset shadows. Interaction states use restrained color and position changes rather than decorative glow.
+
+## Shapes
+
+Public sections favor square or gently rounded corners. Photo frames may use one asymmetrical corner to create an editorial crop. Controls remain simple and compact, with clear borders and generous hit areas.
+
+## Components
+
+### Buttons
+- **Primary:** Burgundy fill with cream text; 48px default height.
+- **Inverse:** Cream fill with burgundy text for the header action.
+- **Focus:** A visible high-contrast ring; disabled and pending states remain explicit.
+
+### Cards / Containers
+- **Resource covers:** restrained diagram panels with a small corner radius and no offset shadow.
+- **Invitation:** quiet tonal surface, thin rule, and clear form action.
+
+### Inputs / Fields
+- Search and form fields use a clear border, cream ground, and visible focus treatment. Text inputs remain at least 16px to avoid mobile browser zoom.
+
+### Navigation
+The desktop header uses the exact burgundy background, unchanged approved logo, and Charlotte identification. Mobile navigation uses a touch-safe menu with keyboard dismissal and focus return.
+
+### Photo credits
+Each stock photo is identified as stock and credits its photographer with a source link. Keep the photographer attribution near the photo.
+
+## Do's and Don'ts
+
+### Do:
+- **Do** keep Charlotte-specific facts and the real chapter form visible in the public journey.
+- **Do** retain photographer credits and label stock imagery honestly.
+- **Do** preserve the official logo as supplied.
+- **Do** keep reduced-motion and keyboard behavior usable.
+
+### Don't:
+- **Don't** imply stock photos depict chapter members or events.
+- **Don't** invent local impact statistics, testimonials, programs, or event dates.
+- **Don't** restore the rejected poster hierarchy or hard-offset cover shadows.
+
+## Interaction and motion contract
+
+The approved-logo reload curtain and internal route transition remain modeled on the user's Aurea implementation. Readiness uses actual DOM, fonts and eager images, with bounded timeouts; no fake progress percentage or permanent scroll lock. External links, same-page anchors, modifier keys and browser history retain native behavior. Reduced motion skips route choreography. Mobile loading and route transitions are requested; mobile scroll effects remain prohibited.
+
+Desktop scrolling requires width >=1024px, fine pointer and no reduced-motion preference. The hero photograph travels 36px to -36px, mission photograph settles from 36px, participation headings/copy settle from 20/24px, guide rows enter from 24px, and the people photograph scales 1.06 to 1. Scroll motion begins after the route curtain clears and GSAP context is reverted on media changes or navigation. Content stays opaque and usable.
+
+## Member workspace and shared primitives
+
+Custom Clerk authentication uses real email-code verification, safe relative redirects, accessible errors and pending states, resend/back controls and bot protection. Real Convex data powers /dashboard, /dashboard/profile, /dashboard/saved and /dashboard/resources. No fictional attendance or impact metrics. Save intent survives authentication; data clearing requires confirmation; errors preserve input. /members keeps its compatibility redirect.
+
+Keep shadcn Field, InputOTP, Checkbox, DropdownMenu, AlertDialog, RadioGroup, Alert, Skeleton, Empty, InputGroup and ToggleGroup behavior. Default controls are 48px and compact controls >=44px; text inputs are >=16px. Pending states identify the operation. Long names and emails cannot widen the workspace.
+
+## Accessibility, audiences and accepted limits
+
+Students can read public guides without signing in; volunteers and Charlotte collaborators can use the real chapter form. Member pages support updating interests and managing saved guides. Preserve skip link, one h1, sequential headings, visible focus, semantic actions, labeled controls, associated errors, status announcements, AA contrast, menu focus return, safe areas and zoom. Keyboard users never encounter concealed controls. Check 360/390/768/1280/1440px and short 720px laptop height.
+
+Exact leaders and chapter links are authoritative in lib/site.ts, including Supreeth Annand as Treasurer. Convex production exists, but Clerk still uses a development instance; production Clerk domain and credentials remain an infrastructure prerequisite. Browser viewport tests do not establish physical-phone behavior. No Lighthouse score is claimed. The October 9 finish verdict and screenshot provenance are recorded in docs/REDESIGN-BRIEF.md.

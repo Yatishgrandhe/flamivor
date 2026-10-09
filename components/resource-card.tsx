@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { resources } from "@/lib/resources";
+import "./resource-card.css";
+
 export function ResourceArt({ symbol }: { symbol: string }) {
   return (
     <svg viewBox="0 0 280 180" fill="none" aria-hidden="true">
@@ -37,7 +39,7 @@ export function ResourceCard({
 }) {
   return (
     <Link href={`/resources/${resource.slug}`} className="resource-card">
-      <div className={`resource-cover ${resource.color}`}>
+      <div className={`resource-cover ${resource.color}`} aria-hidden="true">
         <span className="cover-label">THE CHARLOTTE FIELD NOTES</span>
         <ResourceArt symbol={resource.symbol} />
         <span className="cover-bottom">

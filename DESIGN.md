@@ -95,7 +95,7 @@ Public photography is real Unsplash stock, shown with a visible photographer and
 **Key Characteristics:**
 - Cream public pages with burgundy actions and header, near-black copy, rules, and component outlines.
 - Literata public headings in ordinary case; Manrope for prose, controls, and navigation.
-- Shallow black offset shadows on selected retro components; the surrounding page remains spacious and quiet.
+- Shallow offset shadows on selected retro components; the surrounding page remains spacious and quiet.
 - Real, credited stock photographs and factual Charlotte chapter information.
 
 ## Colors
@@ -136,19 +136,20 @@ The observed authored type steps across public, member, and auth surfaces are 11
 
 Public pages use a centered 1280px shell with 20–64px responsive gutters. The header is 88px tall on desktop and 80px on mobile. The homepage opens on cream with a text and photo split, a short chapter introduction, one primary action, and a separate guide card. At 767px and below, the opening stacks naturally, the photo crop is 260px high, and the guide card follows it. Mission, participation, guide, roster, and invitation sections use generous 64px desktop spacing, reduced to 40px on phones. Photo captions and credit links stay adjacent to their images.
 
-Secondary public pages use the same shell and typography, with a concise page heading followed by editorial sections, credited photography, leader rows, participation paths, or the searchable guide shelf. Resources remain public without sign-in. Header navigation uses the exact burgundy field and unchanged phoenix logo; its mobile menu preserves focus return and Escape dismissal.
+Secondary public pages use the same shell and typography, with a concise page heading followed by editorial sections, credited photography, framed leadership cards, open participation paths, or the searchable guide shelf. Resources remain public without sign-in. Header navigation uses the exact burgundy field and unchanged phoenix logo; its mobile menu preserves focus return and Escape dismissal.
 
 ## Elevation & Depth
 
-Depth is selective and structural. Public retro buttons and cards use a crisp 2px black offset shadow. On fine-pointer hover, buttons shift slightly and deepen to a 4px offset; active buttons press down and lose the shadow. Cards keep their shallow resting shadow. Photography provides the natural depth on the page; avoid applying retro outlines and shadows indiscriminately.
+Depth is selective and structural. Public retro buttons retain a crisp 2px black offset shadow. Framed cards use a quieter 2px offset shadow mixed from 24% context ink and the surface cream. On fine-pointer hover, buttons shift slightly and deepen to a 4px offset; active buttons press down and lose the shadow. Cards keep their shallow resting shadow. Photography provides the natural depth on the page; avoid applying retro outlines and shadows indiscriminately.
 
 ### Shadow Vocabulary
-- **Retro component resting shadow** (`2px 2px 0 #171714`): public retro buttons and cards.
+- **Retro button resting shadow** (`2px 2px 0 #171714`): public retro buttons; their hover shadow remains black at 4px.
+- **Framed card resting shadow** (`2px 2px 0 color-mix(in srgb, var(--ink) 24%, var(--paper))`): context-colored cards, including member and authentication cards.
 - **Retro button hover shadow** (`4px 4px 0 #171714`): only while a fine pointer hovers the button.
 
 ## Shapes
 
-Public components use compact square corners: 2px on buttons, cards, and photo frames; 4px on grouped filter controls. Component outlines are 1px near-black. The photo frame uses a thin outline and a small cream mat. Keep the rest of the page border-light and open.
+Public components use compact square corners: 2px on buttons, cards, and photo frames; 4px on grouped filter controls. Buttons retain a 1px near-black outline. Framed cards use a 1px context-colored control border. The photo frame uses a thin outline and a small cream mat. Keep the rest of the page border-light and open.
 
 ## Components
 
@@ -162,11 +163,12 @@ Public components use compact square corners: 2px on buttons, cards, and photo f
 - **Focus / disabled:** Keep the visible focus ring and clear disabled opacity and pointer behavior.
 
 ### Cards / Containers
-- **Corner style:** Square (2px).
+- **Corner style:** 2px.
 - **Background:** Soft Surface or Warm Cream, depending on the content role.
-- **Border:** 1px Retro Ink.
-- **Shadow:** 2px 2px 0 Retro Ink.
-- **Internal padding:** The guide feature card uses 28px; compact variants use 24px.
+- **Border:** 1px context-colored control border.
+- **Shadow:** quiet 2px offset, mixed from 24% context ink and surface cream. Buttons keep their separate black shadow.
+- **Internal padding:** 28px, reduced to 24px below 768px.
+- **Typography:** Public cards use the public type hierarchy; member and authentication cards share the frame tokens while keeping their Space Grotesk and Manrope type styles.
 
 ### Inputs and Filters
 - **Search:** A 52px input group with cream ground, clear border, Manrope text, and a visible focus ring; the input text is 16px.
@@ -192,3 +194,7 @@ The opening photo sits in a thin near-black outline with a small cream mat. Keep
 - **Don't** use AI-generated images or present stock photos as actual members or chapter events.
 - **Don't** make every surface bold, outlined, or shadowed; reserve the retro treatment for selected actions and cards.
 - **Don't** use oversized all-caps display headings, invented facts, or additional visual hues.
+
+## Card consistency
+
+Framed cards share `--card-radius` (2px), `--card-padding` (28px; 24px below 768px), a 1px context-colored control border, and a quiet 2px offset shadow mixed from 24% context ink and surface cream. Buttons retain their black 2px resting shadow. Public, member, and authentication colors remain scoped to their surfaces; member and authentication cards share the frame while retaining separate typography. The hero photo and guide card keep aligned outer edges. The hero card remains fixed during scroll; only the photo inner layer parallaxes. Resource covers share a 7:5 ratio, resource cards stretch to equal row height with matching title and description space (two and three line minimums on desktop, natural height on mobile), and all copy remains visible. Invitations and join callouts use the same frame and inset. Leadership uses a two-column grid of framed cards; participation paths remain open lists.

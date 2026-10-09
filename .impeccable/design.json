@@ -65,9 +65,9 @@
     },
     "shadows": [
       {
-        "name": "retro-component",
+        "name": "retro-button",
         "value": "2px 2px 0 #171714",
-        "purpose": "Resting shadow on public retro buttons and cards."
+        "purpose": "Resting black shadow on public retro buttons; framed cards use the separate context-mixed card shadow."
       },
       {
         "name": "retro-button-hover",
@@ -84,7 +84,7 @@
       {
         "name": "desktop-home-scroll",
         "value": "min-width:1024px; pointer:fine; prefers-reduced-motion:no-preference",
-        "purpose": "Homepage-only scroll motion: hero photo y 18px to -18px, guide card 20px to 0, mission photo 16px to 0, chapter heading 12px to 0, chapter copy 16px to 0, and guide rows 12px to 0 with 80ms stagger and 600ms entrance."
+        "purpose": "Homepage-only scroll motion: hero photo inner layer y 18px to -18px, mission photo 16px to 0, chapter heading 12px to 0, chapter copy 16px to 0, and guide rows 12px to 0 with 80ms stagger and 600ms entrance. The hero guide card exterior stays fixed."
       },
       {
         "name": "public-entrance",
@@ -97,7 +97,18 @@
       {"name": "intermediate-layout", "value": "1100px"},
       {"name": "desktop-motion", "value": "1024px and fine pointer"},
       {"name": "public-shell", "value": "1280px max-width"}
-    ]
+    ],
+    "cardTokens": {
+      "radius": "2px",
+      "padding": "28px",
+      "mobilePadding": "24px below 768px",
+      "border": "1px solid context control border",
+      "shadow": "2px 2px 0 color-mix(in srgb, context ink 24%, surface cream)",
+      "scope": "Public, member, and authentication cards share frame tokens while retaining scoped colors; member and authentication typography remains separate.",
+      "resourceCovers": "7:5 aspect ratio; cards stretch to equal height within each grid row.",
+      "heroMotion": "Guide card exterior stays fixed; only the inner photo layer parallaxes.",
+      "leadershipLayout": "Two-column grid of framed cards; participation paths remain open lists."
+    }
   },
   "components": [
     {
@@ -120,9 +131,9 @@
       "name": "Retro Card",
       "kind": "card",
       "refersTo": "card",
-      "description": "Cream-toned feature card with a thin ink border and shallow offset shadow.",
+      "description": "Framed card using context-colored border and a quiet ink-and-cream offset shadow; member and authentication cards share the frame with separate typography.",
       "html": "<article class=\"ds-card\"><h2>Start with a good question.</h2><p>Our original starter guides are free to read and put into practice.</p><a href=\"#guides\">Explore the guides</a></article>",
-      "css": ".ds-card { padding:28px;background:#E9E6DD;color:#171714;border:1px solid #171714;border-radius:2px;box-shadow:2px 2px 0 #171714; } .ds-card h2 { margin:0 0 16px;font:400 30px/1.2 Literata,Georgia,serif;letter-spacing:-.03em; } .ds-card p { margin:0 0 20px;font:400 14px/1.7 Manrope,Arial,sans-serif; } .ds-card a { color:#8A0103;font:500 14px/1.5 Manrope,Arial,sans-serif;text-underline-offset:4px; } .ds-card a:hover { text-decoration:underline; } .ds-card a:focus-visible { outline:3px solid #8A0103;outline-offset:4px; }"
+      "css": ".ds-card { padding:28px;background:#E9E6DD;color:#171714;border:1px solid color-mix(in srgb,#171714 60%,#F2EFE5);border-radius:2px;box-shadow:2px 2px 0 color-mix(in srgb,#171714 24%,#F2EFE5); } @media(max-width:767px) { .ds-card { padding:24px; } } .ds-card h2 { margin:0 0 16px;font:400 30px/1.2 Literata,Georgia,serif;letter-spacing:-.03em; } .ds-card p { margin:0 0 20px;font:400 14px/1.7 Manrope,Arial,sans-serif; } .ds-card a { color:#8A0103;font:500 14px/1.5 Manrope,Arial,sans-serif;text-underline-offset:4px; } .ds-card a:hover { text-decoration:underline; } .ds-card a:focus-visible { outline:3px solid #8A0103;outline-offset:4px; }"
     },
     {
       "name": "Search Field",
@@ -151,11 +162,11 @@
   ],
   "narrative": {
     "northStar": "A Tactile Chapter Journal",
-    "overview": "The public interface pairs warm editorial type and real, credited photography with a restrained retro component language. The pages stay open and cream-led; thin dark outlines and shallow offset shadows give selected cards and actions a physical feel. The Neobrutalism.com Radix primitives are the source for the button and card patterns, adapted to this chapter’s colors, type, and interaction needs. Public photography is real Unsplash stock, shown with a visible photographer and source credit. It is illustrative and does not represent chapter members or events. Do not use AI-generated imagery. The supplied phoenix logo stays unchanged on the burgundy header. Member and authentication screens retain their separate functional styling and real Clerk and Convex behavior.",
+    "overview": "The public interface pairs warm editorial type and real, credited photography with a restrained retro component language. The pages stay open and cream-led; thin dark outlines and shallow offset shadows give selected cards and actions a physical feel. Buttons keep a black 2px shadow; cards use a quieter 2px shadow mixed from 24% context ink and surface cream, with a 1px context-colored border and shared 2px radius and responsive padding. Member and authentication cards share the frame tokens while retaining separate typography and scoped colors. The homepage guide card stays fixed while the inner hero photo parallaxes on eligible desktop scroll. The Neobrutalism.com Radix primitives are the source for the button and card patterns, adapted to this chapter’s colors, type, and interaction needs. Public photography is real Unsplash stock, shown with a visible photographer and source credit. It is illustrative and does not represent chapter members or events. Do not use AI-generated imagery. The supplied phoenix logo stays unchanged on the burgundy header. Member and authentication screens retain their separate functional styling and real Clerk and Convex behavior.",
     "keyCharacteristics": [
       "Cream public pages with burgundy actions and header, near-black copy, rules, and component outlines.",
       "Literata public headings in ordinary case; Manrope for prose, controls, and navigation.",
-      "Shallow black offset shadows on selected retro components; the surrounding page remains spacious and quiet.",
+      "Black 2px offset shadows on buttons and quiet context-mixed 2px shadows on framed cards; the surrounding page remains spacious and quiet.",
       "Real, credited stock photographs and factual Charlotte chapter information."
     ],
     "rules": [

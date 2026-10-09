@@ -290,6 +290,17 @@
   padding: 40px clamp(24px, 4.2vw, 64px) 88px;
 }
 
+.dashboard-welcome,
+.dashboard-overview-card,
+.dashboard-panel,
+.dashboard-danger-zone,
+.dashboard-empty-state,
+.dashboard-auth-paper {
+  border: var(--card-border);
+  border-radius: var(--card-radius);
+  box-shadow: var(--card-shadow);
+}
+
 .dashboard-notice {
   position: relative;
   grid-template-columns: 16px minmax(0, 1fr);
@@ -353,7 +364,7 @@
 
 .dashboard-page {
   display: grid;
-  gap: 52px;
+  gap: 48px;
 }
 
 .dashboard-welcome {
@@ -363,7 +374,7 @@
   justify-content: space-between;
   gap: 32px;
   min-height: 260px;
-  padding: clamp(28px, 4vw, 56px);
+  padding: var(--card-padding);
   overflow: hidden;
   background: var(--red);
   color: var(--paper);
@@ -423,8 +434,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 28px;
-  border: 1px solid var(--line);
+  padding: var(--card-padding);
   background: var(--surface);
 }
 
@@ -509,7 +519,7 @@
 .dashboard-profile-summary h2 {
   max-width: 100%;
   overflow-wrap: anywhere;
-  margin-top: 32px;
+  margin-top: 20px;
   font-family: "Space Grotesk", sans-serif;
   font-size: clamp(24px, 3vw, 34px);
   font-weight: 600;
@@ -639,8 +649,7 @@
 
 .dashboard-panel {
   min-width: 0;
-  padding: clamp(24px, 3.5vw, 40px);
-  border: 1px solid var(--line);
+  padding: var(--card-padding);
   background: var(--surface);
 }
 
@@ -830,8 +839,8 @@
   align-items: flex-start;
   justify-content: space-between;
   gap: 32px;
-  padding: 28px;
-  border: 1px solid var(--line);
+  padding: var(--card-padding);
+  background: var(--surface);
 }
 
 .dashboard-danger-zone .eyebrow {
@@ -900,11 +909,8 @@
 
 .dashboard-empty-state {
   min-height: 340px;
-  padding: 44px 24px;
-  border: 1px solid var(--line);
-  border-style: solid;
-  border-radius: 0;
-  background: transparent;
+  padding: var(--card-padding);
+  background: var(--surface);
   text-align: center;
 }
 
@@ -1071,8 +1077,7 @@ body:has(.dashboard-clear-dialog) [data-slot="alert-dialog-overlay"] {
 .dashboard-auth-paper {
   position: relative;
   width: 100%;
-  padding: clamp(28px, 6vw, 64px);
-  border: 1px solid var(--line);
+  padding: var(--card-padding);
   background: var(--surface);
 }
 
@@ -1268,7 +1273,6 @@ body:has(.dashboard-clear-dialog) [data-slot="alert-dialog-overlay"] {
 
   .dashboard-overview-card {
     min-height: 260px;
-    padding: 24px;
   }
 
   .dashboard-section-heading {
@@ -1295,10 +1299,6 @@ body:has(.dashboard-clear-dialog) [data-slot="alert-dialog-overlay"] {
     font-size: 13px;
   }
 
-  .dashboard-panel {
-    padding: 24px 20px;
-  }
-
   .dashboard-side-note {
     padding: 0 4px;
   }
@@ -1306,7 +1306,6 @@ body:has(.dashboard-clear-dialog) [data-slot="alert-dialog-overlay"] {
   .dashboard-danger-zone {
     display: grid;
     gap: 20px;
-    padding: 22px 18px;
   }
 
   .dashboard-saved-row {

@@ -60,25 +60,6 @@ export function DesktopMotion() {
           );
         }
 
-        const heroGuideCard = scope.querySelector<HTMLElement>(".hero-guide-card");
-        if (heroGuideCard && communityHeroPhoto) {
-          gsap.fromTo(
-            heroGuideCard,
-            { y: 20 },
-            {
-              y: 0,
-              ease: "none",
-              immediateRender: false,
-              scrollTrigger: {
-                trigger: communityHeroPhoto,
-                start: "top 85%",
-                end: "center 45%",
-                scrub: 0.5,
-              },
-            },
-          );
-        }
-
         const mission = scope.querySelector(".mission-section");
         const missionPhoto = scope.querySelector(".mission-photo");
         if (mission && missionPhoto) {

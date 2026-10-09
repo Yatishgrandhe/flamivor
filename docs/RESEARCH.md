@@ -4,7 +4,7 @@ Official mission research: https://flamivor.wixsite.com/flamivor/about and https
 
 The user's subsequent Charlotte group announcement is the source for the local mission, leadership and social account. User explicitly removed Nikhil Doranala and marked Treasurer open.
 
-Approved leadership: Yatish Grandhe, President; Shaurya Gautham, Vice President; Joshita Madarapu, Social Media Manager; Tanvi Musale, Operations Director; Treasurer, Open position.
+Approved leadership (updated by the user October 9, 2026): Yatish Grandhe, President; Shaurya Gautham, Vice President; Supreeth Annand, Treasurer; Joshita Madarapu, Social Media Manager; Tanvi Musale, Operations Director. The previously open Treasurer position is filled.
 
 Approved application URL: https://docs.google.com/forms/d/e/1FAIpQLSdv7CDW7w7LyLv0DACdmFv_E0NEWBU-XuIpBUoJsaosfyFPWA/viewform?usp=header
 Approved social: https://www.instagram.com/flamivor.charlotte/

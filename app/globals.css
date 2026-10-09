@@ -159,7 +159,7 @@ em { font-style:normal; }
 .roster-line {display:flex; align-items:center; justify-content:space-between; gap:24px; padding:24px 0; border-top:1px solid var(--line); font-size:16px; font-weight:600;}
 .roster-line > span:last-child {font-size:11px; font-weight:500; text-align:right;}
 .roster-line small {font-size:9px; display:inline-block; margin-left:12px; letter-spacing:.08em;}
-.roster-open {border-bottom:1px solid var(--line);}
+.people-roster .roster-line:last-child {border-bottom:1px solid var(--line);}
 .invitation {background:var(--red); color:var(--paper); padding-block:88px; overflow:clip;}
 .invitation-inner {display:grid; grid-template-columns:1.4fr 1fr; gap:64px; align-items:end;}
 .invitation h2 {font-size:clamp(64px,8vw,112px); margin-top:0;}

@@ -8,6 +8,7 @@ export const site = {
 export const leaders = [
   { name: "Yatish Grandhe", role: "President", initials: "YG" },
   { name: "Shaurya Gautham", role: "Vice President", initials: "SG" },
+  { name: "Supreeth Annand", role: "Treasurer", initials: "SA" },
   { name: "Joshita Madarapu", role: "Social Media Manager", initials: "JM" },
   { name: "Tanvi Musale", role: "Operations Director", initials: "TM" },
 ];

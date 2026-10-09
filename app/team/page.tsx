@@ -1,13 +1,11 @@
 import type { Metadata } from "next";
-import { ArrowUpRight } from "lucide-react";
 import { PageHeader } from "@/components/editorial";
-import { Button } from "@/components/ui/button";
-import { leaders, site } from "@/lib/site";
+import { leaders } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Chapter team",
   description:
-    "Meet the student leaders of Flamivor Charlotte and learn about the open Treasurer role.",
+    "Meet the student leaders of Flamivor Charlotte, including Treasurer Supreeth Annand.",
 };
 
 export default function Team() {
@@ -52,27 +50,6 @@ export default function Team() {
           ))}
         </div>
 
-        <article className="open-role editorial-row">
-          <span className="row-index" aria-hidden="true">
-            05
-          </span>
-          <div>
-            <p className="eyebrow">OPEN POSITION</p>
-            <h3>
-              Treasurer <span>— Open</span>
-            </h3>
-            <p>
-              Help the chapter keep its finances organized and its plans
-              thoughtful. Students interested in the role can introduce
-              themselves through the chapter form.
-            </p>
-          </div>
-          <Button asChild>
-            <a href={site.form} target="_blank" rel="noreferrer">
-              Express your interest <ArrowUpRight aria-hidden="true" />
-            </a>
-          </Button>
-        </article>
       </section>
     </main>
   );

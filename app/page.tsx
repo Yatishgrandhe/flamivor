@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { TextLink, Invite } from "@/components/editorial";
@@ -63,7 +62,7 @@ export default function Home() {
         </section>
         <section className="home-people shell">
           <div className="people-intro"><h2>A local chapter.<br />A shared effort.</h2><p>Meet the students helping turn the chapter&apos;s purpose into its next practical step.</p><TextLink href="/team">Meet the people</TextLink></div>
-          <div className="people-roster">{leaders.map((leader) => <div className="roster-line" key={leader.name}><span>{leader.name}</span><span>{leader.role}</span></div>)}<Link href="/team" className="roster-line roster-open"><span>Treasurer <small>POSITION OPEN</small></span><ArrowUpRight aria-label="Explore the open Treasurer position" /></Link></div>
+          <div className="people-roster">{leaders.map((leader) => <div className="roster-line" key={leader.name}><span>{leader.name}</span><span>{leader.role}</span></div>)}</div>
         </section>
         <Invite />
       </div>

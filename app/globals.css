@@ -12,6 +12,7 @@
   --color-input: var(--control-line); --color-ring: var(--red);
   --radius-sm: 2px; --radius-md: 2px; --radius-lg: 4px; --radius-xl: 4px;
   --font-sans: "Manrope", sans-serif;
+  --color-retro-ink: #171714;
 }
 :root { --red:#8A0103; --paper:#F2EFE5; --ink:var(--red); --muted:color-mix(in srgb,var(--red) 72%,var(--paper)); --line:color-mix(in srgb,var(--red) 24%,var(--paper)); --surface:color-mix(in srgb,var(--red) 4%,var(--paper)); --control-line:color-mix(in srgb,var(--red) 60%,var(--paper)); --ease-out:cubic-bezier(.23,1,.32,1); --gutter:clamp(20px,4.4vw,64px); }
 * { box-sizing:border-box; }

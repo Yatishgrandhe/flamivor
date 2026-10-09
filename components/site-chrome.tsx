@@ -9,5 +9,5 @@ export function SiteChrome({ header, footer, children }: {
 }) {
   const path = usePathname();
   const workspace = /^\/(dashboard|sign-in|sign-up)(\/|$)/.test(path);
-  return <>{!workspace && header}{children}{!workspace && footer}</>;
+  return workspace ? <>{children}</> : <div className="public-site">{header}{children}{footer}</div>;
 }

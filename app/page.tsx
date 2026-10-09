@@ -1,6 +1,7 @@
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/retro/button";
+import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "@/components/retro/card";
 import { TextLink, Invite } from "@/components/editorial";
 import { DesktopMotion } from "@/components/desktop-motion";
 import { resources } from "@/lib/resources";
@@ -38,10 +39,8 @@ export default function Home() {
     <main id="main">
       <div id="home-content">
         <section className="community-hero shell">
+          <h1 className="retro-hero-heading">Learning grows<br />when we <em>share it.</em></h1>
           <div className="community-opening">
-            <h1>
-              Learning grows when we <em>share it.</em>
-            </h1>
             <p>
               Flamivor Charlotte is a youth-led education chapter building ways
               for students to learn, lead, and support one another.
@@ -52,7 +51,6 @@ export default function Home() {
                   Get involved <ArrowUpRight data-icon="inline-end" aria-hidden="true" />
                 </a>
               </Button>
-              <TextLink href="/resources">Explore free guides</TextLink>
             </div>
           </div>
           <figure className="community-hero-photo">
@@ -69,11 +67,22 @@ export default function Home() {
               <PhotoCredit photo={photos.collaboration} />
             </figcaption>
           </figure>
+          <Card className="hero-guide-card">
+            <CardHeader>
+              <CardTitle><h2>Start with a<br />good question.</h2></CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p>Build a study habit. Try a project. Help a friend learn.</p>
+              <p>Our original starter guides are free to read and put into practice.</p>
+            </CardContent>
+            <CardFooter>
+              <Button asChild variant="inverse"><Link href="/resources">Explore the guides <ArrowUpRight data-icon="inline-end" aria-hidden="true" /></Link></Button>
+            </CardFooter>
+          </Card>
           <div className="community-context">
             <p>Charlotte, North Carolina</p>
             <p>
-              A local chapter creating more ways for young people to learn and
-              contribute together.
+              Learn. Share. Lead.
             </p>
           </div>
         </section>

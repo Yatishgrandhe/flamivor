@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import { usePageTransition } from "@/components/page-transitions";
 
-/** Desktop-only scroll motion, scoped to the homepage and cleared on route changes. */
+/** Subtle desktop scroll motion, scoped to the homepage and cleared on route changes. */
 export function DesktopMotion() {
   const { isTransitioning, revealKey } = usePageTransition();
 
@@ -41,19 +41,38 @@ export function DesktopMotion() {
       if (!scope) return;
 
       const ctx = gsap.context(() => {
-        const communityHero = scope.querySelector(".community-hero");
+        const communityHeroPhoto = scope.querySelector(".community-hero-photo");
         const heroPhoto = scope.querySelector(".hero-photo-parallax");
-        if (communityHero && heroPhoto) {
+        if (communityHeroPhoto && heroPhoto) {
           gsap.fromTo(
             heroPhoto,
-            { y: 36 },
+            { y: 18 },
             {
-              y: -36,
+              y: -18,
               ease: "none",
               scrollTrigger: {
-                trigger: communityHero,
-                start: "top 96px",
+                trigger: communityHeroPhoto,
+                start: "top bottom",
                 end: "bottom top",
+                scrub: 0.6,
+              },
+            },
+          );
+        }
+
+        const heroGuideCard = scope.querySelector<HTMLElement>(".hero-guide-card");
+        if (heroGuideCard && communityHeroPhoto) {
+          gsap.fromTo(
+            heroGuideCard,
+            { y: 20 },
+            {
+              y: 0,
+              ease: "none",
+              immediateRender: false,
+              scrollTrigger: {
+                trigger: communityHeroPhoto,
+                start: "top 85%",
+                end: "center 45%",
                 scrub: 0.5,
               },
             },
@@ -65,7 +84,7 @@ export function DesktopMotion() {
         if (mission && missionPhoto) {
           gsap.fromTo(
             missionPhoto,
-            { y: 36 },
+            { y: 16 },
             {
               y: 0,
               ease: "none",
@@ -92,14 +111,14 @@ export function DesktopMotion() {
           if (display) {
             gsap.fromTo(
               display,
-              { y: 20 },
+              { y: 12 },
               { y: 0, ease: "none", scrollTrigger },
             );
           }
           if (copy) {
             gsap.fromTo(
               copy,
-              { y: 24 },
+              { y: 16 },
               { y: 0, ease: "none", scrollTrigger },
             );
           }
@@ -110,11 +129,11 @@ export function DesktopMotion() {
           .forEach((entry, index) => {
             gsap.fromTo(
               entry,
-              { y: 24 },
+              { y: 12 },
               {
                 y: 0,
                 duration: 0.6,
-                delay: index * 0.1,
+                delay: index * 0.08,
                 ease: "power2.out",
                 immediateRender: false,
                 scrollTrigger: {
@@ -126,24 +145,6 @@ export function DesktopMotion() {
             );
           });
 
-        const peopleImage = scope.querySelector(".people-image");
-        const peoplePhoto = peopleImage?.querySelector("img");
-        if (peopleImage && peoplePhoto) {
-          gsap.fromTo(
-            peoplePhoto,
-            { scale: 1.06 },
-            {
-              scale: 1,
-              ease: "none",
-              scrollTrigger: {
-                trigger: peopleImage,
-                start: "top bottom",
-                end: "bottom top",
-                scrub: 0.6,
-              },
-            },
-          );
-        }
       }, scope);
 
       document.documentElement.dataset.desktopMotion = "active";

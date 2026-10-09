@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { ArrowUpRight } from "lucide-react";
 import { PageHeader, TextLink } from "@/components/editorial";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/retro/button";
 import { site } from "@/lib/site";
 import { PhotoBand } from "@/components/photo-band";
 import { photos } from "@/lib/photos";

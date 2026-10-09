@@ -17,3 +17,9 @@ The user requires the existing approved phoenix logo unchanged, with Charlotte b
 Next.js 16, React, TypeScript, shadcn, Clerk, Convex and Vercel are required. Keep real data flows. Clerk remains a development instance until production credentials/domain configuration is completed. The user requests branded loading and route transition animations plus desktop scroll motion; mobile scroll animation is forbidden. Respect reduced motion and keyboard access.
 
 The user rejected the latest oversized poster-style design on October 9, 2026. Redesign scope includes public presentation and shared public primitives, preserving factual content, approved assets and member behavior. Build, typecheck and lint must pass before committing, syncing and deploying. Phone/tablet/laptop viewport tests provide layout evidence; physical phone behavior is not inferred from screenshots.
+
+## Latest visual direction
+
+The user rejected the warm design and initial nonprofit mockup, and explicitly requested a retro UI library. Black is now permitted alongside exact red and cream. Use Neobrutalism.com (retroui.dev currently redirects there) with actual shadcn/Radix components. The new visual world is a printed youth community club poster, with bold type, outlined photo frames, restrained offset shadows, and natural photography. Do not change the approved logo.
+
+The latest correction requires restraint: not everything bold; regular-weight headings and copy, subtle retro controls. No AI-generated images; use real Unsplash photography only. This overrides the earlier request to generate UI mockups.

@@ -1,0 +1,15 @@
+# October redesign brief
+Self-authored under the user's explicit creative direction: “revamped entire website”, “make everything much, much better, stick out”, “use your skills and design this properly”. The current logo must not change.
+
+Audience and purpose: youth-led Charlotte education chapter, students, volunteers and local partners. User supplied exact palette, logo, leadership, form and Instagram. No global information.
+Authored vibe: confident, local, print-minded, tangible, youthful. Assets: official unchanged logo, existing original guides, new illustrative paper phoenix and books. Existing collage rejected by user; new campaign/publication direction selected.
+Journey and feeling: recognition (Charlotte campaign) → purpose (what we build) → agency (three ways in, the peak) → usefulness (free field guides) → trust (real named local students) → participation (official form).
+Grammar: student publication with distinct scene cuts; a cinematic flight is too heavy for this local resource and chapter site. Scroll-jacked full-screen slideshow, working dashboard, horizontal gallery, continuous world, dense collage and static-only arrangements do not match the readable educational journey and desktop-animation requirement.
+Signature: a red learning route connects the three contributions as chapters; each word arrives independently without concealing its corresponding link.
+Tell-someone: “It's the site where Charlotte's next chapter rises from a book, then shows you where you can help.”
+Score: hero differential parallax → mission typographic lift → participation drawn line plus lateral type → publication-cover entrances → quiet local roster → closing lift.
+Peak: participation, the largest cumulative visual change. No empty pinning. No text fades; clarity is constant. Mobile, touch, reduced motion are static natural reading.
+Fingerprint differences from earlier build: hero changes pinned workbench collage to flowing sculptural campaign; acts change overlapping cards to continuous readable chapters; signature becomes drawn learning route; ending becomes split campaign close plus giant Charlotte footer. Red masthead continuity retained for logo requirement.
+Implementation: GSAP scoped React context, preserving route/media cleanup; skill engine is not mounted globally because it lacks teardown for React routing/device changes. No modified engine.
+Review: actual screenshots read by Luna design and quality reviewers. Contrast repaired by removing low-opacity headings. Motion inspected between states. Phone viewport has no active motion or pins. Actual phone and reduced-motion OS weren't exercised.
+Asset: public/images/paper-phoenix.webp. Built-in imagegen used, transparent background retained; no change to the logo. Prompt: extraordinary photoreal studio sculpture of an ivory paper phoenix rising from open cream books, tactile engineered folds, full wings and book stack visible, transparent background, directional soft lighting, no text/logos/people/flames, warm #F2EFE5 materials, editorial product photography. Full generation prompt is recorded in the current task.

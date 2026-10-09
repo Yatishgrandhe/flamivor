@@ -16,13 +16,15 @@ export function DesktopMotion() {
       const scope = document.querySelector("#home-content");
       if (!scope) return;
       const ctx = gsap.context(() => {
-        gsap.to(".phoenix-scene img", {y:-90,rotation:4,scale:1.04,ease:"none",scrollTrigger:{trigger:".campaign-hero",start:"top 96px",end:"bottom top",scrub:0.6}});
+        gsap.fromTo(".hero-photo-parallax", {y:60}, {y:-60,ease:"none",scrollTrigger:{trigger:".campaign-hero",start:"top 96px",end:"bottom top",scrub:0.6}});
         gsap.to(".campaign-copy h1", {y:28,ease:"none",scrollTrigger:{trigger:".campaign-hero",start:"top 96px",end:"bottom top",scrub:0.6}});
         gsap.from(".mission-emphasis",{y:24,scrollTrigger:{trigger:".mission-content",start:"top 78%",end:"center 50%",scrub:true}});
+        gsap.from(".mission-photo",{y:72,scrollTrigger:{trigger:".mission-section",start:"top 85%",end:"center 50%",scrub:.6}});
+        gsap.fromTo(".photo-parallax",{scale:1.16,y:50},{scale:1.04,y:-50,ease:"none",scrollTrigger:{trigger:".photo-band-crop",start:"top bottom",end:"bottom top",scrub:.6}});
         gsap.from(".journey-line span",{scaleY:0,ease:"none",scrollTrigger:{trigger:".participation-journey",start:"top 65%",end:"bottom 55%",scrub:0.4}});
         gsap.utils.toArray<HTMLElement>(".journey-chapter").forEach((chapter) => {
-          gsap.from(chapter.querySelector(".journey-display h3"),{x:-48,ease:"none",scrollTrigger:{trigger:chapter,start:"top 85%",end:"top 40%",scrub:.4}});
-          gsap.from(chapter.querySelector(".journey-copy"),{y:40,ease:"none",scrollTrigger:{trigger:chapter,start:"top 85%",end:"top 40%",scrub:.4}});
+          gsap.from(chapter.querySelector(".journey-display h3"),{x:-96,ease:"none",scrollTrigger:{trigger:chapter,start:"top 85%",end:"top 40%",scrub:.4}});
+          gsap.from(chapter.querySelector(".journey-copy"),{y:64,ease:"none",scrollTrigger:{trigger:chapter,start:"top 85%",end:"top 40%",scrub:.4}});
         });
         gsap.from(".resource-card",{y:48,rotation:2,stagger:.08,duration:.7,scrollTrigger:{trigger:".resource-grid",start:"top 85%",once:true}});
         gsap.from(".invitation h2",{y:60,ease:"none",scrollTrigger:{trigger:".invitation",start:"top 90%",end:"top 45%",scrub:.4}});

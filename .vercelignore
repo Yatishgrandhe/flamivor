@@ -6,4 +6,5 @@ node_modules
 output
 docs
 scrollcraft
+graphify-out
 public/images/*-original.png

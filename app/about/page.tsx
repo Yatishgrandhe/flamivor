@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Invite, PageHeader } from "@/components/editorial";
+import { PhotoBand } from "@/components/photo-band";
+import { photos } from "@/lib/photos";
 
 export const metadata: Metadata = {
   title: "Our mission",
@@ -58,6 +60,7 @@ export default function About() {
         </div>
       </section>
 
+      <PhotoBand photo={photos.classroom} caption="Learning grows when we make room for one another." />
       <section className="editorial-section shell" aria-labelledby="approach-heading">
         <div className="section-intro">
           <p className="eyebrow">HOW WE SHOW UP</p>

@@ -3,6 +3,8 @@ import { ArrowUpRight } from "lucide-react";
 import { PageHeader, TextLink } from "@/components/editorial";
 import { Button } from "@/components/ui/button";
 import { site } from "@/lib/site";
+import { PhotoBand } from "@/components/photo-band";
+import { photos } from "@/lib/photos";
 
 export const metadata: Metadata = {
   title: "Get involved",
@@ -63,6 +65,7 @@ export default function Join() {
         description="Come as a learner, a volunteer, or a local collaborator. Start with the part of the work that feels right for you."
       />
 
+      <PhotoBand photo={photos.collaboration} caption="Bring your curiosity. Find your people." />
       <section className="editorial-section shell" aria-labelledby="join-heading">
         <div className="section-intro">
           <p className="eyebrow">THREE WAYS IN</p>

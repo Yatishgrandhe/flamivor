@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -7,6 +6,9 @@ import { ResourceCard } from "@/components/resource-card";
 import { DesktopMotion } from "@/components/desktop-motion";
 import { resources } from "@/lib/resources";
 import { leaders, site } from "@/lib/site";
+import { photos } from "@/lib/photos";
+import { UnsplashImage } from "@/components/unsplash-image";
+import { PhotoBand, PhotoCredit } from "@/components/photo-band";
 const paths = [
   { word: "Learn.", type: "FOR CURIOUS MINDS", name: "Start with a question.", description: "Try a hands-on project, find your study rhythm, or learn how to support a peer. Our starter guides are open to everyone.", url: "/resources", label: "Explore free guides" },
   { word: "Lead.", type: "FOR STUDENTS WHO STEP UP", name: "Put your ideas to work.", description: "Help shape resources, learning opportunities, and local outreach. Bring your skills and help the chapter take its next step.", url: "/join#volunteer", label: "Become a volunteer" },
@@ -17,30 +19,32 @@ export default function Home() {
     <main id="main">
       <div id="home-content">
         <section className="campaign-hero">
+          <div className="entry-progress" aria-hidden="true" />
           <div className="shell campaign-stage">
             <div className="campaign-copy">
               <p className="eyebrow">YOUTH-LED EDUCATION. CHARLOTTE, NC.</p>
-              <h1>Charlotte.<br />Your next<br /><span>chapter.</span></h1>
+              <h1 aria-label="Charlotte. Your next chapter."><span className="hero-line"><span>Charlotte.</span></span><span className="hero-line"><span>Your next</span></span><span className="hero-line"><span>chapter.</span></span></h1>
               <p className="campaign-description">A city full of potential. A generation ready to build. We&apos;re creating more ways to learn, lead, and inspire, together.</p>
               <div className="campaign-actions">
                 <Button asChild className="button-light"><a href={site.form} target="_blank" rel="noreferrer">Get involved <ArrowUpRight aria-hidden="true" /></a></Button>
                 <TextLink href="/about">Meet Flamivor Charlotte</TextLink>
               </div>
             </div>
-            <figure className="phoenix-scene">
-              <Image src="/images/paper-phoenix.webp" alt="Illustrative sculpture of a cream paper phoenix rising from open books" width={1024} height={1536} priority sizes="(max-width: 767px) 90vw, 48vw" />
-              <figcaption>KNOWLEDGE GIVES US WINGS.<span>A PAPER SCULPTURE, IMAGINED FOR OUR CHAPTER.</span></figcaption>
+            <figure className="hero-photo">
+              <div className="hero-photo-crop"><div className="hero-photo-parallax"><UnsplashImage photo={photos.collaboration} priority sizes="(max-width: 767px) 100vw, 48vw" /></div></div>
+              <figcaption><span>Learning is better together.</span><PhotoCredit photo={photos.collaboration} /></figcaption>
             </figure>
           </div>
           <div className="hero-edition shell"><span>FLAMIVOR CHARLOTTE</span><span>LEARN / LEAD / INSPIRE</span><span>BUILT BY STUDENTS, FOR WHAT COMES NEXT.</span></div>
         </section>
         <section className="mission-section shell">
-          <div className="mission-label"><span className="mission-symbol" aria-hidden="true">↗</span></div>
+          <figure className="mission-photo"><UnsplashImage photo={photos.study} sizes="(max-width: 767px) 100vw, 28vw" /><figcaption><PhotoCredit photo={photos.study} /></figcaption></figure>
           <div className="mission-content">
             <h2>Education moves<br /><span className="mission-emphasis">when we do.</span></h2>
             <div className="mission-columns"><p>Flamivor Charlotte is a youth-led nonprofit chapter making education more accessible, meaningful, and connected to our community.</p><div><p>We&apos;re building toward educational resources, tutoring, workshops, mentorship, and local outreach. Every useful idea starts with someone willing to contribute.</p><TextLink href="/about">What we&apos;re building</TextLink></div></div>
           </div>
         </section>
+        <PhotoBand photo={photos.classroom} caption="More opportunities to learn. More people to learn with." />
         <section className="participation-section" aria-labelledby="participation-title">
           <div className="shell">
             <div className="section-heading"><h2 id="participation-title">Find your<br />way in.</h2><p>You don&apos;t need to have it all figured out.<br />You just need a place to begin.</p></div>

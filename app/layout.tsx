@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "@fontsource/anton/latin-400.css";
 import "@fontsource/space-grotesk/latin-500.css";
 import "@fontsource/space-grotesk/latin-600.css";
@@ -15,7 +15,9 @@ import { DevTools } from "@/components/dev-tools";
 import { site } from "@/lib/site";
 import { PageTransitions } from "@/components/page-transitions";
 import { PageEntrance } from "@/components/page-entrance";
+import { InputModality } from "@/components/input-modality";
 import { SiteChrome } from "@/components/site-chrome";
+export const viewport: Viewport = { themeColor: "#8A0103", viewportFit: "cover", interactiveWidget: "resizes-content" };
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   icons: { icon: "/images/flamivor-logo-approved.png", apple: "/images/flamivor-logo-approved.png" },
@@ -45,6 +47,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <InputModality />
         <PageTransitions>
           <PageEntrance>
             <a className="skip-link" href="#main">Skip to content</a>

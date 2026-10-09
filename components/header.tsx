@@ -43,9 +43,9 @@ export function Header() {
           <Link className="member-link" href="/dashboard">
             Member space
           </Link>
-          <Button asChild className="join-nav">
+          <Button asChild variant="inverse" className="join-nav">
             <a href={site.form} target="_blank" rel="noreferrer">
-              Get involved <ArrowUpRight aria-hidden="true" />
+              Get involved <ArrowUpRight data-icon="inline-end" aria-hidden="true" />
             </a>
           </Button>
           <Sheet open={open} onOpenChange={setOpen}>
@@ -75,7 +75,7 @@ export function Header() {
                 ].map(([label, url]) => (
                   <Link key={url} href={url} onClick={() => setOpen(false)}>
                     {label}
-                    <ArrowUpRight aria-hidden="true" />
+                    <ArrowUpRight data-icon="inline-end" aria-hidden="true" />
                   </Link>
                 ))}
               </nav>

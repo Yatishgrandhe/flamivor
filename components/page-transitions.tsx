@@ -19,7 +19,13 @@ type TransitionPhase =
   | "navigating"
   | "revealing"
   | "failed";
-type TransitionSource = "initial" | "link" | "history" | "programmatic" | "idle";
+type TransitionSource =
+  | "initial"
+  | "link"
+  | "history"
+  | "programmatic"
+  | "keyboard"
+  | "idle";
 
 const DESKTOP_COVER_MS = 700;
 const MOBILE_COVER_MS = 560;
@@ -244,6 +250,17 @@ export function PageTransitions({ children }: { children: React.ReactNode }) {
       uncoveredPendingRouteRef.current = false;
       uncoveredPathRef.current = null;
     }
+    if (sourceRef.current === "keyboard") {
+      const keyboardTargetPath = targetRef.current
+        ? new URL(targetRef.current).pathname
+        : null;
+      sourceRef.current = "idle";
+      targetRef.current = null;
+      if (pathname === keyboardTargetPath) {
+        pendingFocusRef.current = "main";
+        return;
+      }
+    }
     if (phaseRef.current === "idle") {
       if (prefersReducedMotion()) return;
       const frame = window.requestAnimationFrame(() => {
@@ -413,6 +430,12 @@ export function PageTransitions({ children }: { children: React.ReactNode }) {
       destination.hash !== current.hash;
     const hasRouteChange = destination.pathname !== current.pathname;
     if (!isInternal || isHashOnly || !hasRouteChange) return;
+
+    if (event.detail === 0) {
+      sourceRef.current = "keyboard";
+      targetRef.current = destination.href;
+      return;
+    }
 
     event.preventDefault();
     originLinkRef.current = link;

@@ -24,7 +24,7 @@ export default function Home() {
               <h1 aria-label="Charlotte. Your next chapter."><span className="hero-line"><span>Charlotte.</span></span><span className="hero-line"><span>Your next</span></span><span className="hero-line"><span>chapter.</span></span></h1>
               <p className="campaign-description">A city full of potential. A generation ready to build. We&apos;re creating more ways to learn, lead, and inspire, together.</p>
               <div className="campaign-actions">
-                <Button asChild className="button-light"><a href={site.form} target="_blank" rel="noreferrer">Get involved <ArrowUpRight aria-hidden="true" /></a></Button>
+                <Button asChild variant="inverse"><a href={site.form} target="_blank" rel="noreferrer">Get involved <ArrowUpRight data-icon="inline-end" aria-hidden="true" /></a></Button>
                 <TextLink href="/about">Meet Flamivor Charlotte</TextLink>
               </div>
             </div>

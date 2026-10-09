@@ -1,8 +1,13 @@
 "use client";
-import { useState } from "react";
-import { Search, X } from "lucide-react";
+import { useRef, useState } from "react";
+import { Search, SearchX, X } from "lucide-react";
 import { resources } from "@/lib/resources";
 import { ResourceCard } from "./resource-card";
+import { Button } from "@/components/ui/button";
+import { Field, FieldLabel } from "@/components/ui/field";
+import { InputGroup, InputGroupAddon, InputGroupButton, InputGroupInput } from "@/components/ui/input-group";
+import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
+import { Empty, EmptyContent, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from "@/components/ui/empty";
 
 const categories = [
   "All field notes",
@@ -12,6 +17,7 @@ const categories = [
 export function ResourceBrowser() {
   const [filter, setFilter] = useState("All field notes");
   const [search, setSearch] = useState("");
+  const searchRef = useRef<HTMLInputElement>(null);
   const query = search.trim().toLocaleLowerCase();
   const shown = resources.filter((resource) => {
     const matchesCategory =
@@ -27,48 +33,53 @@ export function ResourceBrowser() {
   return (
     <>
       <div className="resource-toolbar">
-        <div className="resource-search-wrap">
-          <label className="sr-only" htmlFor="resource-search">
+        <Field className="resource-search-wrap">
+          <FieldLabel className="sr-only" htmlFor="resource-search">
             Search field notes
-          </label>
-          <Search size={18} aria-hidden="true" />
-          <input
+          </FieldLabel>
+          <InputGroup>
+          <InputGroupAddon><Search aria-hidden="true" /></InputGroupAddon>
+          <InputGroupInput
             id="resource-search"
-            className="resource-search"
+            ref={searchRef}
             type="search"
             value={search}
             onChange={(event) => setSearch(event.target.value)}
             placeholder="Search titles and topics"
             autoComplete="off"
+            enterKeyHint="search"
           />
           {search && (
-            <button
-              className="resource-clear-search"
-              type="button"
-              onClick={() => setSearch("")}
+            <InputGroupAddon align="inline-end">
+            <InputGroupButton
+              size="icon-sm"
+              onClick={() => { setSearch(""); searchRef.current?.focus(); }}
               aria-label="Clear resource search"
             >
-              <X size={16} aria-hidden="true" />
-            </button>
+              <X aria-hidden="true" />
+            </InputGroupButton>
+            </InputGroupAddon>
           )}
-        </div>
-        <div
+          </InputGroup>
+        </Field>
+        <ToggleGroup
           className="resource-filters"
-          role="group"
+          type="single"
+          variant="outline"
+          value={filter}
+          onValueChange={(value) => { if (value) setFilter(value); }}
+          spacing={2}
           aria-label="Filter field notes by topic"
         >
           {categories.map((category) => (
-            <button
-              className="filter-button"
+            <ToggleGroupItem
               key={category}
-              type="button"
-              aria-pressed={filter === category}
-              onClick={() => setFilter(category)}
+              value={category}
             >
               {category}
-            </button>
+            </ToggleGroupItem>
           ))}
-        </div>
+        </ToggleGroup>
       </div>
       <div className="resource-grid">
         {shown.map((resource) => (
@@ -79,22 +90,27 @@ export function ResourceBrowser() {
         Showing {shown.length} of {resources.length} guides.
       </p>
       {shown.length === 0 && (
-        <div className="resource-empty">
-          <h2>No field notes found.</h2>
-          <p>Try another word or clear your filters to browse every guide.</p>
+        <Empty className="resource-empty">
+          <EmptyHeader>
+          <EmptyMedia variant="icon"><SearchX aria-hidden="true" /></EmptyMedia>
+          <EmptyTitle>No field notes found</EmptyTitle>
+          <EmptyDescription>Try another word or clear your filters to browse every guide.</EmptyDescription>
+          </EmptyHeader>
           {(search || filter !== "All field notes") && (
-            <button
-              className="filter-button"
+            <EmptyContent>
+            <Button variant="outline"
               type="button"
               onClick={() => {
                 setSearch("");
                 setFilter("All field notes");
+                searchRef.current?.focus();
               }}
             >
               Clear search and filters
-            </button>
+            </Button>
+            </EmptyContent>
           )}
-        </div>
+        </Empty>
       )}
     </>
   );

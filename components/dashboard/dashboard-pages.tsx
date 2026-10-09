@@ -9,13 +9,42 @@ import {
   BookOpenText,
   Check,
   CircleUserRound,
+  CircleAlert,
   ExternalLink,
-  LoaderCircle,
   Trash2,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Spinner } from "@/components/ui/spinner";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import {
+  AlertDialog,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import {
+  Field,
+  FieldDescription,
+  FieldGroup,
+  FieldLabel,
+  FieldLegend,
+  FieldSet,
+} from "@/components/ui/field";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import {
+  Empty,
+  EmptyContent,
+  EmptyDescription,
+  EmptyHeader,
+  EmptyMedia,
+  EmptyTitle,
+} from "@/components/ui/empty";
 import { ResourceBrowser } from "@/components/resource-browser";
 import { resources } from "@/lib/resources";
 import { site } from "@/lib/site";
@@ -55,9 +84,9 @@ export function DashboardOverview() {
           </p>
         </div>
         <Link className="dashboard-quiet-link" href="/dashboard/profile">
-          <CircleUserRound size={18} aria-hidden="true" />
+          <CircleUserRound size={18} data-icon="inline-start" aria-hidden="true" />
           {data.profile ? "Edit your profile" : "Set up your profile"}
-          <ArrowRight size={16} aria-hidden="true" />
+          <ArrowRight size={16} data-icon="inline-end" aria-hidden="true" />
         </Link>
       </section>
 
@@ -176,66 +205,86 @@ function ProfileEditor({ profile }: { profile: ProfileValues | null }) {
 
   return (
     <form className="dashboard-profile-form" onSubmit={handleSubmit}>
-      <label className="dashboard-field" htmlFor="profile-name">
-        <span>Your name</span>
-        <Input
-          id="profile-name"
-          name="name"
-          autoComplete="name"
-          required
-          minLength={2}
-          maxLength={80}
-          value={value.name}
-          onChange={(event) =>
-            setValue((current) => ({ ...current, name: event.target.value }))
-          }
-        />
-        <small>This is the name shown in your member space.</small>
-      </label>
+      <FieldGroup className="dashboard-profile-fields">
+        <Field className="dashboard-field" data-disabled={Boolean(pendingAction)}>
+          <FieldLabel htmlFor="profile-name">Your name</FieldLabel>
+          <Input
+            id="profile-name"
+            name="name"
+            autoComplete="name"
+            required
+            minLength={2}
+            maxLength={80}
+            disabled={Boolean(pendingAction)}
+            value={value.name}
+            onChange={(event) =>
+              setValue((current) => ({ ...current, name: event.target.value }))
+            }
+          />
+          <FieldDescription>This is the name shown in your member space.</FieldDescription>
+        </Field>
 
-      <fieldset className="dashboard-field">
-        <legend>How are you taking part?</legend>
-        <div className="dashboard-role-options">
-          {(Object.keys(roleLabels) as Role[]).map((role) => (
-            <label className="dashboard-role-option" key={role}>
-              <input
-                type="radio"
-                name="profile-role"
-                value={role}
-                checked={value.role === role}
-                onChange={() => setValue((current) => ({ ...current, role }))}
-              />
-              <span>{roleLabels[role]}</span>
-            </label>
-          ))}
-        </div>
-      </fieldset>
+        <FieldSet className="dashboard-role-fieldset" data-disabled={Boolean(pendingAction)}>
+          <FieldLegend variant="label">How are you taking part?</FieldLegend>
+          <RadioGroup
+            className="dashboard-role-options"
+            aria-label="How are you taking part?"
+            value={value.role}
+            disabled={Boolean(pendingAction)}
+            onValueChange={(role: Role) =>
+              setValue((current) => ({ ...current, role }))
+            }
+          >
+            {(Object.keys(roleLabels) as Role[]).map((role) => (
+              <Field
+                className="dashboard-role-option"
+                orientation="horizontal"
+                key={role}
+                data-disabled={Boolean(pendingAction)}
+              >
+                <RadioGroupItem id={`profile-role-${role}`} value={role} />
+                <FieldLabel htmlFor={`profile-role-${role}`}>
+                  {roleLabels[role]}
+                </FieldLabel>
+              </Field>
+            ))}
+          </RadioGroup>
+        </FieldSet>
 
-      <label className="dashboard-field" htmlFor="profile-interests">
-        <span>What would you like to learn or contribute?</span>
-        <Textarea
-          id="profile-interests"
-          name="interests"
-          rows={5}
-          maxLength={1000}
-          value={value.interests}
-          onChange={(event) =>
-            setValue((current) => ({ ...current, interests: event.target.value }))
-          }
-          aria-describedby="profile-interests-help"
-          placeholder="A skill you would like to share, a topic you want to explore, or a way you hope to help."
-        />
-        <small id="profile-interests-help">
-          Keep this about your interests. Please do not include private or
-          sensitive details.
-        </small>
-      </label>
+        <Field className="dashboard-field" data-disabled={Boolean(pendingAction)}>
+          <FieldLabel htmlFor="profile-interests">
+            What would you like to learn or contribute?
+          </FieldLabel>
+          <Textarea
+            id="profile-interests"
+            name="interests"
+            rows={5}
+            maxLength={1000}
+            disabled={Boolean(pendingAction)}
+            value={value.interests}
+            onChange={(event) =>
+              setValue((current) => ({ ...current, interests: event.target.value }))
+            }
+            aria-describedby="profile-interests-help"
+            placeholder="A skill you would like to share, a topic you want to explore, or a way you hope to help."
+          />
+          <FieldDescription id="profile-interests-help">
+            Keep this about your interests. Please do not include private or
+            sensitive details.
+          </FieldDescription>
+        </Field>
+      </FieldGroup>
 
-      <Button type="submit" disabled={Boolean(pendingAction)} aria-busy={pending}>
+      <Button
+        type="submit"
+        className="dashboard-profile-submit"
+        disabled={Boolean(pendingAction)}
+        aria-busy={pending}
+      >
         {pending ? (
-          <LoaderCircle size={16} aria-hidden="true" />
+          <Spinner data-icon="inline-start" aria-label="Saving profile" />
         ) : (
-          <Check size={16} aria-hidden="true" />
+          <Check data-icon="inline-start" aria-hidden="true" />
         )}
         {pending ? "Saving profile…" : "Save profile"}
       </Button>
@@ -244,9 +293,11 @@ function ProfileEditor({ profile }: { profile: ProfileValues | null }) {
 }
 
 export function DashboardProfile() {
-  const { data, clearMyData, pendingAction } = useDashboardData();
+  const { data, clearMyData, pendingAction, notice } = useDashboardData();
   const [confirmClear, setConfirmClear] = useState(false);
+  const [clearFailed, setClearFailed] = useState(false);
   if (!data) return null;
+  const clearPending = pendingAction === "clear-data";
 
   return (
     <div className="dashboard-page dashboard-profile-page">
@@ -295,56 +346,73 @@ export function DashboardProfile() {
             Your Clerk sign-in account stays active.
           </p>
         </div>
-        {!confirmClear ? (
-          <Button
-            type="button"
-            variant="outline"
-            disabled={Boolean(pendingAction)}
-            onClick={() => setConfirmClear(true)}
-          >
-            <Trash2 size={16} aria-hidden="true" />
-            Clear my data
-          </Button>
-        ) : (
-          <div
-            className="dashboard-clear-confirmation"
-            role="group"
-            aria-labelledby="clear-confirm-title"
-            aria-describedby="clear-confirm-description"
-          >
-            <strong id="clear-confirm-title">Clear your saved site data?</strong>
-            <p id="clear-confirm-description">
-              Your profile and saved guides will be removed from this member
-              space.
-            </p>
-            <div className="dashboard-clear-actions">
-              <Button
-                type="button"
-                variant="outline"
-                disabled={Boolean(pendingAction)}
-                onClick={() => setConfirmClear(false)}
+        <AlertDialog
+          open={confirmClear}
+          onOpenChange={(open) => {
+            if (clearPending) return;
+            setConfirmClear(open);
+            if (open) setClearFailed(false);
+          }}
+        >
+          <AlertDialogTrigger asChild>
+            <Button type="button" variant="outline" disabled={Boolean(pendingAction)}>
+              <Trash2 data-icon="inline-start" aria-hidden="true" />
+              Clear my data
+            </Button>
+          </AlertDialogTrigger>
+          <AlertDialogContent className="dashboard-clear-dialog">
+            <AlertDialogHeader className="dashboard-clear-dialog-header">
+              <AlertDialogTitle>Clear your saved site data?</AlertDialogTitle>
+              <AlertDialogDescription>
+                This removes your profile and all saved guides from this member
+                space. Your sign-in account stays active.
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            {clearFailed && (
+              <Alert
+                className="dashboard-clear-error"
+                variant="destructive"
+                role="alert"
+                aria-live="assertive"
+              >
+                <CircleAlert data-icon="inline-start" aria-hidden="true" />
+                <AlertDescription>
+                  {notice?.tone === "error"
+                    ? notice.message
+                    : "We couldn’t clear your saved data. Please try again."}
+                </AlertDescription>
+              </Alert>
+            )}
+            <AlertDialogFooter className="dashboard-clear-dialog-footer">
+              <AlertDialogCancel
+                className="dashboard-clear-cancel"
+                disabled={clearPending}
               >
                 Keep my data
-              </Button>
+              </AlertDialogCancel>
               <Button
                 type="button"
-                disabled={Boolean(pendingAction)}
-                aria-busy={pendingAction === "clear-data"}
+                variant="destructive"
+                className="dashboard-clear-confirm"
+                disabled={clearPending}
+                aria-busy={clearPending}
                 onClick={async () => {
+                  setClearFailed(false);
                   const cleared = await clearMyData();
                   if (cleared) setConfirmClear(false);
+                  else setClearFailed(true);
                 }}
               >
-                {pendingAction === "clear-data" ? (
-                  <LoaderCircle size={16} aria-hidden="true" />
+                {clearPending ? (
+                  <Spinner data-icon="inline-start" aria-label="Clearing saved data" />
                 ) : (
-                  <Trash2 size={16} aria-hidden="true" />
+                  <Trash2 data-icon="inline-start" aria-hidden="true" />
                 )}
-                {pendingAction === "clear-data" ? "Clearing…" : "Clear saved data"}
+                {clearPending ? "Clearing saved data…" : "Clear saved data"}
               </Button>
-            </div>
-          </div>
-        )}
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
       </section>
     </div>
   );
@@ -390,29 +458,34 @@ export function DashboardSaved() {
                 aria-label={`Remove ${guide.title} from saved guides`}
                 onClick={() => void setBookmark(guide.slug, false)}
               >
-                <Bookmark size={16} aria-hidden="true" />
+                <Bookmark data-icon="inline-start" aria-hidden="true" />
                 Remove
               </Button>
             </article>
           ))}
         </div>
       ) : (
-        <section className="dashboard-empty-state">
-          <span className="dashboard-empty-mark" aria-hidden="true">
-            <BookOpenText size={25} />
-          </span>
-          <p className="eyebrow">NO SAVED GUIDES YET</p>
-          <h2>Keep a useful idea close.</h2>
-          <p>
-            Browse the field guide collection and save a guide when you want to
-            return to it.
-          </p>
-          <Button asChild>
-            <Link href="/dashboard/resources">
-              Browse resources <ArrowRight aria-hidden="true" />
-            </Link>
-          </Button>
-        </section>
+        <Empty className="dashboard-empty-state">
+          <EmptyHeader className="dashboard-empty-header">
+            <EmptyMedia className="dashboard-empty-mark" variant="icon">
+              <BookOpenText aria-hidden="true" />
+            </EmptyMedia>
+            <EmptyTitle className="dashboard-empty-title">
+              Keep a useful idea close.
+            </EmptyTitle>
+            <EmptyDescription className="dashboard-empty-description">
+              Browse the field guide collection and save a guide when you want
+              to return to it.
+            </EmptyDescription>
+          </EmptyHeader>
+          <EmptyContent className="dashboard-empty-content">
+            <Button asChild>
+              <Link href="/dashboard/resources">
+              Browse resources <ArrowRight data-icon="inline-end" aria-hidden="true" />
+              </Link>
+            </Button>
+          </EmptyContent>
+        </Empty>
       )}
     </div>
   );

@@ -1,6 +1,6 @@
 "use client";
 
-import { Component, useEffect, useRef, useState, type ReactNode } from "react";
+import { Component, useState, type ReactNode } from "react";
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
 import { useClerk, useUser } from "@clerk/nextjs";
@@ -15,14 +15,28 @@ import {
   BookOpenText,
   Bookmark,
   ChevronDown,
+  CircleAlert,
+  CircleCheck,
   CircleUserRound,
   DoorOpen,
+  Info,
   LayoutDashboard,
-  LoaderCircle,
   UserRound,
   X,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { Skeleton } from "@/components/ui/skeleton";
+import { Spinner } from "@/components/ui/spinner";
 import { Brand } from "@/components/brand";
 import { resources } from "@/lib/resources";
 import { safeAuthRedirect } from "@/lib/auth-redirect";
@@ -39,12 +53,13 @@ const navigation = [
 function DashboardSkeleton() {
   return (
     <div className="dashboard-loading" role="status" aria-live="polite">
-      <span className="dashboard-loading-mark" aria-hidden="true" />
-      <span>Preparing your member space…</span>
-      <div className="dashboard-skeleton-block" aria-hidden="true" />
+      <span className="sr-only">Preparing your member space…</span>
+      <Skeleton className="dashboard-skeleton-label" aria-hidden="true" />
+      <Skeleton className="dashboard-skeleton-heading" aria-hidden="true" />
+      <Skeleton className="dashboard-skeleton-copy" aria-hidden="true" />
       <div className="dashboard-skeleton-grid" aria-hidden="true">
-        <span />
-        <span />
+        <Skeleton className="dashboard-skeleton-panel" />
+        <Skeleton className="dashboard-skeleton-panel" />
       </div>
     </div>
   );
@@ -87,10 +102,8 @@ function AccountMenu() {
   const { user } = useUser();
   const { signOut } = useClerk();
   const [open, setOpen] = useState(false);
-  const [signingOut, setSigningOut] = useState(false);
   const [signOutError, setSignOutError] = useState(false);
-  const root = useRef<HTMLDivElement>(null);
-  const trigger = useRef<HTMLButtonElement>(null);
+  const [signingOut, setSigningOut] = useState(false);
   const displayName =
     user?.fullName || user?.primaryEmailAddress?.emailAddress || "Your account";
   const initials = displayName
@@ -99,27 +112,6 @@ function AccountMenu() {
     .slice(0, 2)
     .map((part) => part[0]?.toUpperCase())
     .join("");
-
-  useEffect(() => {
-    if (!open) return;
-    function onPointerDown(event: PointerEvent) {
-      if (root.current && !root.current.contains(event.target as Node)) {
-        setOpen(false);
-      }
-    }
-    function onKeyDown(event: KeyboardEvent) {
-      if (event.key === "Escape") {
-        setOpen(false);
-        trigger.current?.focus();
-      }
-    }
-    document.addEventListener("pointerdown", onPointerDown);
-    document.addEventListener("keydown", onKeyDown);
-    return () => {
-      document.removeEventListener("pointerdown", onPointerDown);
-      document.removeEventListener("keydown", onKeyDown);
-    };
-  }, [open]);
 
   async function handleSignOut() {
     setSigningOut(true);
@@ -134,62 +126,64 @@ function AccountMenu() {
   }
 
   return (
-    <div className="dashboard-account" ref={root}>
-      <button
-        className="dashboard-account-trigger"
-        ref={trigger}
-        type="button"
-        aria-label={`Account options for ${displayName}`}
-        aria-expanded={open}
-        aria-controls="dashboard-account-options"
-        onClick={() => setOpen((value) => !value)}
-      >
-        <span className="dashboard-account-avatar" aria-hidden="true">
-          {initials || <CircleUserRound size={17} />}
-        </span>
-        <span className="dashboard-account-name">{displayName}</span>
-        <ChevronDown size={15} aria-hidden="true" />
-      </button>
-      {open && (
-        <div
-          className="dashboard-account-menu"
-          id="dashboard-account-options"
-          aria-label="Account options"
+    <DropdownMenu open={open} onOpenChange={setOpen}>
+      <DropdownMenuTrigger asChild>
+        <button
+          className="dashboard-account-trigger"
+          type="button"
+          aria-label={`Account options for ${displayName}`}
         >
-          <div className="dashboard-account-details">
-            <span className="eyebrow">SIGNED IN AS</span>
+          <span className="dashboard-account-avatar" aria-hidden="true">
+            {initials || <CircleUserRound size={17} />}
+          </span>
+          <span className="dashboard-account-name">{displayName}</span>
+          <ChevronDown className="dashboard-account-chevron" aria-hidden="true" />
+        </button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent
+        align="end"
+        sideOffset={8}
+        className="dashboard-account-menu"
+        aria-label="Account options"
+      >
+        <DropdownMenuGroup>
+          <DropdownMenuLabel className="dashboard-account-details">
+            <span className="eyebrow">Signed in as</span>
             <strong>{displayName}</strong>
             {user?.primaryEmailAddress?.emailAddress && (
               <span>{user.primaryEmailAddress.emailAddress}</span>
             )}
-          </div>
+          </DropdownMenuLabel>
           {signOutError && (
-            <p className="dashboard-account-error" role="alert">
-              Sign out did not finish. Please try again.
-            </p>
+            <DropdownMenuLabel className="dashboard-account-error">
+              <span role="alert">Sign out did not finish. Please try again.</span>
+            </DropdownMenuLabel>
           )}
-          <Link
-            href="/dashboard/profile"
-            onClick={() => setOpen(false)}
-          >
-            <UserRound size={16} aria-hidden="true" />
-            Edit profile
-          </Link>
-          <button
-            type="button"
-            onClick={handleSignOut}
+          <DropdownMenuSeparator className="dashboard-account-separator" />
+          <DropdownMenuItem asChild className="dashboard-account-menu-item">
+            <Link href="/dashboard/profile">
+              <UserRound data-icon="inline-start" aria-hidden="true" />
+              Edit profile
+            </Link>
+          </DropdownMenuItem>
+          <DropdownMenuItem
+            className="dashboard-account-menu-item"
             disabled={signingOut}
+            onSelect={(event) => {
+              event.preventDefault();
+              void handleSignOut();
+            }}
           >
             {signingOut ? (
-              <LoaderCircle size={16} aria-hidden="true" />
+              <Spinner data-icon="inline-start" aria-label="Signing out" />
             ) : (
-              <DoorOpen size={16} aria-hidden="true" />
+              <DoorOpen data-icon="inline-start" aria-hidden="true" />
             )}
             {signingOut ? "Signing out…" : "Sign out"}
-          </button>
-        </div>
-      )}
-    </div>
+          </DropdownMenuItem>
+        </DropdownMenuGroup>
+      </DropdownMenuContent>
+    </DropdownMenu>
   );
 }
 
@@ -222,7 +216,7 @@ function SignedOutGate({ returnUrl }: { returnUrl: string }) {
             <Link
               href={`/sign-in?redirect_url=${encodeURIComponent(safeReturnUrl)}`}
             >
-              Sign in <ArrowRight aria-hidden="true" />
+              Sign in <ArrowRight data-icon="inline-end" aria-hidden="true" />
             </Link>
           </Button>
           <Button variant="outline" asChild>
@@ -262,34 +256,47 @@ function DashboardNotice() {
           ? `Saving ${pendingGuide.title}…`
           : "Updating your saved guides…";
   const tone = notice?.tone ?? "info";
+  const NoticeIcon = tone === "error" ? CircleAlert : tone === "success" ? CircleCheck : Info;
   return (
-    <div
+    <Alert
       className={`dashboard-notice dashboard-notice-${tone}`}
       role={tone === "error" ? "alert" : "status"}
       aria-live={tone === "error" ? "assertive" : "polite"}
+      variant={tone === "error" ? "destructive" : "default"}
     >
-      <p>{notice?.message ?? pendingMessage}</p>
-      {notice?.retrySave && (
-        <button
-          type="button"
-          className="dashboard-notice-action"
-          disabled={Boolean(pendingAction)}
-          onClick={() => void retrySaveIntent()}
-        >
-          {pendingAction ? "Saving…" : "Try again"}
-        </button>
-      )}
+      <NoticeIcon data-icon="inline-start" aria-hidden="true" />
+      <div className="dashboard-notice-body">
+        <AlertTitle>
+          {tone === "error" ? "There was a problem" : tone === "success" ? "Update complete" : "Working"}
+        </AlertTitle>
+        <AlertDescription>
+          <p>{notice?.message ?? pendingMessage}</p>
+          {notice?.retrySave && (
+            <Button
+              type="button"
+              variant="link"
+              className="dashboard-notice-action"
+              disabled={Boolean(pendingAction)}
+              onClick={() => void retrySaveIntent()}
+            >
+              {pendingAction ? "Saving…" : "Try again"}
+            </Button>
+          )}
+        </AlertDescription>
+      </div>
       {notice && (
-        <button
+        <Button
           type="button"
+          variant="ghost"
+          size="icon"
           className="dashboard-notice-close"
           aria-label="Dismiss message"
           onClick={clearNotice}
         >
-          <X size={16} aria-hidden="true" />
-        </button>
+              <X data-icon="inline-start" aria-hidden="true" />
+        </Button>
       )}
-    </div>
+    </Alert>
   );
 }
 

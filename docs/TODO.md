@@ -48,3 +48,11 @@ No invented dates, testimonials, local accomplishments, addresses, personnel or 
 - [x] Build separate overview, profile, saved-guide and resource dashboard routes.
 - [x] Verify reload/route/mobile animation behavior and authenticated persistence.
 - [x] Pass build, TypeScript, lint and independent review; commit, sync and deploy.
+
+## October 9 — Impeccable, Emil and shadcn polish
+- [x] Install Emil Kowalski's official skill collection and update Impeccable to v4.5.1.
+- [x] Write the shared interaction and typography contract before implementation.
+- [x] Compose authentication and dashboard controls from shadcn primitives.
+- [x] Polish resource search/filter states and shared touch/focus behavior.
+- [x] Verify real auth/profile/bookmark flows, keyboard controls, mobile and laptop rendering.
+- [ ] Pass build, typecheck, lint and independent review; commit, sync and verify production.

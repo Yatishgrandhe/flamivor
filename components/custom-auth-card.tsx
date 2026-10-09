@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import {
   TaskChooseOrganization,
   TaskResetPassword,
@@ -12,14 +12,27 @@ import {
   useSignUp,
   useSession,
 } from "@clerk/nextjs";
-import { ArrowLeft, ArrowRight, LoaderCircle, Mail } from "lucide-react";
+import { ArrowLeft, ArrowRight, Mail } from "lucide-react";
 import { FormEvent, useState } from "react";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
+import {
+  Field,
+  FieldDescription,
+  FieldError,
+  FieldGroup,
+  FieldLabel,
+} from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
+import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp";
+import { Spinner } from "@/components/ui/spinner";
+import { cn } from "@/lib/utils";
 
 type AuthMode = "sign-in" | "sign-up";
 type CodePurpose = "sign-in" | "sign-in-mfa" | "sign-up";
 type SecurityTask = "choose-organization" | "reset-password" | "setup-mfa";
+type BusyAction = "send" | "verify" | "resend" | "details" | null;
 
 type CustomAuthCardProps = {
   mode: AuthMode;
@@ -61,7 +74,7 @@ export function CustomAuthCard({ mode, redirectUrl, taskMode = false }: CustomAu
   const [codePurpose, setCodePurpose] = useState<CodePurpose>(
     mode === "sign-in" ? "sign-in" : "sign-up",
   );
-  const [busy, setBusy] = useState(false);
+  const [busyAction, setBusyAction] = useState<BusyAction>(null);
   const [error, setError] = useState("");
   const [notice, setNotice] = useState("");
   const [firstName, setFirstName] = useState("");
@@ -69,6 +82,10 @@ export function CustomAuthCard({ mode, redirectUrl, taskMode = false }: CustomAu
   const [legalAccepted, setLegalAccepted] = useState(false);
   const [pendingFields, setPendingFields] = useState<string[]>([]);
   const [securityTask, setSecurityTask] = useState<SecurityTask | null>(null);
+  const emailInputRef = useRef<HTMLInputElement>(null);
+  const nameInputRef = useRef<HTMLInputElement>(null);
+  const previousVisibleStep = useRef<string | null>(null);
+  const busy = busyAction !== null;
 
   const otherMode = mode === "sign-in" ? "sign-up" : "sign-in";
   const switchHref = `/${otherMode}?redirect_url=${encodeURIComponent(redirectUrl)}`;
@@ -131,7 +148,7 @@ export function CustomAuthCard({ mode, redirectUrl, taskMode = false }: CustomAu
 
   async function startEmailFlow(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setBusy(true);
+    setBusyAction("send");
     setError("");
     setNotice("");
     try {
@@ -160,7 +177,7 @@ export function CustomAuthCard({ mode, redirectUrl, taskMode = false }: CustomAu
         setError(errorMessage(cause));
       }
     } finally {
-      setBusy(false);
+      setBusyAction(null);
     }
   }
 
@@ -191,7 +208,7 @@ export function CustomAuthCard({ mode, redirectUrl, taskMode = false }: CustomAu
 
   async function verifyCode(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setBusy(true);
+    setBusyAction("verify");
     setError("");
     setNotice("");
     try {
@@ -219,12 +236,12 @@ export function CustomAuthCard({ mode, redirectUrl, taskMode = false }: CustomAu
     } catch (cause) {
       setError(errorMessage(cause));
     } finally {
-      setBusy(false);
+      setBusyAction(null);
     }
   }
 
   async function resendCode() {
-    setBusy(true);
+    setBusyAction("resend");
     setError("");
     setNotice("");
     try {
@@ -239,7 +256,7 @@ export function CustomAuthCard({ mode, redirectUrl, taskMode = false }: CustomAu
     } catch (cause) {
       setError(errorMessage(cause));
     } finally {
-      setBusy(false);
+      setBusyAction(null);
     }
   }
 
@@ -255,7 +272,7 @@ export function CustomAuthCard({ mode, redirectUrl, taskMode = false }: CustomAu
 
   async function completeDetails(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setBusy(true);
+    setBusyAction("details");
     setError("");
     setNotice("");
     try {
@@ -269,7 +286,7 @@ export function CustomAuthCard({ mode, redirectUrl, taskMode = false }: CustomAu
     } catch (cause) {
       setError(errorMessage(cause));
     } finally {
-      setBusy(false);
+      setBusyAction(null);
     }
   }
 
@@ -278,6 +295,21 @@ export function CustomAuthCard({ mode, redirectUrl, taskMode = false }: CustomAu
   const taskWaiting = taskMode && !sessionLoaded;
   const taskRedirecting = sessionLoaded && Boolean(isSignedIn) && !activeTask;
   const visibleStep = activeTask || taskWaiting || taskRedirecting ? "task" : step;
+
+  useEffect(() => {
+    if (previousVisibleStep.current === visibleStep) return;
+    previousVisibleStep.current = visibleStep;
+    if (visibleStep === "email") emailInputRef.current?.focus();
+    if (visibleStep === "details") {
+      if (nameInputRef.current) nameInputRef.current.focus();
+      else document.getElementById("auth-legal")?.focus();
+    }
+    if (visibleStep === "code") {
+      window.requestAnimationFrame(() => {
+        document.getElementById("auth-code")?.focus();
+      });
+    }
+  }, [visibleStep]);
 
   const title =
     visibleStep === "task"
@@ -316,24 +348,35 @@ export function CustomAuthCard({ mode, redirectUrl, taskMode = false }: CustomAu
                 : "Create your account with a verified email address. No password to remember."}
             </p>
             <form className="auth-form" onSubmit={startEmailFlow}>
-              <label className="auth-label" htmlFor="auth-email">Email address</label>
-              <Input
-                id="auth-email"
-                className="auth-input"
-                type="email"
-                name="email"
-                autoComplete="email"
-                inputMode="email"
-                required
-                value={email}
-                onChange={(event) => setEmail(event.target.value)}
-                placeholder="you@example.com"
-                disabled={busy}
-              />
+              <FieldGroup className="auth-fields">
+                <Field data-invalid={Boolean(error) || undefined}>
+                  <FieldLabel htmlFor="auth-email">Email address</FieldLabel>
+                  <Input
+                    ref={emailInputRef}
+                    id="auth-email"
+                    className="auth-input"
+                    type="email"
+                    name="email"
+                    autoComplete="email"
+                    inputMode="email"
+                    required
+                    value={email}
+                    onChange={(event) => setEmail(event.target.value)}
+                    placeholder="you@example.com"
+                    disabled={busy}
+                    aria-invalid={Boolean(error)}
+                    aria-describedby={error ? "auth-form-error" : "auth-email-description"}
+                  />
+                  <FieldDescription id="auth-email-description">
+                    We’ll email you a one-time sign-in code.
+                  </FieldDescription>
+                  {error && <FieldError id="auth-form-error" className="sr-only" role="note">{error}</FieldError>}
+                </Field>
+              </FieldGroup>
               <Button className="auth-submit" type="submit" disabled={busy}>
-                {busy ? <LoaderCircle className="animate-spin" data-icon="inline-start" /> : <Mail data-icon="inline-start" />}
-                {busy ? "Sending code…" : "Continue with email"}
-                {!busy && <ArrowRight data-icon="inline-end" />}
+                {busyAction === "send" ? <Spinner data-icon="inline-start" aria-label="Sending code" /> : <Mail data-icon="inline-start" />}
+                {busyAction === "send" ? "Sending code…" : "Continue with email"}
+                {busyAction !== "send" && <ArrowRight data-icon="inline-end" />}
               </Button>
             </form>
             <p className="auth-card__switch">
@@ -346,29 +389,45 @@ export function CustomAuthCard({ mode, redirectUrl, taskMode = false }: CustomAu
           <>
             <p className="auth-card__description">Enter the code sent to <strong>{email}</strong>.</p>
             <form className="auth-form" onSubmit={verifyCode}>
-              <label className="auth-label" htmlFor="auth-code">Verification code</label>
-              <Input
-                id="auth-code"
-                className="auth-input auth-input--code"
-                type="text"
-                name="code"
-                autoComplete="one-time-code"
-                inputMode="numeric"
-                pattern="[0-9]*"
-                required
-                value={code}
-                onChange={(event) => setCode(event.target.value)}
-                placeholder="Enter your code"
-                disabled={busy}
-              />
+              <FieldGroup className="auth-fields">
+                <Field data-invalid={Boolean(error) || undefined}>
+                  <FieldLabel htmlFor="auth-code">Verification code</FieldLabel>
+                  <InputOTP
+                    id="auth-code"
+                    className="auth-otp-input"
+                    maxLength={6}
+                    pattern="^[0-9]+$"
+                    value={code}
+                    onChange={setCode}
+                    disabled={busy}
+                    required
+                    aria-label="Six-digit verification code"
+                    aria-invalid={Boolean(error)}
+                    aria-describedby={error ? "auth-form-error" : "auth-code-description"}
+                  >
+                    <InputOTPGroup className="auth-otp-group">
+                      {Array.from({ length: 6 }, (_, index) => (
+                        <InputOTPSlot key={index} index={index} className="auth-otp-slot" aria-invalid={Boolean(error)} />
+                      ))}
+                    </InputOTPGroup>
+                  </InputOTP>
+                  <FieldDescription id="auth-code-description">
+                    Enter the six-digit code from your email.
+                  </FieldDescription>
+                  {error && <FieldError id="auth-form-error" className="sr-only" role="note">{error}</FieldError>}
+                </Field>
+              </FieldGroup>
               <Button className="auth-submit" type="submit" disabled={busy}>
-                {busy ? <LoaderCircle className="animate-spin" data-icon="inline-start" /> : null}
-                {busy ? "Verifying…" : "Verify and continue"}
-                {!busy && <ArrowRight data-icon="inline-end" />}
+                {busyAction === "verify" ? <Spinner data-icon="inline-start" aria-label="Verifying code" /> : null}
+                {busyAction === "verify" ? "Verifying code…" : "Verify and continue"}
+                {busyAction !== "verify" && <ArrowRight data-icon="inline-end" />}
               </Button>
             </form>
             <div className="auth-card__code-actions">
-              <Button variant="link" type="button" className="auth-text-button" disabled={busy} onClick={resendCode}>Send a new code</Button>
+              <Button variant="link" type="button" className="auth-text-button" disabled={busy} onClick={resendCode}>
+                {busyAction === "resend" && <Spinner data-icon="inline-start" aria-label="Resending code" />}
+                {busyAction === "resend" ? "Resending code…" : "Send a new code"}
+              </Button>
               <Button variant="link" type="button" className="auth-text-button" disabled={busy} onClick={goBack}>
                 <ArrowLeft data-icon="inline-start" /> Change email
               </Button>
@@ -379,24 +438,35 @@ export function CustomAuthCard({ mode, redirectUrl, taskMode = false }: CustomAu
           <>
             <p className="auth-card__description">Your email is verified. Complete the required details below.</p>
             <form className="auth-form" onSubmit={completeDetails}>
-              {pendingFields.includes("first_name") && <>
-                <label className="auth-label" htmlFor="auth-first-name">First name</label>
-                <Input id="auth-first-name" className="auth-input" autoComplete="given-name" required value={firstName} onChange={(event) => setFirstName(event.target.value)} disabled={busy} />
-              </>}
-              {pendingFields.includes("last_name") && <>
-                <label className="auth-label" htmlFor="auth-last-name">Last name</label>
-                <Input id="auth-last-name" className="auth-input" autoComplete="family-name" required value={lastName} onChange={(event) => setLastName(event.target.value)} disabled={busy} />
-              </>}
-              {pendingFields.includes("legal_accepted") && (
-                <label className="auth-check">
-                  <input type="checkbox" checked={legalAccepted} onChange={(event) => setLegalAccepted(event.target.checked)} required disabled={busy} />
-                  <span>I accept the applicable account terms and the <Link href="/privacy" target="_blank" rel="noreferrer">privacy notice</Link>.</span>
-                </label>
-              )}
+              <FieldGroup className="auth-fields">
+                {pendingFields.includes("first_name") && (
+                  <Field data-invalid={Boolean(error) || undefined}>
+                    <FieldLabel htmlFor="auth-first-name">First name</FieldLabel>
+                    <Input ref={nameInputRef} id="auth-first-name" className="auth-input" autoComplete="given-name" required value={firstName} onChange={(event) => setFirstName(event.target.value)} disabled={busy} aria-invalid={Boolean(error)} aria-describedby={error ? "auth-form-error" : undefined} />
+                    {error && <FieldError id="auth-form-error" className="sr-only" role="note">{error}</FieldError>}
+                  </Field>
+                )}
+                {pendingFields.includes("last_name") && (
+                  <Field data-invalid={Boolean(error) || undefined}>
+                    <FieldLabel htmlFor="auth-last-name">Last name</FieldLabel>
+                    <Input ref={!pendingFields.includes("first_name") ? nameInputRef : undefined} id="auth-last-name" className="auth-input" autoComplete="family-name" required value={lastName} onChange={(event) => setLastName(event.target.value)} disabled={busy} aria-invalid={Boolean(error)} aria-describedby={error && !pendingFields.includes("first_name") ? "auth-form-error" : undefined} />
+                    {error && !pendingFields.includes("first_name") && <FieldError id="auth-form-error" className="sr-only" role="note">{error}</FieldError>}
+                  </Field>
+                )}
+                {pendingFields.includes("legal_accepted") && (
+                  <Field className="auth-check-field" orientation="horizontal" data-invalid={Boolean(error) || undefined}>
+                    <Checkbox id="auth-legal" checked={legalAccepted} onCheckedChange={(checked) => setLegalAccepted(checked === true)} required disabled={busy} aria-invalid={Boolean(error)} aria-describedby={error && !pendingFields.includes("first_name") && !pendingFields.includes("last_name") ? "auth-form-error" : undefined} />
+                    <FieldLabel htmlFor="auth-legal" className="auth-check-label">
+                      I accept the applicable account terms and the <Link href="/privacy" target="_blank" rel="noreferrer">privacy notice</Link>.
+                    </FieldLabel>
+                    {error && !pendingFields.includes("first_name") && !pendingFields.includes("last_name") && <FieldError id="auth-form-error" className="sr-only" role="note">{error}</FieldError>}
+                  </Field>
+                )}
+              </FieldGroup>
               <Button className="auth-submit" type="submit" disabled={busy}>
-                {busy ? <LoaderCircle className="animate-spin" data-icon="inline-start" /> : null}
-                {busy ? "Saving…" : "Finish creating account"}
-                {!busy && <ArrowRight data-icon="inline-end" />}
+                {busyAction === "details" ? <Spinner data-icon="inline-start" aria-label="Saving account details" /> : null}
+                {busyAction === "details" ? "Saving account…" : "Finish creating account"}
+                {busyAction !== "details" && <ArrowRight data-icon="inline-end" />}
               </Button>
             </form>
           </>
@@ -414,8 +484,16 @@ export function CustomAuthCard({ mode, redirectUrl, taskMode = false }: CustomAu
           </p>
         )}
         <div id="clerk-captcha" className="auth-captcha" aria-label="Security verification" />
-        {notice && <p className="auth-status" role="status">{notice}</p>}
-        {error && <p className="auth-error" role="alert">{error}</p>}
+        {(notice || error) && (
+          <Alert
+            className={cn("auth-feedback", error && "auth-feedback--error")}
+            variant={error ? "destructive" : "default"}
+            role={error ? "alert" : "status"}
+            aria-live={error ? "assertive" : "polite"}
+          >
+            <AlertDescription>{error || notice}</AlertDescription>
+          </Alert>
+        )}
       </div>
       <Link className="auth-card__back" href="/">Back to Flamivor Charlotte</Link>
       <p className="auth-card__footnote">Your email is used only to secure your member account.</p>

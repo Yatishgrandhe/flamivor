@@ -263,7 +263,6 @@ html[data-input-mode=keyboard] :is([data-slot=sheet-content],[data-slot=sheet-ov
 .member-data-controls {margin-top:40px;}
 .member-data-note {font-size:12px; margin-bottom:12px;}
 .member-auth-actions {display:flex; gap:16px; flex-wrap:wrap; margin-top:28px;}
-.status-message,.form-status {margin-top:24px; border-left:3px solid var(--red); padding:12px 16px; background:var(--paper); font-size:13px;}
 .member-intro-copy {margin-bottom:24px; font-size:14px;}
 .auth-shell {min-height:65svh; display:grid; place-items:center; padding:64px 20px;}
 .not-found {padding-block:96px; min-height:60svh;}

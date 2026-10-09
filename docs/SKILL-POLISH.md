@@ -33,4 +33,6 @@ Clerk still uses the existing development instance. Promoting authentication cre
 
 ## Release
 
-All 13 existing Vercel production deployments inspected before release were Ready; no failed deployment needed restarting. This source is ready for the authorized commit, sync and production release.
+All 13 existing Vercel production deployments inspected before release were Ready; no failed deployment needed restarting. Source commit `157047e` was pushed to main and deployed successfully as `dpl_7fWBUZVKNBB1JjKAPk9WGKo1qDqr` (Ready). The canonical alias is https://flamivor-charlotte.vercel.app; the immutable release URL is https://flamivor-charlotte-l5nu4f7tk-yatishgrandhes-projects.vercel.app.
+
+Live production verification confirmed the preserved logo, cream hero action, 96px desktop headline, zero horizontal overflow at 1280px, custom sign-in Field description and 16px input, searchable guide controls and semantic no-results heading. No console errors were observed during these production checks. Production screenshot: output/skill-polish/production-desktop.jpg. Dedicated sign-up and Clerk security-task paths were source reviewed; they were not exercised through the browser in this pass.

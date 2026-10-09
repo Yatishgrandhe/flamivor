@@ -47,4 +47,4 @@ No invented dates, testimonials, local accomplishments, addresses, personnel or 
 - [x] Replace prebuilt authentication with a custom Clerk card and real verification flow.
 - [x] Build separate overview, profile, saved-guide and resource dashboard routes.
 - [x] Verify reload/route/mobile animation behavior and authenticated persistence.
-- [ ] Pass build, TypeScript, lint and independent review; commit, sync and deploy.
+- [x] Pass build, TypeScript, lint and independent review; commit, sync and deploy.

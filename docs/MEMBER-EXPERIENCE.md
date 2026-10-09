@@ -16,3 +16,5 @@ The member application has four actual routes: overview, profile, saved guides a
 - Independent GPT-6 Luna review checked the new source and desktop/mobile screenshot evidence. It found and helped repair transition recovery and focus behavior.
 
 Evidence is kept locally in `output/member-qa/` and excluded from Git and deployment. Security tasks and full new-account CAPTCHA completion were reviewed in source, not exercised with a real personal account. An optional Clerk Protect challenge is explicitly blocked rather than bypassed if Clerk requires it.
+
+Production release: application commit `0facbb4`, deployed to `https://flamivor-charlotte.vercel.app/`. The temporary development test account and its Convex records were removed after verification.

@@ -8,10 +8,14 @@ import "@fontsource/manrope/latin-500.css";
 import "@fontsource/manrope/latin-600.css";
 import "@fontsource/manrope/latin-700.css";
 import "./globals.css";
+import "@/components/page-transitions.css";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { DevTools } from "@/components/dev-tools";
 import { site } from "@/lib/site";
+import { PageTransitions } from "@/components/page-transitions";
+import { PageEntrance } from "@/components/page-entrance";
+import { SiteChrome } from "@/components/site-chrome";
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   icons: { icon: "/images/flamivor-logo-approved.png", apple: "/images/flamivor-logo-approved.png" },
@@ -41,12 +45,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <a className="skip-link" href="#main">
-          Skip to content
-        </a>
-        <Header />
-        {children}
-        <Footer />
+        <PageTransitions>
+          <PageEntrance>
+            <a className="skip-link" href="#main">Skip to content</a>
+            <SiteChrome header={<Header />} footer={<Footer />}>{children}</SiteChrome>
+          </PageEntrance>
+        </PageTransitions>
         {process.env.NODE_ENV === "development" && <DevTools />}
       </body>
     </html>

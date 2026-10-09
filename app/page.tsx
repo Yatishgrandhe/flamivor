@@ -18,7 +18,6 @@ export default function Home() {
     <main id="main">
       <div id="home-content">
         <section className="campaign-hero">
-          <div className="entry-progress" aria-hidden="true" />
           <div className="shell campaign-stage">
             <div className="campaign-copy">
               <p className="eyebrow">YOUTH-LED EDUCATION. CHARLOTTE, NC.</p>

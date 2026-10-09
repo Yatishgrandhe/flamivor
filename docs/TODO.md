@@ -4,14 +4,14 @@
 - [x] Add nateherkai/scroll-craft marketplace and install nateherk-design 0.3.0.
 - [x] Research the supplied official site for mission context only.
 - [x] Respect Charlotte-only content: no global metrics, team, photography, or other chapters.
-- [ ] Migrate Vite to Next.js 16 / React / TypeScript / shadcn.
-- [ ] Build a dimensional editorial home, mission, resources, involvement and member area.
-- [ ] Create a separate Convex database and Clerk application.
-- [ ] Implement authenticated interest profile persistence and saved resources.
-- [ ] Add desktop motion; mobile/touch/reduced-motion remain static.
-- [ ] Verify forms, keyboard navigation, phone/tablet/laptop, and browser errors.
-- [ ] Pass typecheck and npm run build.
-- [ ] Deploy to Vercel and verify live routes.
+- [x] Migrate Vite to Next.js 16 / React / TypeScript / shadcn.
+- [x] Build a dimensional editorial home, mission, resources, involvement and member area.
+- [x] Create a separate Convex database and Clerk application.
+- [x] Implement authenticated interest profile persistence and saved resources.
+- [x] Add desktop motion; mobile/touch/reduced-motion remain static.
+- [x] Verify forms, keyboard navigation, phone/tablet/laptop, and browser errors.
+- [x] Pass typecheck and npm run build.
+- [x] Deploy to Vercel and verify live routes.
 
 ## Page plan
 Home: local identity → mission → three ways to participate → useful resources → join.
@@ -39,3 +39,12 @@ No invented dates, testimonials, local accomplishments, addresses, personnel or 
 - [x] Inspect desktop/mobile renders and exercise menu/search/save handoff.
 - [x] Repair contrast/focus and responsive integration issues.
 - [x] Publish final production build and verify the delivered design.
+
+## October 9 — Loading, custom authentication and member dashboard
+- [x] Confirm Supreeth Annand as Treasurer and remove open-position notices.
+- [x] Inspect the user's Aurea loading and route-transition implementation.
+- [x] Integrate the branded loading curtain and route transitions.
+- [x] Replace prebuilt authentication with a custom Clerk card and real verification flow.
+- [x] Build separate overview, profile, saved-guide and resource dashboard routes.
+- [x] Verify reload/route/mobile animation behavior and authenticated persistence.
+- [ ] Pass build, TypeScript, lint and independent review; commit, sync and deploy.

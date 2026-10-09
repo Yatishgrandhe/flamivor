@@ -40,7 +40,7 @@ export function Header() {
           ))}
         </nav>
         <div className="header-actions">
-          <Link className="member-link" href="/members">
+          <Link className="member-link" href="/dashboard">
             Member space
           </Link>
           <Button asChild className="join-nav">
@@ -71,7 +71,7 @@ export function Header() {
                   ["Home", "/"],
                   ...links,
                   ["Get involved", "/join"],
-                  ["Member space", "/members"],
+                  ["Member space", "/dashboard"],
                 ].map(([label, url]) => (
                   <Link key={url} href={url} onClick={() => setOpen(false)}>
                     {label}

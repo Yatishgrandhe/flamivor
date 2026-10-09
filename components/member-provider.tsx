@@ -11,8 +11,13 @@ export function MemberProvider({ children }: { children: React.ReactNode }) {
     <ClerkProvider
       signInUrl="/sign-in"
       signUpUrl="/sign-up"
-      signInFallbackRedirectUrl="/members"
-      signUpFallbackRedirectUrl="/members"
+      signInFallbackRedirectUrl="/dashboard"
+      signUpFallbackRedirectUrl="/dashboard"
+      taskUrls={{
+        "choose-organization": "/sign-in?task=1",
+        "reset-password": "/sign-in?task=1",
+        "setup-mfa": "/sign-in?task=1",
+      }}
       appearance={{
         variables: {
           colorPrimary: "#8A0103",

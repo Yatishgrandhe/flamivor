@@ -10,7 +10,7 @@ export function ArticleActions({ slug }: { slug: string }) {
         Print guide
       </Button>
       <Button asChild variant="ghost">
-        <Link href={`/members?save=${slug}`}>
+        <Link href={`/dashboard?save=${encodeURIComponent(slug)}`}>
           <Bookmark size={16} />
           Save to member space
         </Link>

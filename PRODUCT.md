@@ -23,3 +23,5 @@ The user rejected the latest oversized poster-style design on October 9, 2026. R
 The user rejected the warm design and initial nonprofit mockup, and explicitly requested a retro UI library. Black is now permitted alongside exact red and cream. Use Neobrutalism.com (retroui.dev currently redirects there) with actual shadcn/Radix components. The new visual world is a printed youth community club poster, with bold type, outlined photo frames, restrained offset shadows, and natural photography. Do not change the approved logo.
 
 The latest correction requires restraint: not everything bold; regular-weight headings and copy, subtle retro controls. No AI-generated images; use real Unsplash photography only. This overrides the earlier request to generate UI mockups.
+
+Photo presentation: show the existing real photographs without visible stock-image labels, photographer credits, or source links (user request, October 9, 2026). Preserve descriptive alt text and asset provenance in code. General membership uses the original Charlotte Chapter form ending `SvmEiAQ`; the replacement ending `sfyFPWA` was a treasurer form and must not be used for general participation.

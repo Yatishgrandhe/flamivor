@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-09T20:17:51Z",
+  "generatedAt": "2026-10-10T02:42:25Z",
   "title": "Design System: Flamivor Charlotte",
   "extensions": {
     "colorMeta": {
@@ -162,12 +162,12 @@
   ],
   "narrative": {
     "northStar": "A Tactile Chapter Journal",
-    "overview": "The public interface pairs warm editorial type and real, credited photography with a restrained retro component language. The pages stay open and cream-led; thin dark outlines and shallow offset shadows give selected cards and actions a physical feel. Buttons keep a black 2px shadow; cards use a quieter 2px shadow mixed from 24% context ink and surface cream, with a 1px context-colored border and shared 2px radius and responsive padding. Member and authentication cards share the frame tokens while retaining separate typography and scoped colors. The homepage guide card stays fixed while the inner hero photo parallaxes on eligible desktop scroll. The Neobrutalism.com Radix primitives are the source for the button and card patterns, adapted to this chapter’s colors, type, and interaction needs. Public photography is real Unsplash stock, shown with a visible photographer and source credit. It is illustrative and does not represent chapter members or events. Do not use AI-generated imagery. The supplied phoenix logo stays unchanged on the burgundy header. Member and authentication screens retain their separate functional styling and real Clerk and Convex behavior.",
+    "overview": "The public interface pairs warm editorial type and real photography with a restrained retro component language. The pages stay open and cream-led; thin dark outlines and shallow offset shadows give selected cards and actions a physical feel. Buttons keep a black 2px shadow; cards use a quieter 2px shadow mixed from 24% context ink and surface cream, with a 1px context-colored border and shared 2px radius and responsive padding. Member and authentication cards share the frame tokens while retaining separate typography and scoped colors. The homepage guide card stays fixed while the inner hero photo parallaxes on eligible desktop scroll. The Neobrutalism.com Radix primitives are the source for the button and card patterns, adapted to this chapter’s colors, type, and interaction needs. Public photography is real Unsplash stock, shown without visible source labels or photographer credits at the user’s request. It is illustrative and does not represent chapter members or events. Do not use AI-generated imagery. The supplied phoenix logo stays unchanged on the burgundy header. Member and authentication screens retain their separate functional styling and real Clerk and Convex behavior.",
     "keyCharacteristics": [
       "Cream public pages with burgundy actions and header, near-black copy, rules, and component outlines.",
       "Literata public headings in ordinary case; Manrope for prose, controls, and navigation.",
       "Black 2px offset shadows on buttons and quiet context-mixed 2px shadows on framed cards; the surrounding page remains spacious and quiet.",
-      "Real, credited stock photographs and factual Charlotte chapter information."
+      "Real stock photographs and factual Charlotte chapter information."
     ],
     "rules": [
       {"name": "The Exact Identity Rule", "body": "Preserve the supplied burgundy and cream values and the phoenix artwork byte-for-byte.", "section": "colors"}
@@ -175,7 +175,7 @@
     "dos": [
       "Do keep the public page spacious and cream-led; use outlined retro styling on selected components.",
       "Do preserve the exact burgundy, cream, and supplied phoenix logo.",
-      "Do use real sourced photography with visible stock labels and photographer credits.",
+      "Do use real sourced photography without visible source labels or photographer credits, as requested by the user.",
       "Do keep the current local facts, official form, and public guide access accurate.",
       "Do preserve the separate member and authentication typography and behavior.",
       "Do limit scroll-linked movement to wide, fine-pointer desktop with reduced motion disabled."

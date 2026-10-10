@@ -8,7 +8,6 @@ import { resources } from "@/lib/resources";
 import { leaders, site } from "@/lib/site";
 import { photos } from "@/lib/photos";
 import { UnsplashImage } from "@/components/unsplash-image";
-import { PhotoCredit } from "@/components/photo-band";
 
 const paths = [
   {
@@ -63,9 +62,6 @@ export default function Home() {
                 />
               </div>
             </div>
-            <figcaption>
-              <PhotoCredit photo={photos.collaboration} />
-            </figcaption>
           </figure>
           <Card className="hero-guide-card">
             <CardHeader>
@@ -93,9 +89,6 @@ export default function Home() {
               photo={photos.study}
               sizes="(max-width: 767px) 100vw, 32vw"
             />
-            <figcaption>
-              <PhotoCredit photo={photos.study} />
-            </figcaption>
           </figure>
           <div className="mission-content">
             <h2>A local chapter. A shared purpose.</h2>
@@ -174,9 +167,6 @@ export default function Home() {
                 sizes="(max-width: 767px) 100vw, 46vw"
               />
             </div>
-            <figcaption>
-              <PhotoCredit photo={photos.classroom} />
-            </figcaption>
           </figure>
           <div className="people-roster">
             {leaders.map((leader) => (

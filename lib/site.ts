@@ -1,6 +1,6 @@
 export const site = {
   name: "Flamivor Charlotte",
-  form: "https://docs.google.com/forms/d/e/1FAIpQLSdv7CDW7w7LyLv0DACdmFv_E0NEWBU-XuIpBUoJsaosfyFPWA/viewform?usp=header",
+  form: "https://docs.google.com/forms/d/e/1FAIpQLSelRJ6fs1OzhlS2kVr0aPsyUUBIC2Kfp5B-E9H7pX_SvmEiAQ/viewform?usp=header",
   instagram: "https://www.instagram.com/flamivor.charlotte/",
   url:
     process.env.NEXT_PUBLIC_SITE_URL || "https://flamivor-charlotte.vercel.app",

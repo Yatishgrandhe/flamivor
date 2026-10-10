@@ -6,7 +6,7 @@ The user's subsequent Charlotte group announcement is the source for the local m
 
 Approved leadership (updated by the user October 9, 2026): Yatish Grandhe, President; Shaurya Gautham, Vice President; Supreeth Annand, Treasurer; Joshita Madarapu, Social Media Manager; Tanvi Musale, Operations Director. The previously open Treasurer position is filled.
 
-Approved application URL: https://docs.google.com/forms/d/e/1FAIpQLSdv7CDW7w7LyLv0DACdmFv_E0NEWBU-XuIpBUoJsaosfyFPWA/viewform?usp=header
+Approved application URL: https://docs.google.com/forms/d/e/1FAIpQLSelRJ6fs1OzhlS2kVr0aPsyUUBIC2Kfp5B-E9H7pX_SvmEiAQ/viewform?usp=header
 Approved social: https://www.instagram.com/flamivor.charlotte/
 
 No event dates, quantitative achievements, local office address, team biographies, or portraits were supplied. These are not invented. The three starter guides are original content created for the site. The tabletop image is generated illustrative still-life art, not an event photograph.

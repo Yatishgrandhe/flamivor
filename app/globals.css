@@ -10,11 +10,11 @@
   --color-accent: var(--surface); --color-accent-foreground: var(--ink);
   --color-destructive: var(--red); --color-border: var(--line);
   --color-input: var(--control-line); --color-ring: var(--red);
-  --radius-sm: 2px; --radius-md: 2px; --radius-lg: 4px; --radius-xl: 4px;
+  --radius-sm: 6px; --radius-md: 8px; --radius-lg: 12px; --radius-xl: 12px;
   --font-sans: "Manrope", sans-serif;
   --color-retro-ink: #171714;
 }
-:root { --red:#8A0103; --paper:#F2EFE5; --ink:var(--red); --muted:color-mix(in srgb,var(--red) 72%,var(--paper)); --line:color-mix(in srgb,var(--red) 24%,var(--paper)); --surface:color-mix(in srgb,var(--red) 4%,var(--paper)); --control-line:color-mix(in srgb,var(--red) 60%,var(--paper)); --ease-out:cubic-bezier(.23,1,.32,1); --gutter:clamp(20px,4.4vw,64px); --card-radius:2px; --card-padding:28px; --card-border:1px solid var(--control-line); --card-shadow:2px 2px 0 color-mix(in srgb,var(--ink) 24%,var(--paper)); }
+:root { --red:#8A0103; --paper:#F2EFE5; --ink:#171714; --muted:color-mix(in srgb,var(--ink) 72%,var(--paper)); --line:color-mix(in srgb,var(--ink) 17%,var(--paper)); --surface:color-mix(in srgb,var(--red) 4%,var(--paper)); --control-line:color-mix(in srgb,var(--ink) 42%,var(--paper)); --ease-out:cubic-bezier(.23,1,.32,1); --gutter:clamp(20px,4.4vw,64px); --card-radius:12px; --card-padding:24px; --card-border:1px solid var(--line); --card-shadow:none; }
 * { box-sizing:border-box; }
 html { scroll-padding-top:120px; -webkit-tap-highlight-color:transparent; -webkit-text-size-adjust:100%; }
 body { margin:0; background:var(--paper); color:var(--ink); font-family:'Manrope',sans-serif; font-size:16px; line-height:1.65; -webkit-font-smoothing:antialiased; }

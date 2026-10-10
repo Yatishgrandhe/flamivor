@@ -11,6 +11,7 @@ import "@fontsource/literata/latin-500.css";
 import "@fontsource/literata/latin-400-italic.css";
 import "./globals.css";
 import "@/components/public-design.css";
+import "@/components/secondary-design.css";
 import "@/components/page-transitions.css";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";

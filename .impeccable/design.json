@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-10T02:42:25Z",
+  "generatedAt": "2026-10-10T15:35:00.432998+00:00",
   "title": "Design System: Flamivor Charlotte",
   "extensions": {
     "colorMeta": {
@@ -8,95 +8,83 @@
         "role": "primary",
         "displayName": "Chapter Burgundy",
         "canonical": "#8A0103",
-        "tonalRamp": ["#1F0000", "#470001", "#730002", "#9C1D17", "#BE4135", "#E16153", "#FF8576", "#FFE9E5"]
+        "tonalRamp": [
+          "#1F0000",
+          "#470001",
+          "#730002",
+          "#9C1D17",
+          "#BE4135",
+          "#E16153",
+          "#FF8576",
+          "#FFE9E5"
+        ]
       },
       "cream": {
         "role": "neutral",
         "displayName": "Warm Cream",
         "canonical": "#F2EFE5",
-        "tonalRamp": ["#0D0B05", "#24221A", "#3D3A33", "#58554D", "#747169", "#928F86", "#B1AEA4", "#F1EEE4"]
+        "tonalRamp": [
+          "#0D0B05",
+          "#24221A",
+          "#3D3A33",
+          "#58554D",
+          "#747169",
+          "#928F86",
+          "#B1AEA4",
+          "#F1EEE4"
+        ]
       },
-      "retro-ink": {
+      "ink": {
         "role": "neutral",
-        "displayName": "Retro Ink",
+        "displayName": "Chapter Ink",
         "canonical": "#171714",
-        "tonalRamp": ["#0B0B09", "#22221F", "#3B3B37", "#555552", "#72726E", "#8F8F8B", "#AEAEAA", "#EFEFEA"]
-      },
-      "muted-ink": {
-        "role": "neutral",
-        "displayName": "Muted Ink",
-        "canonical": "color-mix(in srgb, #171714 72%, #F2EFE5)",
-        "tonalRamp": ["#0C0B08", "#22221E", "#3B3A37", "#565551", "#73726D", "#908F8B", "#AFAEA9", "#F0EEEA"]
-      },
-      "fine-rule": {
-        "role": "neutral",
-        "displayName": "Fine Rule",
-        "canonical": "color-mix(in srgb, #171714 24%, #F2EFE5)",
-        "tonalRamp": ["#0D0B05", "#23221A", "#3C3B33", "#57554D", "#747269", "#918F86", "#B0AEA4", "#F1EFE4"]
-      },
-      "soft-surface": {
-        "role": "neutral",
-        "displayName": "Soft Surface",
-        "canonical": "color-mix(in srgb, #171714 4%, #F2EFE5)",
-        "tonalRamp": ["#0D0B06", "#24221B", "#3D3A33", "#58554E", "#747169", "#928F87", "#B1AEA5", "#F1EEE5"]
+        "tonalRamp": [
+          "#0B0B09",
+          "#22221F",
+          "#3B3B37",
+          "#555552",
+          "#72726E",
+          "#8F8F8B",
+          "#AEAEAA",
+          "#EFEFEA"
+        ]
       }
     },
     "typographyMeta": {
-      "public-display": {
-        "displayName": "Literata public display",
-        "purpose": "Ordinary-case public page and hero headings."
-      },
-      "public-title": {
-        "displayName": "Literata public titles",
-        "purpose": "Public section, guide, path, and invitation titles."
+      "display": {
+        "displayName": "Literata display",
+        "purpose": "Human, regular-weight headlines."
       },
       "body": {
         "displayName": "Manrope body",
-        "purpose": "Public prose, navigation, labels, and controls."
+        "purpose": "Readable prose and interface text."
       },
       "control": {
         "displayName": "Manrope controls",
-        "purpose": "Public buttons and text links."
+        "purpose": "Medium-weight accessible controls."
       },
-      "member-title": {
-        "displayName": "Space Grotesk member title",
-        "purpose": "Existing member and authentication UI title hierarchy."
+      "legacy-member": {
+        "displayName": "Existing member fallback",
+        "purpose": "Remaining functional labels."
       }
     },
-    "shadows": [
-      {
-        "name": "retro-button",
-        "value": "2px 2px 0 #171714",
-        "purpose": "Resting black shadow on public retro buttons; framed cards use the separate context-mixed card shadow."
-      },
-      {
-        "name": "retro-button-hover",
-        "value": "4px 4px 0 #171714",
-        "purpose": "Fine-pointer hover state for public buttons."
-      }
-    ],
+    "shadows": [],
     "motion": [
       {
-        "name": "public-control",
-        "value": "200ms; cubic-bezier(.23,1,.32,1) where specified",
-        "purpose": "Button, text-link, photo, and guide-row feedback; keyboard and reduced-motion modes suppress movement."
-      },
-      {
-        "name": "desktop-home-scroll",
-        "value": "min-width:1024px; pointer:fine; prefers-reduced-motion:no-preference",
-        "purpose": "Homepage-only scroll motion: hero photo inner layer y 18px to -18px, mission photo 16px to 0, chapter heading 12px to 0, chapter copy 16px to 0, and guide rows 12px to 0 with 80ms stagger and 600ms entrance. The hero guide card exterior stays fixed."
-      },
-      {
-        "name": "public-entrance",
-        "value": "600–900ms; hero photo 800ms with 100ms delay",
-        "purpose": "Desktop-only page reveal for the hero heading/photo and secondary page heading; route transitions use 220ms cover and 300ms reveal."
+        "name": "ease-out",
+        "value": "cubic-bezier(.23,1,.32,1)",
+        "purpose": "Route transitions and desktop photographic reveal."
       }
     ],
     "breakpoints": [
-      {"name": "mobile-layout", "value": "767px"},
-      {"name": "intermediate-layout", "value": "1100px"},
-      {"name": "desktop-motion", "value": "1024px and fine pointer"},
-      {"name": "public-shell", "value": "1280px max-width"}
+      {
+        "name": "phone",
+        "value": "767px"
+      },
+      {
+        "name": "desktop-motion",
+        "value": "1024px"
+      }
     ],
     "cardTokens": {
       "radius": "2px",
@@ -114,76 +102,67 @@
     {
       "name": "Primary Button",
       "kind": "button",
-      "refersTo": "button-primary",
-      "description": "Burgundy action with a restrained retro outline and press feedback.",
-      "html": "<button class=\"ds-button-primary\">Get involved <svg aria-hidden=\"true\" viewBox=\"0 0 24 24\"><path d=\"M7 17 17 7M7 7h10v10\"/></svg></button>",
-      "css": ".ds-button-primary { display:inline-flex; align-items:center; justify-content:center; gap:8px; min-height:48px; padding:12px 20px; color:#F2EFE5; background:#8A0103; border:1px solid #171714; border-radius:2px; box-shadow:2px 2px 0 #171714; font:500 14px/1.3 Manrope,Arial,sans-serif; cursor:pointer; transition:transform 200ms,box-shadow 200ms,background-color 200ms; } .ds-button-primary svg { width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round; } .ds-button-primary:hover { transform:translate(-1px,-1px);box-shadow:4px 4px 0 #171714;background:color-mix(in srgb,#8A0103 90%,#F2EFE5); } .ds-button-primary:active { transform:translate(2px,2px);box-shadow:none; } .ds-button-primary:focus-visible { outline:3px solid #8A0103;outline-offset:5px; } .ds-button-primary:disabled { opacity:.6;cursor:not-allowed; }"
+      "description": "Chapter action with a clear focus state.",
+      "html": "<button class=\"ds-primary\">Get involved</button>",
+      "css": ".ds-primary{font-family:Manrope,sans-serif;font-size:14px;font-weight:500;background:#8A0103;color:#F2EFE5;border:1px solid transparent;height:48px;padding:0 24px;border-radius:8px;cursor:pointer;}.ds-primary:hover{opacity:.9}.ds-primary:focus-visible{outline:3px solid #8A0103;outline-offset:4px}.ds-primary:active{transform:scale(.97)}"
     },
     {
-      "name": "Inverse Header Button",
+      "name": "Inverse Button",
       "kind": "button",
-      "refersTo": "button-inverse",
-      "description": "Cream action on the burgundy header, with the same component border and tactile states.",
-      "html": "<button class=\"ds-button-inverse\">Get involved</button>",
-      "css": ".ds-button-inverse { display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:12px 20px;color:#171714;background:#F2EFE5;border:1px solid #171714;border-radius:2px;box-shadow:2px 2px 0 #171714;font:500 14px/1.3 Manrope,Arial,sans-serif;cursor:pointer;transition:transform 200ms,box-shadow 200ms,background-color 200ms; } .ds-button-inverse:hover { transform:translate(-1px,-1px);box-shadow:4px 4px 0 #171714; } .ds-button-inverse:active { transform:translate(2px,2px);box-shadow:none; } .ds-button-inverse:focus-visible { outline:3px solid #F2EFE5;outline-offset:5px; } .ds-button-inverse:disabled { opacity:.6;cursor:not-allowed; }"
+      "description": "Chapter action with a clear focus state.",
+      "html": "<button class=\"ds-inverse\">Get involved</button>",
+      "css": ".ds-inverse{font-family:Manrope,sans-serif;font-size:14px;font-weight:500;background:#F2EFE5;color:#8A0103;border:1px solid transparent;height:48px;padding:0 24px;border-radius:8px;cursor:pointer;}.ds-inverse:hover{opacity:.9}.ds-inverse:focus-visible{outline:3px solid #8A0103;outline-offset:4px}.ds-inverse:active{transform:scale(.97)}"
     },
     {
-      "name": "Retro Card",
+      "name": "Outline Button",
+      "kind": "button",
+      "description": "Chapter action with a clear focus state.",
+      "html": "<button class=\"ds-outline\">Get involved</button>",
+      "css": ".ds-outline{font-family:Manrope,sans-serif;font-size:14px;font-weight:500;background:#F2EFE5;color:#171714;border:1px solid #99978f;height:48px;padding:0 24px;border-radius:8px;cursor:pointer;}.ds-outline:hover{opacity:.9}.ds-outline:focus-visible{outline:3px solid #8A0103;outline-offset:4px}.ds-outline:active{transform:scale(.97)}"
+    },
+    {
+      "name": "Guide card",
       "kind": "card",
-      "refersTo": "card",
-      "description": "Framed card using context-colored border and a quiet ink-and-cream offset shadow; member and authentication cards share the frame with separate typography.",
-      "html": "<article class=\"ds-card\"><h2>Start with a good question.</h2><p>Our original starter guides are free to read and put into practice.</p><a href=\"#guides\">Explore the guides</a></article>",
-      "css": ".ds-card { padding:28px;background:#E9E6DD;color:#171714;border:1px solid color-mix(in srgb,#171714 60%,#F2EFE5);border-radius:2px;box-shadow:2px 2px 0 color-mix(in srgb,#171714 24%,#F2EFE5); } @media(max-width:767px) { .ds-card { padding:24px; } } .ds-card h2 { margin:0 0 16px;font:400 30px/1.2 Literata,Georgia,serif;letter-spacing:-.03em; } .ds-card p { margin:0 0 20px;font:400 14px/1.7 Manrope,Arial,sans-serif; } .ds-card a { color:#8A0103;font:500 14px/1.5 Manrope,Arial,sans-serif;text-underline-offset:4px; } .ds-card a:hover { text-decoration:underline; } .ds-card a:focus-visible { outline:3px solid #8A0103;outline-offset:4px; }"
+      "description": "Quiet consistent card frame.",
+      "html": "<article class=\"ds-card\"><h3>Find your study rhythm.</h3><p>A practical guide to a focused study session.</p></article>",
+      "css": ".ds-card{padding:24px;border:1px solid #cdcac2;border-radius:12px;background:#F2EFE5;color:#171714}.ds-card h3{font:400 24px/1.3 Literata,serif;margin:0}.ds-card p{font:400 15px/1.65 Manrope,sans-serif;margin:16px 0 0}"
     },
     {
-      "name": "Search Field",
+      "name": "Search field",
       "kind": "input",
-      "refersTo": "search-field",
-      "description": "Cream search control with an explicit label, border, and focus state.",
-      "html": "<label class=\"ds-search-label\">Search field notes<input class=\"ds-search-field\" type=\"search\" placeholder=\"Search titles and topics\" /></label>",
-      "css": ".ds-search-label { display:block;color:#171714;font:500 14px/1.4 Manrope,Arial,sans-serif; } .ds-search-field { display:block;width:100%;height:52px;margin-top:8px;padding:12px;color:#171714;background:#F2EFE5;border:1px solid color-mix(in srgb,#8A0103 60%,#F2EFE5);border-radius:4px;font:400 16px/1.4 Manrope,Arial,sans-serif; } .ds-search-field::placeholder { color:color-mix(in srgb,#171714 72%,#F2EFE5); } .ds-search-field:focus-visible { outline:3px solid #8A0103;outline-offset:3px; }"
+      "description": "Guide search.",
+      "html": "<label class=\"ds-label\">Search field notes<input class=\"ds-input\" type=\"search\" placeholder=\"Find a guide\"></label>",
+      "css": ".ds-label{display:grid;gap:8px;font:400 14px Manrope,sans-serif;color:#171714}.ds-input{border:1px solid #96948d;border-radius:8px;background:#F2EFE5;padding:12px;font:400 16px Manrope,sans-serif}.ds-input:focus-visible{outline:3px solid #8A0103;outline-offset:3px}"
     },
     {
-      "name": "Selected Topic Filter",
-      "kind": "chip",
-      "refersTo": "selected-filter",
-      "description": "Selected category in the public guide browser.",
-      "html": "<button class=\"ds-filter-selected\" aria-pressed=\"true\">All field notes</button>",
-      "css": ".ds-filter-selected { min-height:44px;padding:10px 12px;color:#F2EFE5;background:#8A0103;border:1px solid color-mix(in srgb,#8A0103 60%,#F2EFE5);border-radius:4px;font:500 14px/1.3 Manrope,Arial,sans-serif;cursor:pointer;transition:background-color 180ms; } .ds-filter-selected:hover { background:color-mix(in srgb,#8A0103 90%,#F2EFE5); } .ds-filter-selected:focus-visible { outline:3px solid #8A0103;outline-offset:3px; }"
-    },
-    {
-      "name": "Public Navigation",
+      "name": "Chapter navigation",
       "kind": "nav",
-      "refersTo": "header-navigation",
-      "description": "Burgundy site header with cream links and unchanged phoenix mark placement.",
-      "html": "<nav class=\"ds-header-nav\"><a href=\"#home\" class=\"ds-brand\">Flamivor <span>Charlotte</span></a><a href=\"#mission\">Our mission</a><a href=\"#people\">Our people</a><a href=\"#guides\">Field guide</a></nav>",
-      "css": ".ds-header-nav { display:flex;align-items:center;gap:28px;min-height:88px;padding:0 24px;color:#F2EFE5;background:#8A0103;font:500 14px/1.4 Manrope,Arial,sans-serif; } .ds-header-nav a { color:inherit;text-decoration:none;text-underline-offset:6px; } .ds-header-nav a:hover,.ds-header-nav a:focus-visible { text-decoration:underline; } .ds-header-nav a:focus-visible { outline:2px solid #F2EFE5;outline-offset:4px; } .ds-header-nav .ds-brand { display:flex;flex-direction:column;gap:2px;font:500 20px/1.1 Literata,Georgia,serif; } .ds-header-nav .ds-brand span { font:400 9px/1.3 Manrope,Arial,sans-serif;letter-spacing:.28em;text-transform:uppercase; }"
+      "description": "Burgundy header navigation.",
+      "html": "<nav class=\"ds-nav\"><a href=\"#\">Our mission</a><a href=\"#\">Our people</a><a href=\"#\">Field guide</a></nav>",
+      "css": ".ds-nav{display:flex;gap:28px;padding:24px;background:#8A0103;color:#F2EFE5;font:500 14px Manrope,sans-serif}.ds-nav a{color:inherit;text-decoration:none}.ds-nav a:hover{text-decoration:underline;text-underline-offset:6px}.ds-nav a:focus-visible{outline:2px solid #F2EFE5;outline-offset:4px}"
+    },
+    {
+      "name": "Selected topic",
+      "kind": "chip",
+      "description": "Active guide filter.",
+      "html": "<button class=\"ds-chip\" aria-pressed=\"true\">Learning skills</button>",
+      "css": ".ds-chip{border:1px solid #8A0103;border-radius:8px;background:#8A0103;color:#F2EFE5;padding:12px 16px;font:500 14px Manrope,sans-serif}.ds-chip:focus-visible{outline:3px solid #8A0103;outline-offset:4px}"
     }
   ],
   "narrative": {
-    "northStar": "A Tactile Chapter Journal",
-    "overview": "The public interface pairs warm editorial type and real photography with a restrained retro component language. The pages stay open and cream-led; thin dark outlines and shallow offset shadows give selected cards and actions a physical feel. Buttons keep a black 2px shadow; cards use a quieter 2px shadow mixed from 24% context ink and surface cream, with a 1px context-colored border and shared 2px radius and responsive padding. Member and authentication cards share the frame tokens while retaining separate typography and scoped colors. The homepage guide card stays fixed while the inner hero photo parallaxes on eligible desktop scroll. The Neobrutalism.com Radix primitives are the source for the button and card patterns, adapted to this chapter’s colors, type, and interaction needs. Public photography is real Unsplash stock, shown without visible source labels or photographer credits at the user’s request. It is illustrative and does not represent chapter members or events. Do not use AI-generated imagery. The supplied phoenix logo stays unchanged on the burgundy header. Member and authentication screens retain their separate functional styling and real Clerk and Convex behavior.",
+    "northStar": "A welcoming education community",
+    "overview": "A welcoming education community. Human photography, a confident but regular-weight serif voice, and concise practical actions. Public Mobbin education examples inform the hierarchy and photographic composition; shadcn Radix components provide the working interaction system. This replaces the previous retro frames and offset shadows.",
     "keyCharacteristics": [
-      "Cream public pages with burgundy actions and header, near-black copy, rules, and component outlines.",
-      "Literata public headings in ordinary case; Manrope for prose, controls, and navigation.",
-      "Black 2px offset shadows on buttons and quiet context-mixed 2px shadows on framed cards; the surrounding page remains spacious and quiet.",
-      "Real stock photographs and factual Charlotte chapter information."
+      "Real photography",
+      "Regular-weight editorial typography",
+      "Accessible shadcn controls"
     ],
-    "rules": [
-      {"name": "The Exact Identity Rule", "body": "Preserve the supplied burgundy and cream values and the phoenix artwork byte-for-byte.", "section": "colors"}
-    ],
+    "rules": [],
     "dos": [
-      "Do keep the public page spacious and cream-led; use outlined retro styling on selected components.",
-      "Do preserve the exact burgundy, cream, and supplied phoenix logo.",
-      "Do use real sourced photography without visible source labels or photographer credits, as requested by the user.",
-      "Do keep the current local facts, official form, and public guide access accurate.",
-      "Do preserve the separate member and authentication typography and behavior.",
-      "Do limit scroll-linked movement to wide, fine-pointer desktop with reduced motion disabled."
+      "Preserve the approved phoenix logo and chapter palette."
     ],
     "donts": [
-      "Don't use AI-generated images or present stock photos as actual members or chapter events.",
-      "Don't make every surface bold, outlined, or shadowed; reserve the retro treatment for selected actions and cards.",
-      "Don't use oversized all-caps display headings, invented facts, or additional visual hues."
+      "Do not invent achievements or use AI-generated photographs."
     ]
   }
 }

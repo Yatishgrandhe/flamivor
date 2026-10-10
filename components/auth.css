@@ -12,7 +12,7 @@
   border: var(--card-border);
   border-radius: var(--card-radius);
   background: var(--paper);
-  box-shadow: var(--card-shadow);
+  box-shadow: none;
 }
 
 .auth-card__brand {
@@ -34,9 +34,9 @@
 
 .auth-card__kicker,
 .auth-card__eyebrow {
-  font-family: "Space Grotesk", sans-serif;
+  font-family: "Manrope", Arial, sans-serif;
   font-size: 11px;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 1.4;
   letter-spacing: .12em;
   text-transform: uppercase;
@@ -50,10 +50,10 @@
 
 .auth-card__title {
   margin-top: 8px;
-  color: var(--red);
-  font-family: "Space Grotesk", sans-serif;
+  color: var(--ink);
+  font-family: "Literata", Georgia, serif;
   font-size: clamp(30px, 6vw, 36px);
-  font-weight: 600;
+  font-weight: 400;
   letter-spacing: -.04em;
   line-height: 1.08;
   text-transform: none;
@@ -87,7 +87,7 @@
   color: var(--red);
   font-family: "Manrope", sans-serif;
   font-size: 14px;
-  font-weight: 700;
+  font-weight: 500;
   line-height: 1.4;
 }
 
@@ -101,7 +101,7 @@
   min-height: 48px;
   height: 48px;
   border: 1px solid var(--control-line);
-  border-radius: 2px;
+  border-radius: 8px;
   background: var(--paper);
   color: var(--red);
   font-size: 16px;
@@ -124,12 +124,12 @@
   width: clamp(38px, 10vw, 48px);
   height: 52px;
   border: 1px solid var(--control-line);
-  border-radius: 2px;
+  border-radius: 8px;
   background: var(--paper);
   color: var(--red);
-  font-family: "Space Grotesk", sans-serif;
+  font-family: "Manrope", Arial, sans-serif;
   font-size: 20px;
-  font-weight: 600;
+  font-weight: 500;
   box-shadow: none;
 }
 
@@ -162,7 +162,7 @@
 .auth-card__switch a,
 .auth-card__back {
   color: var(--red);
-  font-weight: 700;
+  font-weight: 500;
   text-decoration: underline;
   text-underline-offset: 4px;
 }
@@ -204,14 +204,14 @@
 
 .auth-check-label a {
   color: var(--red);
-  font-weight: 700;
+  font-weight: 500;
   text-decoration: underline;
   text-underline-offset: 3px;
 }
 
 .auth-feedback {
   margin-top: 16px;
-  border-radius: 2px;
+  border-radius: 8px;
   border-color: var(--line);
   background: var(--surface);
   color: var(--ink);
@@ -229,7 +229,7 @@
   border-color: color-mix(in srgb, var(--red) 45%, var(--line));
   background: color-mix(in srgb, var(--red) 8%, var(--paper));
   color: var(--red);
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .auth-captcha { display: flex; justify-content: center; margin-top: 12px; }

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { resources } from "@/lib/resources";
+import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import "./resource-card.css";
 
 export function ResourceArt({ symbol }: { symbol: string }) {
@@ -38,25 +39,27 @@ export function ResourceCard({
   resource: (typeof resources)[number];
 }) {
   return (
-    <Link href={`/resources/${resource.slug}`} className="resource-card">
-      <div className={`resource-cover ${resource.color}`} aria-hidden="true">
-        <span className="cover-label">THE CHARLOTTE FIELD NOTES</span>
-        <ResourceArt symbol={resource.symbol} />
-        <span className="cover-bottom">
-          A SMALL START GOES A LONG WAY <ArrowUpRight size={17} />
-        </span>
-      </div>
-      <div className="resource-copy">
-        <div className="resource-meta">
-          <span>{resource.category}</span>
-          <span>{resource.time}</span>
+    <Link href={`/resources/${resource.slug}`} className="resource-card-link">
+      <Card className="resource-card">
+        <div className={`resource-cover ${resource.color}`} aria-hidden="true">
+          <span className="cover-label">THE CHARLOTTE FIELD NOTES</span>
+          <ResourceArt symbol={resource.symbol} />
+          <span className="cover-bottom">
+            A SMALL START GOES A LONG WAY <ArrowUpRight size={17} />
+          </span>
         </div>
-        <h3>
-          {resource.title}
-          <ArrowUpRight size={21} aria-hidden="true" />
-        </h3>
-        <p>{resource.description}</p>
-      </div>
+        <CardHeader className="resource-copy">
+          <div className="resource-meta">
+            <span>{resource.category}</span>
+            <span>{resource.time}</span>
+          </div>
+          <CardTitle><h3>
+            {resource.title}
+            <ArrowUpRight size={21} aria-hidden="true" />
+          </h3></CardTitle>
+          <CardDescription><p>{resource.description}</p></CardDescription>
+        </CardHeader>
+      </Card>
     </Link>
   );
 }

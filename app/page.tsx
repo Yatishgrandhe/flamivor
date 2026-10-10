@@ -1,186 +1,74 @@
-import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
-import { Button } from "@/components/retro/button";
-import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "@/components/retro/card";
+import { ArrowRight, ArrowUpRight, BookOpen, HeartHandshake } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { TextLink, Invite } from "@/components/editorial";
 import { DesktopMotion } from "@/components/desktop-motion";
+import { ResourceCard } from "@/components/resource-card";
 import { resources } from "@/lib/resources";
 import { leaders, site } from "@/lib/site";
 import { photos } from "@/lib/photos";
 import { UnsplashImage } from "@/components/unsplash-image";
 
-const paths = [
-  {
-    title: "For learners",
-    description:
-      "Explore practical guides for study habits, hands-on projects, and supporting a peer.",
-    url: "/resources",
-    label: "Browse free guides",
-  },
-  {
-    title: "For volunteers",
-    description:
-      "Bring your skills and ideas as the Charlotte chapter develops useful learning opportunities.",
-    url: "/join#volunteer",
-    label: "Volunteer with us",
-  },
-  {
-    title: "For local partners",
-    description:
-      "Share knowledge, a space, or an idea for working together with Charlotte students.",
-    url: "/join#partner",
-    label: "Explore a partnership",
-  },
+const questions = [
+  { question: "What is Flamivor Charlotte?", answer: "We’re a youth-led nonprofit chapter focused on making education more accessible, meaningful, and connected to our local community. Students help shape the resources, projects, and opportunities we build." },
+  { question: "How can I get involved?", answer: "Start with our chapter membership form. Tell us about your interests and how you’d like to help, whether that’s creating resources, volunteering, or bringing a new idea. You can also follow the chapter on Instagram for updates." },
+  { question: "Do I need an account to use the guides?", answer: "No. Every starter guide is free to read without signing in. A member account lets you save guides and keep your chapter profile in one place." },
+  { question: "Are tutoring sessions and workshops available now?", answer: "We’re building toward tutoring, workshops, mentorship, and local outreach. Follow our Charlotte Instagram for confirmed opportunities as they become available." },
 ];
 
 export default function Home() {
-  return (
-    <main id="main">
-      <div id="home-content">
-        <section className="community-hero shell">
-          <h1 className="retro-hero-heading">Learning grows<br />when we <em>share it.</em></h1>
-          <div className="community-opening">
-            <p>
-              Flamivor Charlotte is a youth-led education chapter building ways
-              for students to learn, lead, and support one another.
-            </p>
-            <div className="community-actions">
-              <Button asChild>
-                <a href={site.form} target="_blank" rel="noreferrer">
-                  Get involved <ArrowUpRight data-icon="inline-end" aria-hidden="true" />
-                </a>
-              </Button>
-            </div>
-          </div>
-          <figure className="community-hero-photo">
-            <div className="hero-photo-crop">
-              <div className="hero-photo-parallax">
-                <UnsplashImage
-                  photo={photos.collaboration}
-                  priority
-                  sizes="(max-width: 767px) 100vw, 58vw"
-                />
-              </div>
-            </div>
-          </figure>
-          <Card className="hero-guide-card">
-            <CardHeader>
-              <CardTitle><h2>Start with a<br />good question.</h2></CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p>Build a study habit. Try a project. Help a friend learn.</p>
-              <p>Our original starter guides are free to read and put into practice.</p>
-            </CardContent>
-            <CardFooter>
-              <Button asChild variant="inverse"><Link href="/resources">Explore the guides <ArrowUpRight data-icon="inline-end" aria-hidden="true" /></Link></Button>
-            </CardFooter>
-          </Card>
-          <div className="community-context">
-            <p>Charlotte, North Carolina</p>
-            <p>
-              Learn. Share. Lead.
-            </p>
-          </div>
-        </section>
-
-        <section className="mission-section shell">
-          <figure className="mission-photo">
-            <UnsplashImage
-              photo={photos.study}
-              sizes="(max-width: 767px) 100vw, 32vw"
-            />
-          </figure>
-          <div className="mission-content">
-            <h2>A local chapter. A shared purpose.</h2>
-            <div className="mission-columns">
-              <p>
-                Flamivor Charlotte is a youth-led nonprofit chapter making
-                education more accessible, meaningful, and connected to our
-                community.
-              </p>
-              <div>
-                <p>
-                  We&apos;re building toward educational resources, tutoring,
-                  workshops, mentorship, and local outreach. Every useful idea
-                  starts with someone willing to contribute.
-                </p>
-                <TextLink href="/about">About the chapter</TextLink>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="participation-section shell" aria-labelledby="participation-title">
-          <div className="section-heading">
-            <h2 id="participation-title">There is a place for you here.</h2>
-          </div>
-          <div className="participation-journey">
-            {paths.map((path) => (
-              <article className="journey-chapter" key={path.title}>
-                <div className="journey-display">
-                  <h3>{path.title}</h3>
-                </div>
-                <div className="journey-copy">
-                  <p>{path.description}</p>
-                  <TextLink href={path.url}>{path.label}</TextLink>
-                </div>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section className="home-guide-section shell">
-          <div className="section-heading">
-            <h2>A good place to start.</h2>
-            <p>Original starter guides, free to read and ready to put into practice.</p>
-          </div>
-          <div className="home-guide-list">
-            {resources.map((resource) => (
-              <Link
-                className="home-guide-entry"
-                href={`/resources/${resource.slug}`}
-                key={resource.slug}
-              >
-                <span className="home-guide-category">{resource.category}</span>
-                <span className="home-guide-copy">
-                  <span className="home-guide-title">{resource.title}</span>
-                  <span className="home-guide-description">{resource.description}</span>
-                </span>
-                <span className="home-guide-time">{resource.time}</span>
-                <ArrowUpRight aria-hidden="true" />
-              </Link>
-            ))}
-          </div>
-          <TextLink href="/resources">See all free guides</TextLink>
-        </section>
-
-        <section className="home-people shell">
-          <div className="people-intro">
-            <h2>Meet the chapter.</h2>
-            <p>The students helping shape Flamivor Charlotte&apos;s next steps.</p>
-            <TextLink href="/team">Meet the people</TextLink>
-          </div>
-          <figure className="people-image">
-            <div className="photo-frame">
-              <UnsplashImage
-                photo={photos.classroom}
-                sizes="(max-width: 767px) 100vw, 46vw"
-              />
-            </div>
-          </figure>
-          <div className="people-roster">
-            {leaders.map((leader) => (
-              <div className="roster-line" key={leader.name}>
-                <span>{leader.name}</span>
-                <span>{leader.role}</span>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <Invite />
+  return <main id="main"><div id="home-content">
+    <section className="welcome-hero shell" aria-labelledby="welcome-title">
+      <div className="welcome-copy">
+        <h1 id="welcome-title">A little curiosity.<br />A whole <em>community.</em></h1>
+        <p>We’re Flamivor Charlotte. A youth-led chapter bringing people together to make learning more accessible—and more human.</p>
+        <div className="welcome-actions">
+          <Button asChild><a href={site.form} target="_blank" rel="noreferrer">Find your place <ArrowUpRight data-icon="inline-end" aria-hidden="true" /></a></Button>
+          <Button asChild variant="outline"><Link href="/resources">Explore free guides <ArrowRight data-icon="inline-end" aria-hidden="true" /></Link></Button>
+        </div>
       </div>
-      <DesktopMotion />
-    </main>
-  );
+      <div className="welcome-gallery" aria-label="People learning and sharing ideas">
+        <figure className="welcome-photo welcome-photo-side"><UnsplashImage photo={photos.study} priority sizes="(max-width: 767px) 32vw, 24vw" /></figure>
+        <figure className="welcome-photo welcome-photo-main"><div className="welcome-photo-inner"><UnsplashImage photo={photos.collaboration} priority sizes="(max-width: 767px) 80vw, 52vw" /></div></figure>
+        <figure className="welcome-photo welcome-photo-side"><UnsplashImage photo={photos.classroom} priority sizes="(max-width: 767px) 32vw, 24vw" /></figure>
+      </div>
+      <div className="welcome-footnote"><span>Rooted in Charlotte, North Carolina.</span><a href="#our-purpose">Get to know us <ArrowRight size={16} aria-hidden="true" /></a></div>
+    </section>
+
+    <section className="purpose-section shell" id="our-purpose" aria-labelledby="purpose-title">
+      <h2 id="purpose-title">More chances to learn.<br />More people in your corner.</h2>
+      <div className="purpose-copy"><p>Education should open doors. We’re here to help more young people find the resources, encouragement, and community to walk through them.</p><p>From useful learning guides to the tutoring, workshops, and mentorship we’re building toward, our next chapter starts with Charlotte.</p><TextLink href="/about">Our purpose, in practice</TextLink></div>
+    </section>
+
+    <section className="take-part-section" aria-labelledby="take-part-title"><div className="shell">
+      <div className="section-heading"><h2 id="take-part-title">Bring what makes you, you.</h2><p>A question. A skill. An idea.<br />There’s a place to begin.</p></div>
+      <div className="participation-features">
+        <Card className="participation-feature">
+          <CardHeader><BookOpen className="feature-icon" strokeWidth={1.5} aria-hidden="true" /><CardTitle><h3>Make room for learning.</h3></CardTitle><CardDescription>For curious minds, at any starting point.</CardDescription></CardHeader>
+          <CardContent><p>Find a new study habit, try a hands-on project, or learn how to support a friend. Our original guides help you take the next small step.</p></CardContent>
+          <CardFooter><Button variant="outline" asChild><Link href="/resources">Find a guide <ArrowRight data-icon="inline-end" aria-hidden="true" /></Link></Button></CardFooter>
+        </Card>
+        <Card className="participation-feature">
+          <CardHeader><HeartHandshake className="feature-icon" strokeWidth={1.5} aria-hidden="true" /><CardTitle><h3>Share a little of yourself.</h3></CardTitle><CardDescription>For volunteers and local collaborators.</CardDescription></CardHeader>
+          <CardContent><p>Bring your time, perspective, or a skill to share. Help shape resources and future projects that respond to what Charlotte students need.</p></CardContent>
+          <CardFooter><Button variant="outline" asChild><Link href="/join">Ways to get involved <ArrowRight data-icon="inline-end" aria-hidden="true" /></Link></Button></CardFooter>
+        </Card>
+      </div>
+    </div></section>
+
+    <section className="guide-shelf shell" aria-labelledby="guides-title">
+      <div className="section-heading"><div><h2 id="guides-title">Something useful to take with you.</h2><p>Free starter guides. Small steps you can try today.</p></div><TextLink href="/resources">Browse the library</TextLink></div>
+      <div className="resource-grid">{resources.map(resource => <ResourceCard key={resource.slug} resource={resource} />)}</div>
+    </section>
+
+    <section className="chapter-section shell" aria-labelledby="chapter-title">
+      <div className="chapter-intro"><h2 id="chapter-title">Youth-led.<br />Charlotte-rooted.</h2><p>Meet the students helping turn a shared belief in education into the next steps for our chapter.</p><TextLink href="/team">Meet the team</TextLink></div>
+      <div className="chapter-roster">{leaders.map(leader => <div className="chapter-person" key={leader.name}><span className="person-initials" aria-hidden="true">{leader.initials}</span><div><h3>{leader.name}</h3><p>{leader.role}</p></div></div>)}</div>
+    </section>
+
+    <section className="questions-section shell" aria-labelledby="questions-title"><div><h2 id="questions-title">A few good questions.</h2><p>Getting to know the chapter starts here.</p><a className="text-link" href={site.instagram} target="_blank" rel="noreferrer">Ask us on Instagram <ArrowUpRight size={18} aria-hidden="true" /></a></div><Accordion type="single" collapsible>{questions.map(item => <AccordionItem key={item.question} value={item.question}><AccordionTrigger>{item.question}</AccordionTrigger><AccordionContent>{item.answer}</AccordionContent></AccordionItem>)}</Accordion></section>
+    <Invite />
+  </div><DesktopMotion /></main>;
 }

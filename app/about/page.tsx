@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
-import { Invite, PageHeader } from "@/components/editorial";
+import { ArrowUpRight, BookOpen, Lightbulb, UsersRound } from "lucide-react";
 import { PhotoBand } from "@/components/photo-band";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { photos } from "@/lib/photos";
+import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Our mission",
@@ -11,41 +14,61 @@ export const metadata: Metadata = {
 
 const principles = [
   {
-    title: "Learn",
+    title: "Learn together",
     copy: "Begin with curiosity. Make room for questions, new skills, and different ways of understanding.",
+    icon: BookOpen,
   },
   {
-    title: "Lead",
+    title: "Lead with care",
     copy: "Share responsibility and help turn a thoughtful idea into a practical next step.",
+    icon: UsersRound,
   },
   {
-    title: "Inspire",
-    copy: "Pass knowledge along and encourage others to find their own way forward.",
+    title: "Pass it on",
+    copy: "Share knowledge and encourage others to find their own way forward.",
+    icon: Lightbulb,
   },
 ];
 
 export default function About() {
   return (
-    <main id="main">
-      <PageHeader
-        title={
-          <>
-            Learning opens doors.
-          </>
-        }
-        description="A youth-led education nonprofit building a welcoming place for Charlotte students to learn, contribute, and grow together."
+    <main id="main" className="public-site secondary-page secondary-about">
+      <section className="secondary-hero secondary-shell" aria-labelledby="about-title">
+        <div className="secondary-hero-copy">
+          <h1 id="about-title">Learning opens doors.</h1>
+        </div>
+        <div className="secondary-hero-aside">
+          <p>
+            A youth-led education nonprofit building a welcoming place for
+            Charlotte students to learn, contribute, and grow together.
+          </p>
+          <Button asChild>
+            <a href={site.form} target="_blank" rel="noreferrer">
+              Find your place <ArrowUpRight data-icon="inline-end" aria-hidden="true" />
+            </a>
+          </Button>
+        </div>
+      </section>
+
+      <PhotoBand
+        photo={photos.classroom}
+        caption="Learning grows when we make room for one another."
       />
 
-      <section className="editorial-section shell" aria-labelledby="mission-heading">
-        <div className="section-intro">
-          <h2 id="mission-heading">Opportunity should have more than one starting point.</h2>
+      <section className="secondary-section secondary-shell secondary-mission" aria-labelledby="mission-heading">
+        <div className="secondary-section-heading">
+          <div>
+            <h2 id="mission-heading">Opportunity has more than one starting point.</h2>
+            <p className="secondary-lede">
+              What matters is the people and resources students can reach along the way.
+            </p>
+          </div>
         </div>
-        <div className="chapter-note">
+        <div className="secondary-mission-copy">
           <p>
             Flamivor Charlotte brings young people together around education
             and peer support. We want access to learning to depend less on
-            where someone begins and more on the people and resources they can
-            reach along the way.
+            where someone begins and more on the community they can find.
           </p>
           <p>
             We are shaping this chapter by listening to local students and
@@ -56,24 +79,27 @@ export default function About() {
         </div>
       </section>
 
-      <PhotoBand photo={photos.classroom} caption="Learning grows when we make room for one another." />
-      <section className="editorial-section shell" aria-labelledby="approach-heading">
-        <div className="section-intro">
-          <h2 id="approach-heading">Three ways to take part.</h2>
+      <section className="secondary-section secondary-shell" aria-labelledby="principles-heading">
+        <div className="secondary-section-heading secondary-section-heading-wide">
+          <div>
+            <h2 id="principles-heading">A community shaped by what we share.</h2>
+            <p className="secondary-lede">Three simple ways to take part in the work.</p>
+          </div>
         </div>
-        <div className="principle-grid">
-          {principles.map((principle) => (
-            <article className="editorial-row principle" key={principle.title}>
-              <div>
-                <h3>{principle.title}</h3>
-                <p>{principle.copy}</p>
-              </div>
-            </article>
+        <div className="secondary-principles">
+          {principles.map(({ title, copy, icon: Icon }) => (
+            <Card className="secondary-card secondary-principle-card" key={title}>
+              <CardHeader className="secondary-card-header">
+                <Icon className="secondary-principle-icon" aria-hidden="true" />
+                <CardTitle className="secondary-card-title"><h3>{title}</h3></CardTitle>
+              </CardHeader>
+              <CardContent className="secondary-card-content">
+                <p>{copy}</p>
+              </CardContent>
+            </Card>
           ))}
         </div>
       </section>
-
-      <Invite />
     </main>
   );
 }

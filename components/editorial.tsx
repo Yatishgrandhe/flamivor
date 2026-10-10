@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import { Button } from "@/components/retro/button";
+import { Button } from "@/components/ui/button";
 import { site } from "@/lib/site";
 export function PageHeader({ title, description }: { eyebrow?: string; title: React.ReactNode; description: string }) {
   return <section className="page-heading shell"><h1>{title}</h1><p className="page-description">{description}</p></section>;

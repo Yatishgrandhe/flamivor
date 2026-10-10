@@ -41,90 +41,27 @@ export function DesktopMotion() {
       if (!scope) return;
 
       const ctx = gsap.context(() => {
-        const communityHeroPhoto = scope.querySelector(".community-hero-photo");
-        const heroPhoto = scope.querySelector(".hero-photo-parallax");
-        if (communityHeroPhoto && heroPhoto) {
-          gsap.fromTo(
-            heroPhoto,
-            { y: 18 },
-            {
-              y: -18,
-              ease: "none",
-              scrollTrigger: {
-                trigger: communityHeroPhoto,
-                start: "top bottom",
-                end: "bottom top",
-                scrub: 0.6,
-              },
-            },
-          );
-        }
-
-        const mission = scope.querySelector(".mission-section");
-        const missionPhoto = scope.querySelector(".mission-photo");
-        if (mission && missionPhoto) {
-          gsap.fromTo(
-            missionPhoto,
-            { y: 16 },
-            {
-              y: 0,
-              ease: "none",
-              scrollTrigger: {
-                trigger: mission,
-                start: "top 85%",
-                end: "center 50%",
-                scrub: 0.5,
-              },
-            },
-          );
-        }
-
-        scope.querySelectorAll<HTMLElement>(".journey-chapter").forEach((chapter) => {
-          const display = chapter.querySelector<HTMLElement>(".journey-display h3");
-          const copy = chapter.querySelector<HTMLElement>(".journey-copy");
-          const scrollTrigger = {
-            trigger: chapter,
-            start: "top 85%",
-            end: "top 45%",
-            scrub: 0.4,
-          };
-
-          if (display) {
-            gsap.fromTo(
-              display,
-              { y: 12 },
-              { y: 0, ease: "none", scrollTrigger },
-            );
-          }
-          if (copy) {
-            gsap.fromTo(
-              copy,
-              { y: 16 },
-              { y: 0, ease: "none", scrollTrigger },
-            );
-          }
-        });
-
-        scope
-          .querySelectorAll<HTMLElement>(".home-guide-entry")
-          .forEach((entry, index) => {
-            gsap.fromTo(
-              entry,
-              { y: 12 },
-              {
-                y: 0,
-                duration: 0.6,
-                delay: index * 0.08,
-                ease: "power2.out",
-                immediateRender: false,
-                scrollTrigger: {
-                  trigger: entry,
-                  start: "top 88%",
-                  once: true,
-                },
-              },
-            );
+        const gallery = scope.querySelector(".welcome-gallery");
+        const mainPhoto = scope.querySelector(".welcome-photo-inner");
+        if (gallery && mainPhoto) {
+          gsap.fromTo(mainPhoto, { y: 20 }, {
+            y: -20, ease: "none",
+            scrollTrigger: { trigger: gallery, start: "top bottom", end: "bottom top", scrub: 0.6 },
           });
+          scope.querySelectorAll(".welcome-photo-side").forEach((photo, index) => {
+            gsap.fromTo(photo, { y: index === 0 ? 20 : -16 }, {
+              y: index === 0 ? -20 : 16, ease: "none",
+              scrollTrigger: { trigger: gallery, start: "top bottom", end: "bottom top", scrub: 0.7 },
+            });
+          });
+        }
+        const features = scope.querySelector(".participation-features");
+        if (features) {
+          gsap.fromTo(features, { y: 24 }, {
+            y: 0, ease: "none",
+            scrollTrigger: { trigger: features, start: "top 90%", end: "top 50%", scrub: 0.5 },
+          });
+        }
 
       }, scope);
 
